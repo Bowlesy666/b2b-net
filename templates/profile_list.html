@@ -1,5 +1,44 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Profile list page</h1>
+<div class="container">
+    <h2 class="text-center">Users In your Network</h2>
+
+    <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-4 mb-5">
+        
+        {% if userprofile_list %}
+            {% for userprofile in userprofile_list %}
+            <div class="col mt-5">
+                <div class="card radius-15">
+                    <div class="card-body text-center">
+                        <div class="p-4 border radius-15">
+                            {% if 'placeholder' in userprofile.user_profile_img.url %}
+                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" width="110" height="110"
+                                class="rounded-circle shadow" alt="user avatar placeholder">
+                            {% else %}
+                            <img src="{{ userprofile.user_profile_img.url }}" width="110" height="110" class="rounded-circle shadow"
+                                alt="user avatar">
+                            {% endif %}
+                            <h5 class="mb-0 mt-4">{{ userprofile.company_name }}</h5>
+                            <div class="d-grid mt-2">
+                                <a href="#" class="btn btn-primary radius-15">View Profile</a>
+                            </div>
+                            <hr>
+                            <p class="mb-3">{{ userprofile.user.first_name }} {{ userprofile.user.last_name }}</p>
+                            <div class="d-grid mt-3">
+                                <a href="#" class="btn btn-outline-primary radius-15">Book Meeting</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <h3>You currently have no users in your network</h3>
+            <hr>
+            <p>Why not invite other businesses to join?</p>
+        {% endif %}
+    </div>
+</div>
+                        
 {% endblock %}

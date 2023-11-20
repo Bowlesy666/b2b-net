@@ -1,8 +1,12 @@
+from . import views
 from django.shortcuts import render, HttpResponse
+from django.views import generic, View
+from .models import UserProfile, Review
 
-
-def profile_list(request):
-    return render(request, 'profile_list.html')
+class UserProfileListView(generic.ListView):
+    model = UserProfile
+    template_name = 'profile_list.html'
+    context_object_name = 'userprofile_list'
 
 
 def profile_detail(request):
