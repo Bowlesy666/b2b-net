@@ -34,7 +34,8 @@ if DEBUG == 'True':
 elif DEBUG is False:
     print('Debug mode is off.')
 
-ALLOWED_HOSTS = ['b2bproject-321684f42c8f.herokuapp.com', '8000-bowlesy666-b2b-net-f5r0gn8q8b.us2.codeanyapp.com',]
+ALLOWED_HOSTS = ['b2bproject-321684f42c8f.herokuapp.com',
+                 '8000-bowlesy666-b2b-net-f5r0gn8q8b.us2.codeanyapp.com',]
 
 
 # Application definition
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary',
     'userprofile',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
@@ -67,7 +69,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [TEMPLATES_DIR,],
-        'APP_DIRS': False,
+        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
