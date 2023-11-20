@@ -1,4 +1,6 @@
 {% extends "account/account_base.html" %}
+{% load i18n %}
+{% load allauth account socialaccount %}
 
 {% block content %}
 <div class="container">
@@ -18,23 +20,32 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                 </div>
-                                <form class="user" method="POST">
-                                    {% csrf_token %}
-                                    <div class="form-group">
-                                        {{ form.email }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ form.password }}
-                                    </div>
-                                    <input type="submit" value="Login">
-                                    <hr>
-                                </form>
+                                {% element h1 %}
+                                    {% trans "Sign In" %}
+                                {% endelement %}
+                                
+                                {% url 'account_login' as login_url %}
+                                {% element form form=form method="post" action=login_url tags="entrance,login" %}
+                                    {% slot body %}
+                                        {% csrf_token %}
+                                        {% element fields form=form unlabeled=True %}
+                                        {% endelement %}
+                                        {% if redirect_field_value %}
+                                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                                        {% endif %}
+                                    {% endslot %}
+                                    {% slot actions %}
+                                        {% element button type="submit" tags="prominent,login" %}
+                                            {% trans "Sign In" %}
+                                        {% endelement %}
+                                    {% endslot %}
+                                {% endelement %}
+                                {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
                                 <hr>
                                 <div class="text-center">
-                                    <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                </div>
-                                <div class="text-center">
-                                    <a class="small" href="register.html">Create an Account!</a>
+                                    {% blocktrans %}
+                                        <a href="{{ signup_url }}">Create an Account!</a>
+                                    {% endblocktrans %}
                                 </div>
                             </div>
                         </div>
