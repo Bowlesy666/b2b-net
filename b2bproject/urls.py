@@ -16,12 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from userprofile import views
-from userprofile.views import UserProfileListView, UserProfileDetailView
+from userprofile.views import UserProfileListView, UserProfileDetailView, UserProfileUpdateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.UserProfileListView.as_view(), name='profile_list'),
     path('profile/<slug:slug>/', views.UserProfileDetailView.as_view(),
          name='userprofile_detail'),
+    path('profile/<slug:slug>/edit', views.UserProfileUpdateView.as_view(), name='profile_update_form'),
     path('accounts/', include('allauth.urls')),
 ]
