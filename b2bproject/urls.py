@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from userprofile import views
-from userprofile.views import UserProfileListView, UserProfileDetailView, UserProfileUpdateView
+from userprofile.views import UserProfileListView, UserProfileDetailView, UserProfileUpdateView, UserUpdateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,5 +24,6 @@ urlpatterns = [
     path('profile/<slug:slug>/', views.UserProfileDetailView.as_view(),
          name='userprofile_detail'),
     path('profile/<slug:slug>/edit', views.UserProfileUpdateView.as_view(), name='profile_update_form'),
+    path('profile/<slug:slug>/edit_user', views.UserUpdateView.as_view(), name='user_info_update_form'),
     path('accounts/', include('allauth.urls')),
 ]

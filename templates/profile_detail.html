@@ -28,7 +28,7 @@
                 {{ userprofile_detail.user.first_name }} {{ userprofile_detail.user.last_name }}
             </p>
             {% if user.userprofile.slug == request.resolver_match.kwargs.slug %}
-            <a class="btn btn-info m-4" target="__self" href="{% url 'profile_update_form' slug=userprofile_detail.slug %}">Edit Profile</a>
+            <a class="btn btn-info m-4" target="_self" href="{% url 'profile_update_form' slug=userprofile_detail.slug %}">Edit Profile</a>
             {% else %}
             <div class="d-grid mt-3">
               <a href="#" class="btn btn-primary radius-15 m-4">Book Meeting</a>

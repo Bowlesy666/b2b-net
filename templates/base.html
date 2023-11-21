@@ -34,7 +34,7 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'profile_list' %}">
                 <div class="sidebar-brand-icon">
                     <img id="b2b-logo" src="{% static 'img/b2b-logo-modified.png' %}"
                         alt="b2b logo" />
@@ -47,7 +47,7 @@
 
             <!-- Nav Item - Home -->
             <li class="nav-item">
-                <a class="nav-link" href="{ url 'home' }">
+                <a class="nav-link" href="{% url 'profile_list' %}">
                     <i class="fa-solid fa-house fa-xl"></i>
                     <span>Home</span>
                 </a>
@@ -58,9 +58,9 @@
 
             <!-- Nav Item - Profile View -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{% url 'userprofile_detail' slug=user.userprofile.slug %}">
                     <i class="fa-solid fa-user fa-xl"></i>
-                    <span>View Profile</span>
+                    <span>My Profile</span>
                 </a>
             </li>
 
@@ -93,7 +93,7 @@
 
             <!-- Nav Item - My Network -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{% url 'profile_list' %}">
                     <div>
                         <i class="fa-solid fa-circle-nodes fa-xl"></i>
                         <span>View Network</span>
@@ -327,15 +327,20 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="{% static 'img/undraw_profile.svg' %}" />
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ user.first_name }} {{ user.last_name }}</span>
+                                {% if 'placeholder' in user.user_profile_img.url %}
+                                <img src="{% static 'img/undraw_profile.svg' %}" alt="user avatar placeholder" class="img-profile rounded-circle"
+                                    width="150" />
+                                {% else %}
+                                <img src="{{ user.userprofile.user_profile_img.url }}" alt="user avatar" class="img-profile rounded-circle" width="150" />
+                                {% endif %}
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{% url 'userprofile_detail' slug=user.userprofile.slug %}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
+                                    My Profile
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
