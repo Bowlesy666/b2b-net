@@ -41,7 +41,7 @@ class UserProfile(models.Model):
     Model representing user profiles for businesses.
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    slug = models.SlugField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, unique=True, null=True, blank=True)
     business_sector = models.CharField(
         max_length=50, choices=BUSINESS_SECTOR_CHOICES, default='other',
         help_text="Select the business sector for the user."
@@ -107,6 +107,7 @@ class Review(models.Model):
     objects = models.Manager()
 
     def save(self, *args, **kwargs):
+        self.stars = self.get_average_stars_for_user(self.profile_reviewed)
         super().save(*args, **kwargs)
 
     @staticmethod

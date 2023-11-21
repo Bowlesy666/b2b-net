@@ -272,3 +272,15 @@
     border-radius: 50%;
     border: 2px solid red;
 }
+
+/* cssgradient.io radial gradient for profile detail placeholder bg */
+.radial-gradient {
+    background: rgb(63, 94, 251);
+    background: radial-gradient(circle, rgba(63, 94, 251, 0.1293767507002801) 45%, rgba(63, 94, 251, 1) 100%);
+}
+
+.image-cover {
+    width: 100%;
+    height: auto;
+    background-size: cover;
+}

@@ -36,7 +36,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon">
-                    <img id="b2b-logo" src="static/img/b2b-logo-modified.png"
+                    <img id="b2b-logo" src="{% static 'img/b2b-logo-modified.png' %}"
                         alt="b2b logo" />
                 </div>
                 <div class="sidebar-brand-text mx-3">Preston</div>
@@ -328,7 +328,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="static/img/undraw_profile.svg" />
+                                <img class="img-profile rounded-circle" src="{% static 'img/undraw_profile.svg' %}" />
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -415,10 +415,10 @@
         crossorigin="anonymous"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="../static/js/jquery.easing.min.js"></script>
+    <script src="{% static 'js/jquery.easing.min.js' %}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../static/js/sb-admin-2.min.js"></script>
+    <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
 </body>
 
 </html>
