@@ -41,7 +41,7 @@ class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
 class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = User
     template_name = 'user_info_update_form.html'
-    success_url = reverse_lazy('profile_edit')
+    # success_url = reverse_lazy('profile_edit')
     form_class = UserForm
     slug = 'slug'
 

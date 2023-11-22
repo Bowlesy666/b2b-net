@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 from django.views import generic, View
-from django.views.generic.edit import UpdateView, CreateView
+from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.http import HttpResponseRedirect
 from .models import Post
-from .forms import CommentForm, CreatePostForm
+from .forms import CommentForm, CreatePostForm, EditPostForm
 
 
 class PostList(generic.ListView):
@@ -83,4 +84,40 @@ class PostLike(View):
 class CreatePostView(LoginRequiredMixin, CreateView):
     model = Post
     template_name = 'create_post.html'
-    fields = ['featured_image', 'title', 'content']
+    form_class = CreatePostForm
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        # Override the form_valid method to set the author before saving the post.
+        form.instance.author = self.request.user
+        content = form.cleaned_data['content']
+        form.instance.excerpt = (
+            content[:50] + '...') if len(content) > 50 else content
+        response = super().form_valid(form)
+        return response
+
+
+class PostUpdateView(LoginRequiredMixin, UpdateView):
+    model = Post
+    template_name = 'edit_post.html'
+    form_class = EditPostForm
+    slug_field = 'slug'  # Use slug_field instead of slug
+    slug_url_kwarg = 'slug'
+
+    def get_success_url(self):
+        return reverse_lazy('post_detail', kwargs={'slug': self.object.slug})
+
+
+class PostDeleteView(LoginRequiredMixin, DeleteView):
+    model = Post
+    template_name = 'delete_post.html'
+    success_url = reverse_lazy('home')
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
+
+    def get_object(self, queryset=None):
+        # This method is used to fetch the object to be deleted.
+        # By default, it uses self.queryset, but can be customised.
+        # In this case, I am using the slug field to filter the Post object.
+        queryset = queryset or self.get_queryset()
+        return queryset.filter(**{self.slug_field: self.kwargs[self.slug_url_kwarg]}).first()
