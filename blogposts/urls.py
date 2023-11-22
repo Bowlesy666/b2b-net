@@ -1,5 +1,5 @@
 """
-1. 
+1.
    -`home`:
    - URL pattern for the blog home page, displaying a list of all published posts.
    - Maps to the `PostList` view.
@@ -39,6 +39,7 @@ urlpatterns = [
     path('create_post/', views.CreatePostView.as_view(), name='create_post'),
     path('edit_post/<slug:slug>/',
          views.PostUpdateView.as_view(), name='update_post'),
-    path('delete_post/<slug:slug>/', views.PostDeleteView.as_view(), name='delete_post'),
+    path('delete_post/<slug:slug>/',
+         views.PostDeleteView.as_view(), name='delete_post'),
     path('<slug:slug>/', views.PostDetail.as_view(), name='post_detail'),
 ]
