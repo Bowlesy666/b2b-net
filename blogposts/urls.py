@@ -1,5 +1,5 @@
-
-1. """
+"""
+1. 
    -`home`:
    - URL pattern for the blog home page, displaying a list of all published posts.
    - Maps to the `PostList` view.

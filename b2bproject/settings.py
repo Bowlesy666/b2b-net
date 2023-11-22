@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'userprofile',
     'phonenumber_field',
     'blogposts',
+    'booking',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
