@@ -50,8 +50,11 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
+    'django_summernote',
+    'crispy_forms',
     'userprofile',
     'phonenumber_field',
+    'blogposts',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -62,6 +65,8 @@ SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_SIGNUP_REDIRECT_URL = 'profile_update_form'
 LOGOUT_REDIRECT_URL = '/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

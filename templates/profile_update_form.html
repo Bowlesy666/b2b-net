@@ -31,8 +31,16 @@
           </div>
           <!-- Profile Account details link -->
           <div class="d-grid mt-3">
-            <a class="btn btn-primary radius-15 m-4" href="{% url 'user_info_update_form' slug=user.userprofile.slug %}">Edit Account Info</a>
-            <a class="btn btn-outline-primary radius-15 m-4" href="{% url 'userprofile_detail' slug=user.userprofile.slug %}">Cancel Edit</a>
+            <a
+              class="btn btn-primary radius-15 m-4"
+              href="{% url 'user_info_update_form' slug=user.userprofile.slug %}"
+              >Edit Account Info</a
+            >
+            <a
+              class="btn btn-outline-primary radius-15 m-4"
+              href="{% url 'userprofile_detail' slug=user.userprofile.slug %}"
+              >Cancel Edit</a
+            >
           </div>
         </div>
       </div>
@@ -43,8 +51,7 @@
         <div class="card-header">Profile Details</div>
         <div class="card-body">
           <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
+            {% csrf_token %} {{ form.as_p }}
             <!-- Save changes button-->
             <button class="btn btn-primary" type="submit">Save changes</button>
           </form>
