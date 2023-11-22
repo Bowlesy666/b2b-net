@@ -9,6 +9,9 @@ from .forms import CommentForm, CreatePostForm, EditPostForm
 
 
 class PostList(generic.ListView):
+    """
+    List view for displaying a paginated list of published blog posts.
+    """
     model = Post
     queryset = Post.objects.filter(status=1).order_by("-created_on")
     template_name = "blog_index.html"
@@ -16,6 +19,9 @@ class PostList(generic.ListView):
 
 
 class PostDetail(View):
+    """
+    View for displaying a blog post in detail and handling comments and likes.
+    """
 
     def get(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
@@ -70,7 +76,11 @@ class PostDetail(View):
 
 
 class PostLike(View):
-
+    """
+    View for handling post likes/unlikes
+    HTTP POST request that
+    Redirects to the detailed view of the liked/unliked post.
+    """
     def post(self, request, slug, *args, **kwargs):
         post = get_object_or_404(Post, slug=slug)
         if post.likes.filter(id=request.user.id).exists():
@@ -82,13 +92,18 @@ class PostLike(View):
 
 
 class CreatePostView(LoginRequiredMixin, CreateView):
+    """
+    View for creating a new blog post.
+    """
     model = Post
     template_name = 'create_post.html'
     form_class = CreatePostForm
     success_url = reverse_lazy('home')
 
     def form_valid(self, form):
-        # Override the form_valid method to set the author before saving the post.
+        """
+        Override the form_valid method to set the author before saving the post
+        """
         form.instance.author = self.request.user
         content = form.cleaned_data['content']
         form.instance.excerpt = (
@@ -98,6 +113,9 @@ class CreatePostView(LoginRequiredMixin, CreateView):
 
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
+    """
+    View for updating an existing blog post.
+    """
     model = Post
     template_name = 'edit_post.html'
     form_class = EditPostForm
@@ -109,6 +127,9 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
+    """
+    View for deleting an existing blog post.
+    """
     model = Post
     template_name = 'delete_post.html'
     success_url = reverse_lazy('home')
@@ -116,8 +137,10 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
     slug_url_kwarg = 'slug'
 
     def get_object(self, queryset=None):
-        # This method is used to fetch the object to be deleted.
-        # By default, it uses self.queryset, but can be customised.
-        # In this case, I am using the slug field to filter the Post object.
+        """
+        This method is used to fetch the object to be deleted.
+        By default, it uses self.queryset, but can be customised.
+        In this case, I am using the slug field to filter the Post object.
+        """
         queryset = queryset or self.get_queryset()
         return queryset.filter(**{self.slug_field: self.kwargs[self.slug_url_kwarg]}).first()

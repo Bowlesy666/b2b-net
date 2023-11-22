@@ -11,12 +11,18 @@ from django.contrib.auth.models import User
 
 
 class UserProfileListView(generic.ListView):
+    """
+    View for listing user profiles.
+    """
     model = UserProfile
     template_name = 'profile_list.html'
     context_object_name = 'userprofile_list'
 
 
 class UserProfileDetailView(DetailView):
+    """
+    View for displaying a user profile in detail.
+    """
     model = UserProfile
     template_name = 'profile_detail.html'
     context_object_name = 'userprofile_detail'
@@ -25,6 +31,9 @@ class UserProfileDetailView(DetailView):
 
 
 class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
+    """
+    View for updating a user profile.
+    """
     model = UserProfile
     template_name = 'profile_update_form.html'
     form_class = UserProfileForm
@@ -39,6 +48,9 @@ class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
+    """
+    View for updating basic user information.
+    """
     model = User
     template_name = 'user_info_update_form.html'
     # success_url = reverse_lazy('profile_edit')
