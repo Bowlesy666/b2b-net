@@ -63,7 +63,7 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'blog/'
 ACCOUNT_SIGNUP_REDIRECT_URL = 'profile_update_form'
 LOGOUT_REDIRECT_URL = 'account_login'
 
