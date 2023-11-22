@@ -1,34 +1,28 @@
 {% extends 'base.html' %} {% block content %}
 {% load crispy_forms_tags %}
 
-<div class="masthead">
-    <div class="container">
-        <div class="row g-0">
-            <div class="col-md-6 masthead-text">
-                <!-- Post title goes in these h1 tags -->
-                <h1 class="post-title">{{ post.title }}</h1>
-                <!-- Post author goes before the | the post's created date goes after -->
-                <p class="post-subtitle">{{ post.author }} | {{ post.created_on }}</p>
-            </div>
-            <div class="d-none d-md-block col-md-6 masthead-image">
-                <!-- The featured image URL goes in the src attribute -->
-                {% if "placeholder" in post.featured_image.url %}
-                <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" width="100%">
-                {% else %}
-                <img src=" {{ post.featured_image.url }}" width="100%">
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="container">
     <div class="row">
         <div class="col card mb-4  mt-3 left  top">
+            <a class="btn btn-outline-primary radius-15 m-4" href="{% url 'home' %}">Back to main thread</a>
+            
             <div class="card-body">
+                <div class="d-none d-md-block col masthead-image">
+                    <!-- The featured image URL goes in the src attribute -->
+                    {% if "placeholder" in post.featured_image.url %}
+                    {% else %}
+                    <img src=" {{ post.featured_image.url }}" width="100%">
+                    {% endif %}
+                </div>
+                <div class="col masthead-text mt-4 mb-4">
+                    <!-- Post title goes in these h1 tags -->
+                    <h1 class="post-title">{{ post.title }}</h1>
+                    <!-- Post author goes before the | the post's created date goes after -->
+                    <p class="post-subtitle">{{ post.author }} | {{ post.created_on }}</p>
+                </div>
                 <!-- The post content goes inside the card-text. -->
                 <!-- Use the | safe filter inside the template tags -->
-                <p class="card-text ">
+                <p class="col card-text ">
                     {{ post.content | safe }}
                 </p>
                 <div class="row">
@@ -66,6 +60,12 @@
     </div>
     <div class="row">
         <div class="col">
+            {% if post.author == request.user %}
+            <div class="col mt-3">
+                <a class="btn btn-outline-danger radius-15 form-control" target="_self" href="#">Delete
+                    Your Post</a>
+            </div>
+            {% endif %}
             <hr>
         </div>
     </div>
@@ -91,7 +91,7 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="col-md-4 card mb-4  mt-3 ">
+        <div class="col-md-4 card mb-4 mt-3 ">
             <div class="card-body">
                 <!-- For later -->
                 {% if commented %}

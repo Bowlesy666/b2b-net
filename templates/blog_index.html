@@ -2,28 +2,48 @@
 
 {% block content %}
 
-<div class="container-fluid">
+
+
+<div class="container-xl px-4 mt-4">
     <div class="row">
 
+        <!-- Create a Post -->
+        <div class="col-xl-8">
+            <a href="{% url 'create_post' %}" class="post-link text-decoration-none">
+                <div class="card mb-3">
+                    <div class="card-header">Create a Post</div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="form-control border">
+                                <span class="text-mute mt-4">Share a story with your network...</span>
+                            </div>
+                            <div class="d-grid">
+                                <button class="btn btn-primary radius-15 m-4" type="submit">Create Post</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
         <!-- Blog Entries Column -->
-        <div class="col-12 mt-3 left">
-            <div class="row">
+        <div class="col-xl-8">
                 {% for post in post_list %}
-                <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-body">
+                            <a href="{% url 'post_detail' post.slug %}" class="post-link text-decoration-none">
+                            {% if 'placeholder' in post.featured_image.url %}
+                            <div class="image-flash">
+                                <p class="author">Author: {{ post.author }}</p>
+                            </div>
+                            {% else %}
                             <div class="image-container">
-                                {% if "placeholder" in post.featured_image.url %}
-                                <img class="card-img-top"
-                                    src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg">
-                                {% else %}
                                 <img class="card-img-top" src="{{ post.featured_image.url }}">
-                                {% endif %}
                                 <div class="image-flash">
                                     <p class="author">Author: {{ post.author }}</p>
                                 </div>
                             </div>
-                            <a href="{% url 'post_detail' post.slug %}" class="post-link">
+                            {% endif %}
                                 <h2 class="card-title">{{ post.title }}</h2>
                                 <p class="card-text">{{ post.excerpt }}</p>
                             </a>
@@ -32,14 +52,8 @@
                                 {{ post.number_of_likes }}</p>
                         </div>
                     </div>
-                </div>
-                {% if forloop.counter|divisibleby:3 %}
-            </div>
-            <div class="row">
-                {% endif %}
                 {% endfor %}
 
-            </div>
         </div>
     </div>
     {% if is_paginated %}

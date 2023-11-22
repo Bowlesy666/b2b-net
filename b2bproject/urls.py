@@ -23,12 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
     path('', include('blogposts.urls'), name='blog_urls'),
-    path('profile/list/', views.UserProfileListView.as_view(), name='profile_list'),
-    path('profile/<slug:slug>/', views.UserProfileDetailView.as_view(),
-         name='userprofile_detail'),
-    path('profile/<slug:slug>/edit',
-         views.UserProfileUpdateView.as_view(), name='profile_update_form'),
-    path('profile/<slug:slug>/edit_user',
-         views.UserUpdateView.as_view(), name='user_info_update_form'),
+    path('profile/', include('userprofile.urls')),
     path('accounts/', include('allauth.urls')),
 ]
