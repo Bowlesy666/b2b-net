@@ -18,11 +18,13 @@ from django.urls import path, include
 from userprofile import views
 from blogposts.views import CreatePostView
 from userprofile.views import UserProfileListView, UserProfileDetailView, UserProfileUpdateView, UserUpdateView
+from allauth.account.views import LoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
-    path('', include('blogposts.urls'), name='blog_urls'),
+    path('blog/', include('blogposts.urls'), name='blog_urls'),
     path('profile/', include('userprofile.urls')),
+    path('', LoginView.as_view(), name='login'),
     path('accounts/', include('allauth.urls')),
 ]
