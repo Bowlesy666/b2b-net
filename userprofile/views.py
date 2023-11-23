@@ -1,3 +1,7 @@
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+from django.views import View
+from django.contrib import messages
 from . import views
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
@@ -62,3 +66,22 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('userprofile_detail', kwargs={'slug': self.request.user.userprofile.slug})
+
+
+class CreateUserProfileView(View):
+    model = UserProfile
+    template_name = 'profile_create_form.html'
+
+    def get(self, request, *args, **kwargs):
+        form = UserProfileForm()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = UserProfileForm(request.POST)
+        if form.is_valid():
+            user_profile = form.save(commit=False)
+            user_profile.user = request.user
+            user_profile.save()
+            messages.success(request, 'User profile created successfully!')
+            return redirect('userprofile_detail', slug=user_profile.slug)
+        return render(request, self.template_name, {'form': form})

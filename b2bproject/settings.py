@@ -64,7 +64,7 @@ INSTALLED_APPS = [
 SITE_ID = 1
 
 LOGIN_REDIRECT_URL = 'home'
-ACCOUNT_SIGNUP_REDIRECT_URL = 'profile_update_form'
+ACCOUNT_SIGNUP_REDIRECT_URL = 'create_user_profile'
 LOGOUT_REDIRECT_URL = 'account_login'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
