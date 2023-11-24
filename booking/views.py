@@ -20,4 +20,13 @@ class CreateBookingView(CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('home')
+        return reverse_lazy('booking_list')
+
+
+class BookingListView(generic.ListView):
+    """
+    View for listing user profiles.
+    """
+    model = Booking
+    template_name = 'booking_list.html'
+    context_object_name = 'booking_list'

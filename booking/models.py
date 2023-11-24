@@ -34,6 +34,12 @@ class Booking(models.Model):
     additional_notes = models.TextField()
     slug = models.SlugField(max_length=200, unique=True, null=True, blank=True)
 
+    class Meta:
+        """
+        Order bookings by meeting date in descending order.
+        """
+        ordering = ["-meeting_date"]
+
     def __str__(self):
         return f'Meeting for: {self.sender.user.username} & {self.receiver.user.username} - {self.meeting_subject}'
 
