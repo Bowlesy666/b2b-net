@@ -1,0 +1,66 @@
+{% extends "base.html" %} {% block content %}{% load static %}
+
+<div class="container-xl px-4 mt-4">
+  <h1 class="text-center">Edit 1-2-1 Meeting Request</h1>
+  <hr class="mt-0 mb-4" />
+  <div class="row">
+    <div class="col-xl-4">
+      <!-- Profile picture card-->
+      <div class="card mb-4 mb-xl-0">
+        <div class="card-header">Profile Picture</div>
+        <div class="card-body text-center">
+          <!-- Profile picture image-->
+        {% if user.userprofile.username == booking_detail.sender.username %}
+        <div>
+            <img src="{% if 'placeholder' in booking_detail.receiver.user_profile_img.url %}{% static 'img/undraw_profile.svg' %}{% else %}{{ booking_detail.receiver.user_profile_img.url }}{% endif %}"
+                alt="user avatar" class="img-profile rounded-circle mr-4" width="30" />
+            <span class="mr-3 text-truncate">{{ booking_detail.receiver.user.first_name }} {{ booking_detail.receiver.user.last_name }}</span>
+            <span class="float-right text-truncate">{{ booking.meeting_date }}</span>
+            <span class="float-right text-truncate mr-3">{{ booking.meeting_time }}</span>
+        </div>
+        {% else %}
+        <div>
+            <img src="{% if 'placeholder' in booking.sender.user_profile_img.url %}{% static 'img/undraw_profile.svg' %}{% else %}{{ booking.sender.user_profile_img.url }}{% endif %}"
+                alt="user avatar" class="img-profile rounded-circle mr-4" width="30" />
+            <span class="mr-3 text-truncate">{{ booking.sender.user.first_name }} {{ booking.sender.user.last_name }} saying they are sender</span>
+            <span class="float-right text-truncate">{{ booking.meeting_date }}</span>
+            <span class="float-right text-truncate mr-3">{{ booking.meeting_time }}</span>
+        </div>
+        {% endif %}
+          <!-- Profile picture help block-->
+          <div class="small font-italic text-muted mb-4">
+            JPG or PNG no larger than 5 MB
+          </div>
+          <!-- Profile Account details link -->
+          <div class="d-grid mt-3">
+            <a
+              class="btn btn-primary radius-15 m-4"
+              href="{% url 'user_info_update_form' slug=user.userprofile.slug %}"
+              >Edit Meeting Info</a
+            >
+            <a
+              class="btn btn-outline-primary radius-15 m-4"
+              href="{% url 'userprofile_detail' slug=user.userprofile.slug %}"
+              >Cancel Edit</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-8">
+      <!-- Account details card-->
+      <div class="card mb-4">
+        <div class="card-header">Meeting Details</div>
+        <div class="card-body">
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %} {{ form.as_p }}
+            <!-- Save changes button-->
+            <button class="btn btn-primary" type="submit">Save changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

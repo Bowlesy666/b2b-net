@@ -18,7 +18,7 @@
                             <button class="btn btn-link btn-block text-left text-decoration-none" type="button"
                                 data-toggle="collapse" data-target="#collapse{{ booking.slug }}" aria-expanded="true"
                                 aria-controls="collapse{{ booking.slug }}">
-                                {% if user.userprofile.username is booking.sender.username %}
+                                {% if user.userprofile == booking.sender %}
                                 <div>
                                     <img src="{% if 'placeholder' in booking.receiver.user_profile_img.url %}{% static 'img/undraw_profile.svg' %}{% else %}{{ booking.receiver.user_profile_img.url }}{% endif %}"
                                         alt="user avatar" class="img-profile rounded-circle mr-4" width="30" />
@@ -42,7 +42,7 @@
                     <div id="collapse{{ booking.slug }}" class="collapse{% if forloop.first %} show{% endif %}"
                         aria-labelledby="heading{{ booking.slug }}" data-parent="#accordion">
                         <div class="card-body">
-                            <a href="{% url 'home' %}" class="text-decoration-none">
+                            <a href="{% url 'update_booking' slug=booking.slug %}" class="text-decoration-none">
                                 <h5>{{ booking.meeting_subject }} - {{ booking.meeting_date }} {{ booking.meeting_time }}</h5>
                                 <p>{{ booking.meeting_description }}</p>
                                 <p class="float-right">Venue: {{ booking.meeting_location }} - Duration: {{ booking.get_meeting_duration_display }}</p>
