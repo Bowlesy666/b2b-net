@@ -6,17 +6,17 @@
             <div class="card mb-4">
                 <div class="card-header"><h1>Cancel 1-2-1 Meeting</h1></div>
                     <div class="card-body">
+                        
                         <form method="POST" enctype="multipart/form-data">
                             <div class="form-group">
-
                                 <!-- Security token -->
                                 {% csrf_token %}
-
-                                <!-- Using the formset -->
-                                {{ form.as_p }}
-
+                                <div class="form-group">
+                                    <label>Are you sure you want to cancel? </label>
+                                    {{ form.is_cancelled }}
+                                </div>
                                 <div class="d-grid mt-3">
-                                    <button class="btn btn-primary radius-15 m-4" type="submit">Cancel Meeting!</button>
+                                    <button class="btn btn-danger radius-15 m-4" type="submit">Cancel Meeting!</button>
                                     <a class="btn btn-outline-primary radius-15 m-4" href="{% url 'home' %}">Return to home</a>
                                 </div>
                             </div>
