@@ -6,7 +6,7 @@ from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.db.models import Q
 from userprofile.models import UserProfile
 from .models import Booking
-from .forms import CreateBookingForm, UpdateBookingForm, CancelBookingForm, ConfirmBookingForm
+from .forms import CreateBookingForm, UpdateBookingForm, CancelBookingForm, ConfirmBookingForm, ArchiveBookingForm
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 
@@ -18,7 +18,7 @@ class CreateBookingView(CreateView):
 
     def get_form_kwargs(self):
         kwargs = super(CreateBookingView, self).get_form_kwargs()
-        kwargs['user'] = self.request.user
+        # kwargs['user'] = self.request.user
         return kwargs
 
     def form_valid(self, form):
@@ -84,6 +84,18 @@ class ConfirmBookingView(LoginRequiredMixin, UpdateView):
     model = Booking
     template_name = 'confirm_booking_form.html'
     form_class = ConfirmBookingForm
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
+    success_url = reverse_lazy('booking_list')
+
+
+class ArchiveBookingView(LoginRequiredMixin, UpdateView):
+    """
+    View to cancel a meeting, this will not delete
+    """
+    model = Booking
+    template_name = 'archive_booking_form.html'
+    form_class = ArchiveBookingForm
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
     success_url = reverse_lazy('booking_list')

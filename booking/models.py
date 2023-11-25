@@ -29,9 +29,10 @@ class Booking(models.Model):
     meeting_time = models.TimeField(null=False, validators=[RegexValidator(
         r'\d{2}:\d{2}', message='Enter a valid time format (HH:MM)')])
     meeting_duration = models.CharField(
-        max_length=50, choices=MEETING_DURATION_CHOICES, default='')
+        max_length=50, choices=MEETING_DURATION_CHOICES, default='30_mins')
     is_accepted = models.BooleanField(default=False)
     is_cancelled = models.BooleanField(default=False)
+    is_archived = models.BooleanField(default=False)
     additional_notes = models.TextField()
     slug = models.SlugField(max_length=200, unique=True, null=True, blank=True)
 

@@ -54,6 +54,7 @@ class UpdateBookingForm(forms.ModelForm):
             'meeting_time',
             'meeting_duration',
             'is_accepted',
+            'is_archived',
             'additional_notes',
         ]
         widgets = {
@@ -78,3 +79,9 @@ class ConfirmBookingForm(forms.ModelForm):
     class Meta:
         model = Booking
         fields = ['is_accepted',]
+
+
+class ArchiveBookingForm(forms.ModelForm):
+    class Meta:
+        model = Booking
+        fields = ['is_archived']
