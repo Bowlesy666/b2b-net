@@ -72,3 +72,9 @@ class CancelBookingForm(forms.ModelForm):
     class Meta:
         model = Booking
         fields = ['is_cancelled',]
+
+
+class ConfirmBookingForm(forms.ModelForm):
+    class Meta:
+        model = Booking
+        fields = ['is_accepted',]

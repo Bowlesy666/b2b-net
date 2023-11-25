@@ -10,4 +10,6 @@ urlpatterns = [
          views.UpdateBookingView.as_view(), name='update_booking'),
     path('cancel_booking/<slug:slug>/',
          views.CancelBookingView.as_view(), name='cancel_booking'),
+    path('confirm_booking/<slug:slug>/',
+         views.ConfirmBookingView.as_view(), name='confirm_booking'),
 ]

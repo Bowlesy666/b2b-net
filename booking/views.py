@@ -6,7 +6,7 @@ from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.db.models import Q
 from userprofile.models import UserProfile
 from .models import Booking
-from .forms import CreateBookingForm, UpdateBookingForm, CancelBookingForm
+from .forms import CreateBookingForm, UpdateBookingForm, CancelBookingForm, ConfirmBookingForm
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 
@@ -72,6 +72,18 @@ class CancelBookingView(LoginRequiredMixin, UpdateView):
     model = Booking
     template_name = 'cancel_booking_form.html'
     form_class = CancelBookingForm
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
+    success_url = reverse_lazy('booking_list')
+
+
+class ConfirmBookingView(LoginRequiredMixin, UpdateView):
+    """
+    View to cancel a meeting, this will not delete
+    """
+    model = Booking
+    template_name = 'confirm_booking_form.html'
+    form_class = ConfirmBookingForm
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
     success_url = reverse_lazy('booking_list')

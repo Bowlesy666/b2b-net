@@ -41,6 +41,8 @@
               href="{% url 'cancel_booking' slug=booking_detail.slug %}"
               >Cancel meeting</a
             >
+            <a class="btn btn-outline-success radius-15 m-4" href="{% url 'confirm_booking' slug=booking_detail.slug %}">Confirm
+                meeting</a>
           </div>
         </div>
       </div>
