@@ -6,7 +6,7 @@ from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.db.models import Q
 from userprofile.models import UserProfile
 from .models import Booking
-from .forms import BookingForm
+from .forms import CreateBookingForm, UpdateBookingForm
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 
@@ -14,7 +14,12 @@ from django.urls import reverse_lazy
 class CreateBookingView(CreateView):
     model = Booking
     template_name = 'create_booking_form.html'
-    form_class = BookingForm
+    form_class = CreateBookingForm
+
+    def get_form_kwargs(self):
+        kwargs = super(CreateBookingView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
     def form_valid(self, form):
         # Set the sender field to the logged-in user
@@ -27,7 +32,7 @@ class CreateBookingView(CreateView):
 
 class BookingListView(generic.ListView):
     """
-    View for listing user bookings.
+    View for listing user bookings
     """
     model = Booking
     template_name = 'booking_list.html'
@@ -47,7 +52,7 @@ class UpdateBookingView(LoginRequiredMixin, UpdateView):
     """
     model = Booking
     template_name = 'update_booking_form.html'
-    form_class = BookingForm
+    form_class = UpdateBookingForm
     context_object_name = 'booking_detail'
     slug_url_kwarg = 'slug'  # Specify the URL keyword argument for the slug
 
