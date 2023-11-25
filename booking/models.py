@@ -31,6 +31,7 @@ class Booking(models.Model):
     meeting_duration = models.CharField(
         max_length=50, choices=MEETING_DURATION_CHOICES, default='')
     is_accepted = models.BooleanField(default=False)
+    is_cancelled = models.BooleanField(default=False)
     additional_notes = models.TextField()
     slug = models.SlugField(max_length=200, unique=True, null=True, blank=True)
 

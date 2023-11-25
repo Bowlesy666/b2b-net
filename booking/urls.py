@@ -8,4 +8,6 @@ urlpatterns = [
     path('booking_list/', views.BookingListView.as_view(), name='booking_list'),
     path('update_booking/<slug:slug>/',
          views.UpdateBookingView.as_view(), name='update_booking'),
+    path('cancel_booking/<slug:slug>/',
+         views.CancelBookingView.as_view(), name='cancel_booking'),
 ]

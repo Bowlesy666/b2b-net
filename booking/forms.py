@@ -66,3 +66,9 @@ class UpdateBookingForm(forms.ModelForm):
             'meeting_duration': forms.Select(attrs={'class': 'form-control'}),
             'additional_notes': forms.Textarea(attrs={'class': 'form-control'}),
         }
+
+
+class CancelBookingForm(forms.ModelForm):
+    class Meta:
+        model = Booking
+        fields = ['is_cancelled',]
