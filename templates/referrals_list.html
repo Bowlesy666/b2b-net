@@ -1,0 +1,108 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+
+<div class="container-fluid px-4 mt-4">
+  <div class="row">
+    <div class="col-xl">
+      <!-- Booking List accordian card-->
+      <div class="card mb-4 negative-margin-sides xl-m-8">
+        <div class="card-header col">
+            <div class="row mt-2">
+                <h1 class="col-sm text-primary text-center"> My Referrals </h1>
+                <h2 class="col-sm mt-2 text-center text-info">
+                    <a href="{% url 'archive_booking_list' %}"> Archived </a>
+                    </h2>
+            </div>
+        </div>
+        <div class="card-body">
+            {% if user.userprofile.username == referrals_list.referral_sender_id.username or referrals_list.referral_receiver_id.username %}
+            <!-- add buttons to search network or quick add referral -->
+            <div class="accordion" id="accordion">
+                {% for referral in referrals_list %}
+                <div class="card text-decoration-none mb-4">
+                    <div class="card-header text-decoration-none{% if referral.is_agreed == True %} bg-light-green{% elif referral.is_cancelled == True %} bg-light-red{% endif %}" 
+                    id="heading{{ referral.slug }}">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link d-inline btn-block text-left text-decoration-none col-9" type="button"
+                                data-toggle="collapse" data-target="#collapse{{ referral.slug }}" aria-expanded="true"
+                                aria-controls="collapse{{ referral.slug }}">
+                                {% if user.userprofile == referral.referral_sender_id %}
+                                <div class="text-truncate">
+                                    <img src="{% if 'placeholder' in referral.referral_receiver_id.user_profile_img.url %}{% static 'img/undraw_profile.svg' %}{% else %}{{ referral.referral_receiver_id.user_profile_img.url }}{% endif %}"
+                                        alt="user avatar" class="img-profile rounded-circle mr-4" width="30" />
+                                    <span class="mr-3 text-truncate">{{ referral.referral_receiver_id.user.first_name }} {{ referral.referral_receiver_id.user.last_name }} - {{ referral.referral_subject }}</span>
+                                    <span class="float-right text-truncate">{% if referral.is_cancelled == True %}<strike>{{ referral.expected_completion_date }}</strike>{% else %}{{ referral.expected_completion_date }}{% endif %}</span>
+                                    <span class="float-right text-truncate mr-3">{% if referral.is_cancelled == True %}<strike>{{ referral.percentage }} %</strike>{% else %}{{ referral.percentage }} %{% endif %}</span>
+                                </div>
+                                {% else %}
+                                <div class="text-truncate">
+                                    <img src="{% if 'placeholder' in referral.referral_sender_id.user_profile_img.url %}{% static 'img/undraw_profile.svg' %}{% else %}{{ referral.referral_sender_id.user_profile_img.url }}{% endif %}"
+                                        alt="user avatar" class="img-profile rounded-circle mr-4" width="30" />
+                                        <span class="mr-3 text-truncate">{{ referral.referral_sender_id.user.first_name }} {{ referral.referral_sender_id.user.last_name }} - {{ referral.referral_subject }}</span>
+                                        <span class="float-right text-truncate">{% if referral.is_cancelled == True %}<strike>{{ referral.expected_completion_date }}</strike>{% else %}{{ referral.expected_completion_date }}{% endif %}</span>
+                                        <span class="float-right text-truncate mr-3">{% if referral.is_cancelled == True %}<strike>{{ referral.percentage }} %</strike>{% else %}{{ referral.percentage }} %{% endif %}</span>
+                                </div>
+                                {% endif %}
+                            </button>
+                            <a class="btn d-inline text-info col-1" href="#"><i class="fa-solid fa-box-archive"><h6>Archive</h6></i></a>
+                        </h2>
+                    </div>
+                    <div id="collapse{{ referral.slug }}" class="collapse{% if forloop.first %} show{% endif %}"
+                        aria-labelledby="heading{{ referral.slug }}" data-parent="#accordion">
+                        <div class="card-body">
+                            <a href="{% if referral.is_cancelled is False %}#{% endif %}" class="text-decoration-none">
+                                <div class="col-xl">
+                                    <div class="row w-100">
+                                        <h5>{{ referral.referral_subject }} - {{ referral.introduced_person_name }} {{ referral.introduced_person_company }}</h5>
+                                    </div>
+                                    <div class="row w-100">
+                                        <h5 class="text-truncate">{{ referral.introduced_person_email }} - {{ referral.introduced_person_phonenumber }} {{ referral.introduced_person_alternative_phonenumber }}</h5>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <p>{{ referral.referral_description }}</p>
+                                    </div>
+                                    <div class="row w-100">
+                                        <h5 class="text-truncate text-gray-600">£{{ referral.proposed_amount }} at {{ referral.percentage }} % estimated to raise a £{{ referral.estimated_commsion }} commission</h5>
+                                    </div>
+                                    {% if referral.is_cancelled is False %}
+                                    <div class="row mt-4">
+                                        <p class="{% if referral.is_agreed or referral.is_completed %}text-success{% else %}text-gray-600{% endif %}">
+                                            Expected completion date: {{ referral.expected_completion_date }} - 
+                                            Contract agreed: 
+                                            {% if referral.is_agreed and not referral.is_completed %}
+                                                <i class="fa-solid fa-thumbs-up"> Contract Agreed</i>
+                                            {% elif referral.is_completed %}
+                                                <i class="fa-solid fa-handshake-angle">Contract Complete</i>
+                                            {% else %}
+                                                Contract not yet agreed
+                                            {% endif %}
+                                        </p>
+                                        </p>
+                                    </div>
+                                    <div class="row float-right">
+                                        <button class="btn btn-block btn-outline-primary radius-15 m-4 float-right">View & Edit</button>
+                                    </div>
+                                    {% else %}
+                                    <div class="row mt-4">
+                                        <p class="text-danger"><i class="fa-solid fa-ban"> This contract has been cancelled:</i></p>
+                                        <p class="text-gray-600">{{ referral.cancellation_reason }}</p>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <h3>It doesn't look like you have any referrals logged....</h3>
+            <p>Reach out to your network, let them know what services you offer...</p>
+            <p>find out what services they offer, you may knw someone you can introduce and start earning commission...</p>
+            <!-- Add button to search network or quick add -->
+            {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -27,10 +27,11 @@ class ReferralsModel(models.Model):
     is_cancelled = models.BooleanField(default=False)
     cancellation_reason = models.CharField(max_length=200)
     is_completed = models.BooleanField(default=False)
+    is_archived = models.BooleanField(default=False)
     slug = models.SlugField(max_length=200, unique=True, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.sender.username} to {self.receiver.username} - Amount: {self.amount_proposed}, Percentage: {self.percentage}%"
+        return f"{self.referral_sender_id.username} to {self.referral_receiver_id.username} - Amount: {self.proposed_amount}, Percentage: {self.percentage}%"
 
     def calculate_commission(self):
         return (self.proposed_amount * self.percentage) / 100
@@ -40,7 +41,7 @@ class ReferralsModel(models.Model):
 
         if not self.is_percentage_editable:
             self.percentage = 5.00
-        self.estimated_commission = self.calculate_commission()
+        self.estimated_commsion = self.calculate_commission()
 
     def save(self, *args, **kwargs):
         """
