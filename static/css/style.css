@@ -284,3 +284,25 @@
     height: auto;
     background-size: cover;
 }
+
+.bg-light-red {
+    background-color: rgba(255, 0, 0, .065);
+}
+
+.bg-light-green {
+    background-color: rgba(0, 255, 0, .07);
+}
+
+
+/* negative margin reduction for mobiles */
+.negative-margin-sides {
+    margin-left: -2.9rem;
+    margin-right: -2.9rem;
+}
+
+@media (min-width: 780px) {
+    .negative-margin-sides {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
