@@ -8,8 +8,9 @@
         <div class="card-header col">
             <div class="row mt-2">
                 <h1 class="col-sm text-primary text-center"> My Meetings </h1>
-                <h2 class="col-sm text-gray-600 mt-2 text-center"> Archived </h2>
-                
+                <h2 class="col-sm mt-2 text-center text-info">
+                    <a href="#"> Archived </a>
+                    </h2>
             </div>
         </div>
         <div class="card-body">
@@ -17,11 +18,11 @@
             <!-- add buttons to search network or quick book meeting -->
             <div class="accordion" id="accordion">
                 {% for booking in booking_list %}
-                <div class="card text-decoration-none">
+                <div class="card text-decoration-none mb-4">
                     <div class="card-header text-decoration-none{% if booking.is_accepted == True %} bg-light-green{% elif booking.is_cancelled == True %} bg-light-red{% endif %}" 
                     id="heading{{ booking.slug }}">
                         <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left text-decoration-none" type="button"
+                            <button class="btn btn-link d-inline btn-block text-left text-decoration-none col-11" type="button"
                                 data-toggle="collapse" data-target="#collapse{{ booking.slug }}" aria-expanded="true"
                                 aria-controls="collapse{{ booking.slug }}">
                                 {% if user.userprofile == booking.sender %}
@@ -41,14 +42,16 @@
                                     <span class="float-right text-truncate">{% if booking.is_cancelled == True %}<strike>{{ booking.meeting_date }}</strike>{% else %}{{ booking.meeting_date }}{% endif %}</span>
                                     <span class="float-right text-truncate mr-3">{% if booking.is_cancelled == True %}<strike>{{ booking.meeting_time }}</strike>{% else %}{{ booking.meeting_time }}{% endif %}</span>
                                 </div>
+                                
                                 {% endif %}
                             </button>
+                            <a class="btn d-inline text-info col-1" href="#"><i class="fa-solid fa-box-archive"><h6>Archive</h6></i></a>
                         </h2>
                     </div>
                     <div id="collapse{{ booking.slug }}" class="collapse{% if forloop.first %} show{% endif %}"
                         aria-labelledby="heading{{ booking.slug }}" data-parent="#accordion">
                         <div class="card-body">
-                            <a href="{% url 'update_booking' slug=booking.slug %}" class="text-decoration-none">
+                            <a href="{% if booking.is_cancelled is False %}{% url 'update_booking' slug=booking.slug %}{% endif %}" class="text-decoration-none">
                                 <div class="col-xl">
                                     <div class="row w-100">
                                         <h5>{{ booking.meeting_subject }} - {{ booking.meeting_date }} {{ booking.meeting_time }}</h5>
@@ -60,10 +63,11 @@
                                         <p class="text-gray-600">Venue: {{ booking.meeting_location }} - Duration: {{ booking.get_meeting_duration_display }}</p>
                                     </div>
                                 </div>
-                                
-                                <div class="mt-4 row float-right">
-                                    <button class="btn btn-block btn-outline-primary radius-15 mt-2 mb-2 float-right">View & Edit</button>
+                                {% if booking.is_cancelled is False %}
+                                <div class="row float-right">
+                                    <button class="btn btn-block btn-outline-primary radius-15 m-4 float-right">View & Edit</button>
                                 </div>
+                                {% endif %}
                             </a>
                         </div>
                     </div>
