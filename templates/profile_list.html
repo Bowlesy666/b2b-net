@@ -35,7 +35,7 @@
               {{ userprofile.user.first_name }} {{ userprofile.user.last_name }}
             </p>
             <div class="d-grid mt-3">
-              <a href="#" class="btn btn-outline-primary radius-15"
+              <a href="{% url 'create_direct_booking' receiver_username=userprofile.user.username %}" class="btn btn-outline-primary radius-15"
                 >Book Meeting</a
               >
             </div>

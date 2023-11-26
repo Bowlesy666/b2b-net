@@ -6,7 +6,7 @@ from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.db.models import Q
 from userprofile.models import UserProfile
 from .models import Booking
-from .forms import CreateBookingForm, UpdateBookingForm, CancelBookingForm, ConfirmBookingForm, ArchiveBookingForm
+from .forms import CreateBookingForm, UpdateBookingForm, CancelBookingForm, ConfirmBookingForm, ArchiveBookingForm, CreateDirectBookingForm
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 
@@ -64,8 +64,23 @@ class UpdateBookingView(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         return self.model.objects.get(slug=self.kwargs.get(self.slug_url_kwarg))
 
-    # def get_success_url(self):
-    #     return reverse_lazy('booking_list')
+
+class CreateDirectBookingView(CreateView):
+    model = Booking
+    form_class = CreateDirectBookingForm
+    template_name = 'create_booking_form.html'
+    success_url = reverse_lazy('booking_list')
+
+    def form_valid(self, form):
+        # set logged in user as sender
+        form.instance.sender = self.request.user.userprofile
+
+        # get receiver from the clicked profile
+        receiver_username = self.kwargs.get('receiver_username')
+        form.instance.receiver = UserProfile.objects.get(
+            user__username=receiver_username)
+
+        return super().form_valid(form)
 
 
 class CancelBookingView(LoginRequiredMixin, UpdateView):
