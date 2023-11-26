@@ -1,6 +1,6 @@
 from . import views
 from django.urls import path
-from booking.views import CreateBookingView, UpdateBookingView, ArchiveBookingView
+from booking.views import CreateBookingView, UpdateBookingView, ArchiveBookingView, ArchiveBookingListView
 
 
 urlpatterns = [
@@ -14,4 +14,6 @@ urlpatterns = [
          views.ConfirmBookingView.as_view(), name='confirm_booking'),
     path('archive_booking/<slug:slug>/',
          views.ArchiveBookingView.as_view(), name='archive_booking'),
+    path('archive_booking_list/',
+         views.ArchiveBookingListView.as_view(), name='archive_booking_list'),
 ]

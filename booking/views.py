@@ -99,3 +99,19 @@ class ArchiveBookingView(LoginRequiredMixin, UpdateView):
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
     success_url = reverse_lazy('booking_list')
+
+
+class ArchiveBookingListView(generic.ListView):
+    """
+    View for listing archived bookings
+    """
+    model = Booking
+    template_name = 'booking_archive_list.html'
+    context_object_name = 'booking_list'
+
+    def get_queryset(self):
+        # Get the current user
+        user = self.request.user
+
+        # Filter bookings where the user is either the sender or receiver
+        return Booking.objects.filter(Q(sender=user.userprofile) | Q(receiver=user.userprofile))
