@@ -43,7 +43,10 @@ class BookingListView(generic.ListView):
         user = self.request.user
 
         # Filter bookings where the user is either the sender or receiver
-        return Booking.objects.filter(Q(sender=user.userprofile) | Q(receiver=user.userprofile))
+        return Booking.objects.filter(
+            Q(sender=user.userprofile) | Q(receiver=user.userprofile),
+            is_archived=False
+        )
 
 
 class UpdateBookingView(LoginRequiredMixin, UpdateView):
@@ -114,4 +117,7 @@ class ArchiveBookingListView(generic.ListView):
         user = self.request.user
 
         # Filter bookings where the user is either the sender or receiver
-        return Booking.objects.filter(Q(sender=user.userprofile) | Q(receiver=user.userprofile))
+        return Booking.objects.filter(
+            Q(sender=user.userprofile) | Q(receiver=user.userprofile),
+            is_archived=True
+        )

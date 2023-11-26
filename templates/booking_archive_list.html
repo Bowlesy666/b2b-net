@@ -8,7 +8,7 @@
         <div class="card-header col">
             <div class="row mt-2">
                 <h2 class="col-sm mt-2 text-info text-center">
-                    <a href="{% url 'booking_list' %}"> My Meetings </a>
+                    <a href="{% url 'booking_list' %}% url 'booking_list' %}"> My Meetings </a>
                 </h2>
                 <h1 class="col-sm text-center text-primary"> Archived </h1>
             </div>
@@ -22,7 +22,7 @@
                     <div class="card-header text-decoration-none{% if booking.is_accepted == True %} bg-light-green{% elif booking.is_cancelled == True %} bg-light-red{% endif %}" 
                     id="heading{{ booking.slug }}">
                         <h2 class="mb-0">
-                            <button class="btn btn-link d-inline btn-block text-left text-decoration-none col-9" type="button"
+                            <button class="btn btn-link d-inline btn-block text-left text-decoration-none col-9 type="button"
                                 data-toggle="collapse" data-target="#collapse{{ booking.slug }}" aria-expanded="true"
                                 aria-controls="collapse{{ booking.slug }}">
                                 {% if user.userprofile == booking.sender %}
@@ -33,9 +33,7 @@
                                     <span class="float-right text-truncate">{% if booking.is_cancelled == True %}<strike>{{ booking.meeting_date }}</strike>{% else %}{{ booking.meeting_date }}{% endif %}</span>
                                     <span class="float-right text-truncate mr-3">{% if booking.is_cancelled == True %}<strike>{{ booking.meeting_time }}</strike>{% else %}{{ booking.meeting_time }}{% endif %}</span>
                                 </div>
-                                {% else %}
-                                <div>
-                                    <img src="{% if 'placeholder' in booking.sender.user_profile_img.url %}{% static 'img/undraw_profile.svg' %}{% else %}{{ booking.sender.user_profile_img.url }}{% endif %}"
+                                {% else %}                                    <img src="{% if 'placeholder' in booking.sender.user_profile_img.url %}{% static 'img/undraw_profile.svg' %}{% else %}{{ booking.sender.user_profile_img.url }}{% endif %}"
                                         alt="user avatar" class="img-profile rounded-circle mr-4" width="30" />
                                     <span class="mr-3 text-truncate">{{ booking.sender.user.first_name }} {{ booking.sender.user.last_name }} - {{ booking.meeting_subject }}</span>
                                     <span class="float-right text-truncate">{% if booking.is_cancelled == True %}<strike>{{ booking.meeting_date }}</strike>{% else %}{{ booking.meeting_date }}{% endif %}</span>
@@ -46,7 +44,7 @@
                             </button>
                             <a class="btn d-inline text-info col-1" href="{% url 'archive_booking' slug=booking.slug %}"><i class="fa-solid fa-people-arrows"><h6>Un-Archive</h6></i></a>
                         </h2>
-                    </div>
+{% url 'archive_booking' slug=booking.slug %}                    </div>
                     <div id="collapse{{ booking.slug }}" class="collapse{% if forloop.first %} show{% endif %}"
                         aria-labelledby="heading{{ booking.slug }}" data-parent="#accordion">
                         <div class="card-body">
