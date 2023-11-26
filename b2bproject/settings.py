@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'blogposts',
     'booking',
+    'referrals',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',

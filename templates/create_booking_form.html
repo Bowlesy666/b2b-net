@@ -4,24 +4,25 @@
         <div class="col-xl-8">
             <!-- Account details card-->
             <div class="card mb-4">
-                <div class="card-header"><h1>Book a 1-2-1 Meeting</h1></div>
-                    <div class="card-body">
-                        <form method="POST" enctype="multipart/form-data">
-                            <div class="form-group">
+                <div class="card-header">
+                    <h1>Book a 1-2-1 Meeting</h1>
+                </div>
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
 
-                                <!-- Security token -->
-                                {% csrf_token %}
+                            <!-- Security token -->
+                            {% csrf_token %}
 
-                                <!-- Using the formset -->
-                                {{ form.as_p }}
+                            <!-- Using the formset -->
+                            {{ form.as_p }}
 
-                                <div class="d-grid mt-3">
-                                    <button class="btn btn-primary radius-15 m-4" type="submit">Create Meeting</button>
-                                    <a class="btn btn-outline-primary radius-15 m-4" href="{% url 'home' %}">Return to home</a>
-                                </div>
+                            <div class="d-grid mt-3">
+                                <button class="btn btn-primary radius-15 m-4" type="submit">Create Meeting</button>
+                                <a class="btn btn-outline-primary radius-15 m-4" href="{% url 'home' %}">Return to home</a>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
