@@ -7,10 +7,10 @@
       <div class="card mb-4 negative-margin-sides xl-m-8">
         <div class="card-header col">
             <div class="row mt-2">
-                <h1 class="col-sm text-primary text-center"> My Referrals </h1>
-                <h2 class="col-sm mt-2 text-center text-info">
-                    <a href="{% url 'referrals_archive_list' %}"> Archived </a>
-                    </h2>
+                <h2 class="col-sm mt-2 text-info text-center">
+                    <a href="{% url 'referrals_list' %}"> My Meetings </a>
+                </h2>
+                <h1 class="col-sm text-center text-primary"> Archived </h1>
             </div>
         </div>
         <div class="card-body">
@@ -43,7 +43,7 @@
                                 </div>
                                 {% endif %}
                             </button>
-                            <a class="btn d-inline text-info col-1" href="{% url 'referrals_archive' slug=referral.slug %}"><i class="fa-solid fa-box-archive"><h6>Archive</h6></i></a>
+                            <a class="btn d-inline text-info col-1" href="{% url 'referrals_archive' slug=referral.slug %}"><i class="fa-solid fa-people-arrows"><h6>Un-Archive</h6></i></a>
                         </h2>
                     </div>
                     <div id="collapse{{ referral.slug }}" class="collapse{% if forloop.first %} show{% endif %}"
@@ -95,9 +95,9 @@
                 {% endfor %}
             </div>
             {% else %}
-            <h3>It doesn't look like you have any referrals logged....</h3>
-            <p>Reach out to your network, let them know what services you offer...</p>
-            <p>find out what services they offer, you may knw someone you can introduce and start earning commission...</p>
+            <h3>It doesn't look like you have any referrals archived....</h3>
+            <p>Keep you main referrals List clear and up to date...</p>
+            <p>archive your old and outdated referrals</p>
             <!-- Add button to search network or quick add -->
             {% endif %}
         </div>

@@ -5,7 +5,7 @@ from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from .forms import CreateReferralsForm, ReferralsUpdateForm
+from .forms import CreateReferralsForm, ReferralsUpdateForm, ReferralsArchiveForm
 from .models import ReferralsModel
 
 
@@ -62,3 +62,33 @@ class ReferralsUpdateView(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         return self.model.objects.get(slug=self.kwargs.get(self.slug_url_kwarg))
 
+
+class ReferralsArchiveView(LoginRequiredMixin, UpdateView):
+    """
+    View to archive a referral
+    """
+    model = ReferralsModel
+    template_name = 'referrals_archive_form.html'
+    form_class = ReferralsArchiveForm
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
+    success_url = reverse_lazy('referrals_list')
+
+
+class ReferralsArchiveListView(generic.ListView):
+    """
+    View for listing archived referrals
+    """
+    model = ReferralsModel
+    template_name = 'referrals_archive_list.html'
+    context_object_name = 'referrals_list'
+
+    def get_queryset(self):
+        # Get the current user
+        user = self.request.user
+
+        # Filter bookings where the user is either the sender or receiver
+        return ReferralsModel.objects.filter(
+            Q(referral_sender_id=user.userprofile) | Q(referral_receiver_id=user.userprofile),
+            is_archived=True
+        )

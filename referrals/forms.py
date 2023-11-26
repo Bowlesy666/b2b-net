@@ -79,3 +79,9 @@ class ReferralsUpdateForm(forms.ModelForm):
             'percentage': forms.NumberInput(),
             'expected_completion_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}, format='%Y-%m-%d'),
         }
+
+
+class ReferralsArchiveForm(forms.ModelForm):
+    class Meta:
+        model = ReferralsModel
+        fields = ['is_archived']
