@@ -18,7 +18,7 @@ class CreateBookingView(CreateView):
 
     def get_form_kwargs(self):
         kwargs = super(CreateBookingView, self).get_form_kwargs()
-        # kwargs['user'] = self.request.user
+        kwargs['user'] = self.request.user
         return kwargs
 
     def form_valid(self, form):
