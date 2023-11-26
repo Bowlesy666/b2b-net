@@ -49,7 +49,7 @@
                     <div id="collapse{{ referral.slug }}" class="collapse{% if forloop.first %} show{% endif %}"
                         aria-labelledby="heading{{ referral.slug }}" data-parent="#accordion">
                         <div class="card-body">
-                            <a href="{% if referral.is_cancelled is False %}#{% endif %}" class="text-decoration-none">
+                            <a href="{% if referral.is_cancelled is False %}{% url 'referrals_update' slug=referral.slug %}{% endif %}" class="text-decoration-none">
                                 <div class="col-xl">
                                     <div class="row w-100">
                                         <h5>{{ referral.referral_subject }} - {{ referral.introduced_person_name }} {{ referral.introduced_person_company }}</h5>

@@ -3,8 +3,9 @@ from django.views import generic, View
 from django.views.generic import DetailView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.db.models import Q
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from .forms import CreateReferralsForm
+from .forms import CreateReferralsForm, ReferralsUpdateForm
 from .models import ReferralsModel
 
 
@@ -44,3 +45,20 @@ class ReferralsListView(generic.ListView):
             Q(referral_sender_id=user.userprofile) | Q(referral_receiver_id=user.userprofile),
             is_archived=False
         )
+
+
+class ReferralsUpdateView(LoginRequiredMixin, UpdateView):
+    """
+    View for updating referral logs.
+    """
+    model = ReferralsModel
+    template_name = 'referrals_update_form.html'
+    form_class = ReferralsUpdateForm
+    context_object_name = 'referrals_detail'
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'  # Specify the URL keyword argument for the slug
+    success_url = reverse_lazy('referrals_list')
+
+    def get_object(self, queryset=None):
+        return self.model.objects.get(slug=self.kwargs.get(self.slug_url_kwarg))
+

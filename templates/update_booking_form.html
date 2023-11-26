@@ -18,11 +18,16 @@
                 Your meeting is with...
             </div>
             <span class="mr-3 text-truncate">{{ booking_detail.receiver.user.first_name }} {{ booking_detail.receiver.user.last_name }}</span>
+            <span class="float-right text-truncate">{{ booking.meeting_date }}</span>
+            <span class="float-right text-truncate mr-3">{{ booking.meeting_time }}</span>
         </div>
         {% else %}
         <div>
             <img src="{% if 'placeholder' in booking.sender.user_profile_img.url %}{% static 'img/undraw_profile.svg' %}{% else %}{{ booking.sender.user_profile_img.url }}{% endif %}"
                 alt="user avatar" class="img-profile rounded-circle mr-4" width="150" />
+            <div class="small font-italic text-muted mt-4 mb-4">
+                Your meeting is with...
+            </div>
             <span class="mr-3 text-truncate">{{ booking.sender.user.first_name }} {{ booking.sender.user.last_name }} saying they are sender</span>
             <span class="float-right text-truncate">{{ booking.meeting_date }}</span>
             <span class="float-right text-truncate mr-3">{{ booking.meeting_time }}</span>
