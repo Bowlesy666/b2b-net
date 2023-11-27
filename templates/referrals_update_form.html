@@ -41,15 +41,20 @@
               href="{% url 'user_info_update_form' slug=user.userprofile.slug %}"
               >will be a message button</a
             >
-            <a
-              class="btn btn-outline-warning radius-15 m-4"
-              href="#"
-              >Cancel Agreement</a
-            >
-            <a class="btn btn-outline-success radius-15 m-4" href="{% url 'referrals_confirm_agreement' slug=referrals_detail.slug %}">Confirm
-                Agreement</a>
-            <a class="btn btn-outline-primary radius-15 m-4" href="{% url 'referrals_archive' slug=referrals_detail.slug %}">Archive
-                meeting</a>
+            {% if not referrals_detail.is_completed %}
+            <a class="btn btn-outline-warning radius-15 m-4" href="#">Cancel Agreement</a>
+            {% endif %}
+            {% if referrals_detail.is_agreed %}
+            <i class="fa-solid fa-thumbs-up text-success m-2"> Contract Agreed</i>
+            {% elif not referrals_detail.is_agreed and not referrals_detail.is_completed %}
+            <a class="btn btn-outline-success radius-15 m-4" href="{% url 'referrals_confirm_agreement' slug=referrals_detail.slug %}">Confirm Agreement</a>
+            {% endif %}
+            {% if referrals_detail.is_completed %}
+                <i class="fa-solid fa-handshake-angle text-success m-2"> Contract Complete</i>
+            {% else %}
+            <a class="btn btn-outline-primary radius-15 m-4" href="{% url 'referrals_agreement_completed' slug=referrals_detail.slug %}">Complete Agreement</a>
+            {% endif %}
+            <a class="btn btn-outline-primary radius-15 m-4" href="{% url 'referrals_archive' slug=referrals_detail.slug %}">Archive meeting</a>
           </div>
         </div>
       </div>

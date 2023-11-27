@@ -91,3 +91,10 @@ class ReferralsConfirmAgreementForm(forms.ModelForm):
     class Meta:
         model = ReferralsModel
         fields = ['is_agreed']
+
+
+class ReferralsAgreementCompletedForm(forms.ModelForm):
+    class Meta:
+        model = ReferralsModel
+        fields = ['is_completed']
+

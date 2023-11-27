@@ -5,7 +5,7 @@ from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from .forms import CreateReferralsForm, ReferralsUpdateForm, ReferralsArchiveForm, ReferralsConfirmAgreementForm
+from .forms import CreateReferralsForm, ReferralsUpdateForm, ReferralsArchiveForm, ReferralsConfirmAgreementForm, ReferralsAgreementCompletedForm
 from .models import ReferralsModel
 
 
@@ -104,3 +104,16 @@ class ReferralsConfirmAgreementView(LoginRequiredMixin, UpdateView):
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
     success_url = reverse_lazy('referrals_list')
+
+
+class ReferralsAgreementCompletedView(LoginRequiredMixin, UpdateView):
+    """
+    View for the users to complete the agreement
+    """
+    model = ReferralsModel
+    template_name = 'referrals_agreement_completed_form.html'
+    form_class = ReferralsAgreementCompletedForm
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
+    success_url = reverse_lazy('referrals_list')
+

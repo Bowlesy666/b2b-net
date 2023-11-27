@@ -19,7 +19,7 @@
             <div class="accordion" id="accordion">
                 {% for referral in referrals_list %}
                 <div class="card text-decoration-none mb-4">
-                    <div class="card-header text-decoration-none{% if referral.is_agreed == True %} bg-light-green{% elif referral.is_cancelled == True %} bg-light-red{% endif %}" 
+                    <div class="card-header text-decoration-none{% if referral.is_agreed or referral.is_completed %} bg-light-green{% elif referral.is_cancelled == True %} bg-light-red{% endif %}" 
                     id="heading{{ referral.slug }}">
                         <h2 class="mb-0">
                             <button class="btn btn-link d-inline btn-block text-left text-decoration-none col-9" type="button"

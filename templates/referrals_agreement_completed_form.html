@@ -1,0 +1,33 @@
+{% extends "base.html" %} {% block content %}
+<div class="container-xl px-4 mt-4">
+    <div class="row">
+        <div class="col-xl-8">
+            <!-- Account details card-->
+            <div class="card mb-4 negative-margin-sides">
+                <div class="card-header"><h1>Congratulations, lets complete your referral agreement</h1></div>
+                <div class="card-body">
+                    
+                    <form method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <!-- Security token -->
+                            {% csrf_token %}
+                            
+                            <div class="fieldWrapper">
+                                {{ form.is_completed.errors }}
+                                <label for="{{ form.is_completed.id_for_label }}">Click here to complete this referral!</label>
+                                {{ form.is_completed }}
+                                <p>Thank you for being an active part of our business networking community!</p>
+                            </div>
+                            <div class="d-grid mt-3">
+                                <button class="btn btn-danger radius-15 m-4" type="submit">Complete this referral!</button>
+                                <a class="btn btn-outline-primary radius-15 m-4" href="{% url 'home' %}">Return to home</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
