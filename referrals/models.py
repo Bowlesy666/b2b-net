@@ -31,7 +31,7 @@ class ReferralsModel(models.Model):
     slug = models.SlugField(max_length=200, unique=True, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.referral_sender_id.username} to {self.referral_receiver_id.username} - Amount: {self.proposed_amount}, Percentage: {self.percentage}%"
+        return f"{self.referral_sender_id.user.username} to {self.referral_receiver_id.user.username} - - Amount: {self.proposed_amount}, Percentage: {self.percentage}%"
 
     def calculate_commission(self):
         return (self.proposed_amount * self.percentage) / 100
