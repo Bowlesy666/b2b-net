@@ -1,6 +1,17 @@
 {% extends "base.html" %} {% block content %} {% load static %}
 
 <div class="container-fluid px-4 mt-4">
+    <div class="card-group">
+        <div class="card m-3">
+            <a class="btn btn-outline-primary" href="{% url 'create_booking' %}">Create a meeting</a>
+        </div>
+        <div class="card m-3">
+            <a class="btn btn-primary" href="{% url 'booking_list' %}">My Meetings</a>
+        </div>
+        <div class="card m-3">
+            <a class="btn btn-outline-primary" href="{% url 'archive_booking_list' %}">Archived Meetings</a>
+        </div>
+    </div>
   <div class="row">
     <div class="col-xl">
       <!-- Booking List accordian card-->

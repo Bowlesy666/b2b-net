@@ -64,7 +64,7 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'referrals_analysis'
 ACCOUNT_SIGNUP_REDIRECT_URL = 'create_user_profile'
 LOGOUT_REDIRECT_URL = 'account_login'
 

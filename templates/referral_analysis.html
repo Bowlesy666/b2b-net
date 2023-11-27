@@ -1,6 +1,20 @@
 {% extends "base.html" %} {% block content %}
 
 <div class="container-fluid">
+    <div class="card-group">
+        <div class="card m-3">
+            <a class="btn btn-primary" href="{% url 'referrals_analysis' %}">Dashboard</a>
+        </div>
+        <div class="card m-3">
+            <a class="btn btn-outline-primary" href="{% url 'create_referrals' %}">Create Referral</a>
+        </div>
+        <div class="card m-3">
+            <a class="btn btn-outline-primary" href="{% url 'referrals_list' %}">My Referrals</a>
+        </div>
+        <div class="card m-3">
+            <a class="btn btn-outline-primary" href="{% url 'referrals_archive_list' %}">Archived Referrals</a>
+        </div>
+    </div>
     <div class="card negative-margin-sides mb-3">
         <img class="card-img-top hero-image-cover" src="https://images.unsplash.com/flagged/photo-1579225818168-858da8667fae?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Card image">
         <div class="card-header text-center bg-primary text-white"><h1>Referrals Dashboard </h1></div>
@@ -61,8 +75,8 @@
           <div class="card negative-margin-sides">
             <img class="card-img-top" src="https://images.unsplash.com/photo-1598690042638-1b9844b7ef83?q=80&w=1165&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Card image">
             <div class="card-body">
-              <h4 class="card-title">Average in your revenue earned: £ {{ average_revenue_earned }}</h4>
-              <h4 class="card-title">Average in your commission earned: £ {{ average_commission_earned }}</h4>
+              <h4 class="card-title">Average in your revenue earned: £ {{ average_revenue_earned|floatformat:2 }}</h4>
+              <h4 class="card-title">Average in your commission earned: £ {{ average_commission_earned|floatformat:2 }}</h4>
               <p class="card-text">Some people love to see the statistics, grab your averages here!</p>
             </div>
           </div>

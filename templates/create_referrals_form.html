@@ -1,7 +1,21 @@
 {% extends "base.html" %} {% block content %}
 <div class="container-fluid px-4 mt-4">
+    <div class="card-group">
+        <div class="card m-3">
+            <a class="btn btn-outline-primary" href="{% url 'referrals_analysis' %}">Dashboard</a>
+        </div>
+        <div class="card m-3">
+            <a class="btn btn-primary" href="{% url 'create_referrals' %}">Create Referral</a>
+        </div>
+        <div class="card m-3">
+            <a class="btn btn-outline-primary" href="{% url 'referrals_list' %}">My Referrals</a>
+        </div>
+        <div class="card m-3">
+            <a class="btn btn-outline-primary" href="{% url 'referrals_archive_list' %}">Archived Referrals</a>
+        </div>
+    </div>
     <div class="row">
-        <div class="col-xl-8">
+        <div class="col-xl">
             <!-- Account details card-->
             <div class="card mb-4 negative-margin-sides xl-m-8">
                 <div class="card-header"><h1>Log Referral Introductions...</h1>
