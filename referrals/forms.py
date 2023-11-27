@@ -98,3 +98,9 @@ class ReferralsAgreementCompletedForm(forms.ModelForm):
         model = ReferralsModel
         fields = ['is_completed']
 
+
+class ReferralsCancelForm(forms.ModelForm):
+    class Meta:
+        model = ReferralsModel
+        fields = ['is_cancelled', 'cancellation_reason']
+        widgets = {'cancellation_reason': forms.Textarea(attrs={'class': 'form-control'})}

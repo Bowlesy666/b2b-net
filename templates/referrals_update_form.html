@@ -42,7 +42,7 @@
               >will be a message button</a
             >
             {% if not referrals_detail.is_completed %}
-            <a class="btn btn-outline-warning radius-15 m-4" href="#">Cancel Agreement</a>
+            <a class="btn btn-outline-warning radius-15 m-4" href="{% url 'referrals_cancel' slug=referrals_detail.slug %}">Cancel Agreement</a>
             {% endif %}
             {% if referrals_detail.is_agreed %}
             <i class="fa-solid fa-thumbs-up text-success m-2"> Contract Agreed</i>
