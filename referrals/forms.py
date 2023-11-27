@@ -85,3 +85,9 @@ class ReferralsArchiveForm(forms.ModelForm):
     class Meta:
         model = ReferralsModel
         fields = ['is_archived']
+
+
+class ReferralsConfirmAgreementForm(forms.ModelForm):
+    class Meta:
+        model = ReferralsModel
+        fields = ['is_agreed']

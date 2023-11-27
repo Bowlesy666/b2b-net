@@ -23,12 +23,12 @@
         </div>
         {% else %}
         <div>
-            <img src="{% if 'placeholder' in referrals.referral_sender_id.user_profile_img.url %}{% static 'img/undraw_profile.svg' %}{% else %}{{ referrals.referral_sender_id.user_profile_img.url }}{% endif %}"
+            <img src="{% if 'placeholder' in referrals_detail.referral_sender_id.user_profile_img.url %}{% static 'img/undraw_profile.svg' %}{% else %}{{ referrals_detail.referral_sender_id.user_profile_img.url }}{% endif %}"
                 alt="user avatar" class="img-profile rounded-circle mr-4" width="150" />
             <div class="small font-italic text-muted mt-4 mb-4">
                 Your referral agreement is with...
             </div>
-            <span class="mr-3 text-truncate">{{ referrals.referral_sender_id.user.first_name }} {{ referrals.referral_sender_id.user.last_name }} saying they are sender</span>
+            <span class="mr-3 text-truncate">{{ referrals_detail.referral_sender_id.user.first_name }} {{ referrals_detail.referral_sender_id.user.last_name }} saying they are sender</span>
             <span class="text-truncate">Revenue generated for your Business is:</span>
             <span class="text-truncate mr-3">£ {{ referrals_detail.proposed_amount }}</span>
         </div>
@@ -46,9 +46,9 @@
               href="#"
               >Cancel Agreement</a
             >
-            <a class="btn btn-outline-success radius-15 m-4" href="#">Confirm
+            <a class="btn btn-outline-success radius-15 m-4" href="{% url 'referrals_confirm_agreement' slug=referrals_detail.slug %}">Confirm
                 Agreement</a>
-            <a class="btn btn-outline-primary radius-15 m-4" href="#">Archive
+            <a class="btn btn-outline-primary radius-15 m-4" href="{% url 'referrals_archive' slug=referrals_detail.slug %}">Archive
                 meeting</a>
           </div>
         </div>
