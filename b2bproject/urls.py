@@ -19,6 +19,7 @@ from userprofile import views
 from blogposts.views import CreatePostView
 from booking import views
 from referrals import views
+from usermailbox import views
 from userprofile.views import UserProfileListView, UserProfileDetailView, UserProfileUpdateView, UserUpdateView
 from allauth.account.views import LoginView
 
@@ -29,6 +30,7 @@ urlpatterns = [
     path('profile/', include('userprofile.urls')),
     path('booking/', include('booking.urls')),
     path('referrals/', include('referrals.urls')),
+    path('messages/', include('usermailbox.urls')),
     path('', LoginView.as_view(), name='login'),
     path('accounts/', include('allauth.urls')),
 ]

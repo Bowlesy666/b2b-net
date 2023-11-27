@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="card-body">
-            {% if user.userprofile.username == referrals_list.referral_sender_id.username or referrals_list.referral_receiver_id.username %}
+            {% if user.userprofile.username in referrals_list.referral_sender_id.username or referrals_list.referral_receiver_id.username %}
             <!-- add buttons to search network or quick add referral -->
             <div class="accordion" id="accordion">
                 {% for referral in referrals_list %}

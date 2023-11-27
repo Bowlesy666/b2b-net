@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'blogposts',
     'booking',
     'referrals',
+    'usermailbox',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
