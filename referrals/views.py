@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.views import generic, View
-from django.views.generic import DetailView
+from django.views.generic import DetailView, TemplateView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
-from django.db.models import Q
+from django.db.models import Q, Avg
+from django.db import models
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .forms import CreateReferralsForm, ReferralsUpdateForm, ReferralsArchiveForm, ReferralsConfirmAgreementForm, ReferralsAgreementCompletedForm, ReferralsCancelForm
@@ -128,3 +129,22 @@ class ReferralsCancelView(LoginRequiredMixin, UpdateView):
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
     success_url = reverse_lazy('referrals_list')
+
+
+class ReferralsAnalysisView(TemplateView):
+    template_name = 'referral_analysis.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['total_referrals_made'] = ReferralsModel.objects.filter(referral_sender_id=self.request.user.userprofile).count()
+        context['total_referrals_received'] = ReferralsModel.objects.filter(referral_receiver_id=self.request.user.userprofile).count()
+        context['total_revenue_earned'] = ReferralsModel.objects.filter(referral_receiver_id=self.request.user.userprofile).aggregate(total_revenue=models.Sum('proposed_amount'))['total_revenue'] or 0
+        context['total_commission_made'] = ReferralsModel.objects.filter(referral_sender_id=self.request.user.userprofile).aggregate(total_commission=models.Sum('estimated_commsion'))['total_commission'] or 0
+        context['average_revenue_earned'] = ReferralsModel.objects.filter(referral_receiver_id=self.request.user.userprofile).aggregate(average_revenue=models.Avg('proposed_amount'))['average_revenue'] or 0
+        context['average_commission_earned'] = ReferralsModel.objects.filter(referral_sender_id=self.request.user.userprofile).aggregate(average_commission=models.Avg('estimated_commsion'))['average_commission'] or 0
+        context['total_revenue_completed'] = ReferralsModel.objects.filter(referral_receiver_id=self.request.user.userprofile, is_completed=True).aggregate(revenue_completed=models.Sum('proposed_amount'))['revenue_completed'] or 0
+        context['total_commission_completed'] = ReferralsModel.objects.filter(referral_sender_id=self.request.user.userprofile, is_completed=True).aggregate(commission_completed=models.Sum('estimated_commsion'))['commission_completed'] or 0
+        context['total_earnings_completed'] = context['total_revenue_completed'] + context['total_commission_completed']
+
+        return context

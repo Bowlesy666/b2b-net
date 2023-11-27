@@ -1,0 +1,77 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container-fluid">
+    <div class="card negative-margin-sides mb-3">
+        <img class="card-img-top hero-image-cover" src="https://images.unsplash.com/flagged/photo-1579225818168-858da8667fae?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Card image">
+        <div class="card-header text-center bg-primary text-white"><h1>Referrals Dashboard </h1></div>
+        <div class="card-body"><h2 class="text-center"><strong>So far you have earned: £ {{ total_earnings_completed }}</strong></h2></div>
+    </div>
+    <div class="card-deck">
+        <div class="card negative-margin-sides">
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1604594849809-dfedbc827105?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Card image">
+            <div class="card-body">
+              <h4 class="card-title">Total in Revenue completed: £ {{ total_revenue_completed }}</h4>
+              <p class="card-text">
+                {% if total_revenue_completed == 0 %}
+                It doesnt look like your active enough yet, make sure to book 1-2-1's and let your network know what services you offer!
+                {% else %}
+                This is great! you've completed deals and earned extra revenue from your network!
+                {% endif %}
+              </p>
+            </div>
+          </div>
+          <div class="card negative-margin-sides">
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1594405564970-a9f9d8d1b9d0?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Card image">
+            <div class="card-body">
+              <h4 class="card-title">Total in commission completed: £ {{ total_commission_completed }}</h4>
+              <p class="card-text">
+                {% if total_commission_completed == 0 %}
+                It doesnt look like your active enough yet, make sure to book 1-2-1's and get involved within your network!
+                {% else %}
+                This is great! you've completed deals and earned extra income from your network!
+                {% endif %}
+              </p>
+            </div>
+          </div>
+    </div>
+    
+    <div class="card-deck">
+        <div class="card negative-margin-sides">
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Card image">
+            <div class="card-body">
+              <h4 class="card-title">Number of referrals made: {{ total_referrals_made }}</h4>
+              <h4 class="card-title">Number of referrals received: {{ total_referrals_received }}</h4>
+              <p class="card-text">
+                {% if total_referrals_made and total_referrals_received == 0 %}
+                It doesnt look like your active enough yet, why not reach out to our blog in the home tab and find out what events are coming up!
+                {% else %}
+                This is great! Keep pushing out to your contacts and keep earning!
+                {% endif %}
+              </p>
+            </div>
+          </div>
+          <div class="card negative-margin-sides">
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1635236190542-d43e4d4b9e4b?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Card image">
+            <div class="card-body">
+              <h4 class="card-title">Your company is set to earn this year: £ {{ total_revenue_earned }}</h4>
+              <h4 class="card-title">The commission you are is set to earn this year: £ {{ total_commission_made }}</h4>
+              <p class="card-text">We are all here to make money, make sure your profile is up to date and you are talking to your network about your products and services</p>
+            </div>
+          </div>
+          <div class="card negative-margin-sides">
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1598690042638-1b9844b7ef83?q=80&w=1165&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Card image">
+            <div class="card-body">
+              <h4 class="card-title">Average in your revenue earned: £ {{ average_revenue_earned }}</h4>
+              <h4 class="card-title">Average in your commission earned: £ {{ average_commission_earned }}</h4>
+              <p class="card-text">Some people love to see the statistics, grab your averages here!</p>
+            </div>
+          </div>
+    </div>
+    <div class="card negative-margin-sides bg-primary text-white mt-2">
+        <div class="card-body text-center">Keep in touch with your local business to business network organiser David on 07783409714</div>
+    </div>
+</div>
+
+
+
+{% endblock %}

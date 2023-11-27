@@ -285,6 +285,12 @@
     background-size: cover;
 }
 
+.hero-image-cover {
+    height: 40vh;
+    width: auto;
+    object-fit: cover;
+}
+
 .bg-light-red {
     background-color: rgba(255, 0, 0, .065);
 }
