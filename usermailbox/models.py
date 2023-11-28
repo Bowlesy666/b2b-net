@@ -4,7 +4,7 @@ from cloudinary.models import CloudinaryField
 from django.utils.text import slugify
 from booking.models import slug_save
 
-
+# https://stackoverflow.com/questions/43696074/django-private-messaging-conversation-view
 class ConversationModel(models.Model):
     sender_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="sent_conversations")
     receiver_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="received_conversations")
@@ -13,17 +13,10 @@ class ConversationModel(models.Model):
     slug = models.SlugField(max_length=200, unique=True)
     is_archived = models.BooleanField(default=False)
     is_trash = models.BooleanField(default=False)
+    conversation_subject = models.CharField(max_length=100, unique=True, null=True)
 
     class Meta:
         ordering = ["-updated_on"]
-
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            slug_save(self)
-        super(ConversationModel, self).save(*args, **kwargs)
-
-    def __str__(self):
-        return self.slug
 
 
 class MessageModel(models.Model):
@@ -36,6 +29,3 @@ class MessageModel(models.Model):
 
     class Meta:
         ordering = ["-created_on"]
-
-    def __str__(self):
-        return f"Message {self.message_body} by {self.sender_profile}"
