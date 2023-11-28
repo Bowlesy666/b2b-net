@@ -26,50 +26,42 @@ class UserMailBoxCreateMessageView(View):
             try:
                 receiver_profile = UserProfile.objects.get(user__username=receiver_username)
 
-                if ConversationModel.objects.filter(
-                    sender_profile=request.user.userprofile,
-                    receiver_profile=receiver_profile
-                ).exists():
-                    conversation = ConversationModel.objects.filter(
+                # Check if there is an existing conversation involving the sender or receiver
+                conversation = ConversationModel.objects.filter(
+                    Q(sender_profile=request.user.userprofile, receiver_profile=receiver_profile) |
+                    Q(sender_profile=receiver_profile, receiver_profile=request.user.userprofile)
+                ).first()
+
+                if conversation is None:
+                    # If no existing conversation, create a new one
+                    conversation = ConversationModel.objects.create(
                         sender_profile=request.user.userprofile,
                         receiver_profile=receiver_profile
-                    ).first()
-                    return redirect('user_mailbox_message_detail', pk=conversation.pk)
+                    )
 
-                conversation = ConversationModel.objects.create(
-                    sender_profile=request.user.userprofile,
-                    receiver_profile=receiver_profile,
-                    conversation_subject=form.cleaned_data['conversation_subject']
-                )
                 return redirect('user_mailbox_message_detail', pk=conversation.pk)
-            except:
+
+            except UserProfile.DoesNotExist:
                 # Handle the case where the UserProfile for the given username doesn't exist
                 return redirect('conversation_create')
-        
+
         # If the form is not valid, re-render the form with errors
         context = {
             'form': form
         }
         return render(request, 'usermailbox/user_mailbox_create_form.html', context)
 
+
 class UserMailBoxListView(generic.ListView):
     """
     View for listing user messages
     """
-    model = ConversationModel
-    template_name = 'usermailbox/conversation_list.html'
-    context_object_name = 'conversation_list'
-
-    def get_queryset(self):
-        # Get the current user
-        user = self.request.user
-
-        # Filter referrals where the user is either the sender or receiver
-        return ConversationModel.objects.filter(
-            Q(sender_profile=user.userprofile) | Q(receiver_profile=user.userprofile),
-            is_trash=False
-        )
-
+    def get(self, request, *args, **kwargs):
+        conversation_list = ConversationModel.objects.filter(Q(sender_profile=request.user.userprofile) | Q(receiver_profile=request.user.userprofile))
+        context = {
+            'conversation_list': conversation_list
+        }
+        return render(request, 'usermailbox/conversation_list.html', context)
 
 class UserMailBoxDetailView(View):
     """
