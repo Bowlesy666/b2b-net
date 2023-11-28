@@ -21,11 +21,9 @@ class UserMailBoxCreateForm(forms.ModelForm):
         model = ConversationModel
         fields = [
             'receiver_profile',
-            'conversation_subject',
         ]
         widgets = {
             'receiver_profile': forms.Select(attrs={'class': 'form-control'}),
-            'conversation_subject': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 
@@ -39,5 +37,5 @@ class UserMailBoxMessageForm(forms.ModelForm):
             'message_body',
         ]
         widgets = {
-            'message_body': forms.TextInput(attrs={'class': 'form-control'}),
+            'message_body': forms.Textarea(attrs={'class': 'form-control text-area-height'}),
         }

@@ -1,6 +1,6 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} {% block content %} {% load static %}
 <div class="container-xl px-4 mt-4">
-    <div class="card-group">
+    <div class="card-group d-none d-md-block">
         <div class="card m-2">
             <a class="btn btn-primary" href="{% url 'conversation_create' %}">Create New</a>
         </div>
@@ -12,39 +12,63 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xl">
+        <div class="col-xl ">
             <!-- Account details card-->
-            <div class="card mb-4 negative-margin-sides">
+            <div class="card chat-bg mb-4 negative-margin-sides">
                 <div class="card-header">
-                    <h1>Mail Thread</h1>
-                    
+                    <div class="container">
+                        <div class="row">
+                          <div class="col-3">
+                            <img src="{% if 'placeholder' in conversation.receiver_profile.user_profile_img.url %}{% static 'img/undraw_profile.svg' %}{% else %}{{ conversation.receiver_profile.user_profile_img.url }}{% endif %}"
+                                alt="user avatar" class="img-profile rounded-circle mr-1 mt-2" width="40" />
+                          </div>
+                          <div class="col-8">
+                            <h1 class="text-truncate"><small> {{ conversation.receiver_profile.user.first_name }} {{ conversation.receiver_profile.user.last_name }}</small></h1>
+                          </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <form method="POST" action="{% url 'create-message' conversation.pk %}" enctype="multipart/form-data">
-                        <div class="form-group">
-
-                            <!-- Security token -->
-                            {% csrf_token %}
-
-                            <!-- Using the formset -->
-                            {{ form }}
-
-                            <div class="d-grid mt-3">
-                                <button class="btn btn-primary radius-15 m-4" type="submit">Send Mail</button>
+                <div class="card-body chat-scroll">
+                    <section>
+                        {% if message_list.all.count == 0 %}
+                        <div class="row my-5">
+                            <div class="col-md-12">
+                                <p class="empty-text">No Messages</p>
                             </div>
                         </div>
-                    </form>
+                        {% endif %}
+                        {% for message in message_list %}
+                            {% if conversation.sender_profile.user == request.user %}
+                            <div class="col align-self-end sent-message my-2">
+                                <p class="ml-2 mt-1 font-weight-bold">{{ message.message_body }}</p>
+                            </div>
+                            <p class="d-flex flex-row-reverse mt-2 mb-0 text-gray-400"><small>Sent: {{ message.created_on }}</small></p>
+                            {% elif conversation.receiver_profile.user == request.user%}
+                            <div class="col align-self-end received-message my-2">
+                                <p class="ml-2 mt-1 font-weight-bold">{{ message.message_body }}</p>
+                            </div>
+                            <p class="d-flex flex-row-reverse mt-2 mb-0 text-gray-400"><small>Sent: {{ message.created_on }}</small></p>
+                            {% endif %}
+                        {% endfor %}
+                    </section>
                 </div>
-                {% if message_list %}
-                    <p>Messages are available</p>
-                    {% for message in message_list %}
-                        <div class="card-body">
-                            {{ message.message_body }}
-                        </div>
-                    {% endfor %}
-                {% else %}
-                    <p>No messages available</p>
-                {% endif %}
+                <form method="POST" action="{% url 'create-message' conversation.pk %}" enctype="multipart/form-data">
+                    <div class="form-group">
+
+                        <!-- Security token -->
+                        {% csrf_token %}
+
+                        <!-- Using the formset -->
+                        <div class="row card-body">
+                            <div class="col-9">
+                                {{ form.message_body }}
+                            </div>
+                            <div class="col-1 flex-column-reverse">
+                                <button class="btn btn-primary radius-15 ml-0" type="submit"><i class="fa-regular fa-paper-plane text-white"></i></button>
+                            </div>
+                        </div> 
+                    </div>
+                </form>
             </div>
         </div>
     </div>
