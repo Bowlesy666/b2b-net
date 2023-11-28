@@ -18,6 +18,14 @@ class ConversationModel(models.Model):
     class Meta:
         ordering = ["-updated_on"]
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            slug_save(self)
+        super(ConversationModel, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.slug
+
 
 class MessageModel(models.Model):
     conversation = models.ForeignKey(ConversationModel, on_delete=models.CASCADE, related_name="messages")

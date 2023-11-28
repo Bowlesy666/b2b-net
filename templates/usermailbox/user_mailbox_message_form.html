@@ -32,18 +32,18 @@
                     <section>
                         {% if message_list.all.count == 0 %}
                         <div class="row my-5">
-                            <div class="col-md-12">
-                                <p class="empty-text">No Messages</p>
+                            <div class="col-md-12 received-message">
+                                <p class="empty-text">Be the first to send a message...</p>
                             </div>
                         </div>
                         {% endif %}
                         {% for message in message_list %}
-                            {% if conversation.sender_profile.user == request.user %}
+                            {% if message.sender_profile.user == request.user %}
                             <div class="col align-self-end sent-message my-2">
                                 <p class="ml-2 mt-1 font-weight-bold">{{ message.message_body }}</p>
                             </div>
                             <p class="d-flex flex-row-reverse mt-2 mb-0 text-gray-400"><small>Sent: {{ message.created_on }}</small></p>
-                            {% elif conversation.receiver_profile.user == request.user%}
+                            {% else %}
                             <div class="col align-self-end received-message my-2">
                                 <p class="ml-2 mt-1 font-weight-bold">{{ message.message_body }}</p>
                             </div>
