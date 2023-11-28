@@ -6,10 +6,10 @@
             <a class="btn btn-outline-primary" href="{% url 'conversation_create' %}">New Chat</a>
         </div>
         <div class="card m-2">
-            <a class="btn btn-primary" href="{% url 'conversation_list' %}">Inbox</a>
+            <a class="btn btn-outline-primary" href="{% url 'conversation_list' %}">Inbox</a>
         </div>
         <div class="card m-2">
-            <a class="btn btn-outline-primary" href="{% url 'conversation_archive_list' %}">Trash</a>
+            <a class="btn btn-primary" href="{% url 'conversation_archive_list' %}">Trash</a>
         </div>
     </div>
   <div class="row">
@@ -18,7 +18,7 @@
       <div class="card mb-4 negative-margin-sides xl-m-8">
         <div class="card-header col">
             <div class="row mt-2">
-                <h1 class="col-sm text-primary text-center"> My Conversations </h1>
+                <h1 class="col-sm text-primary text-center"> Archived Conversations </h1>
             </div>
         </div>
             {% for conversation in conversation_list %}
@@ -43,7 +43,7 @@
                     <div class="col-md-auto">
                     </div>
                     <div class="col col-lg-2">
-                        <a class="btn d-inline col-1" href="{% url 'conversation_archive' pk=conversation.pk %}"><i class="fa-regular fa-trash-can text-danger"></i></a>
+                        <a class="btn d-inline col-1" href="{% url 'conversation_archive' pk=conversation.pk %}">Un-Archive</a>
                     </div>
                 </div>
                 <div class="row float-right mt-4 mr-4">

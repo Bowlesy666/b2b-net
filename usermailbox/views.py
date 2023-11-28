@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import UserMailBoxCreateForm, UserMailBoxMessageForm
+from .forms import UserMailBoxCreateForm, UserMailBoxMessageForm, UserMailBoxArchiveForm
 from django.views import generic, View
 from django.views.generic import DetailView, TemplateView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
@@ -57,11 +57,24 @@ class UserMailBoxListView(generic.ListView):
     View for listing user messages
     """
     def get(self, request, *args, **kwargs):
-        conversation_list = ConversationModel.objects.filter(Q(sender_profile=request.user.userprofile) | Q(receiver_profile=request.user.userprofile))
+        conversation_list = ConversationModel.objects.filter(Q(sender_profile=request.user.userprofile) | Q(receiver_profile=request.user.userprofile), is_archived=False)
         context = {
             'conversation_list': conversation_list
         }
         return render(request, 'usermailbox/conversation_list.html', context)
+
+
+class UserMailBoxArchiveListView(generic.ListView):
+    """
+    View for listing user messages
+    """
+    def get(self, request, *args, **kwargs):
+        conversation_list = ConversationModel.objects.filter(Q(sender_profile=request.user.userprofile) | Q(receiver_profile=request.user.userprofile), is_archived=True)
+        context = {
+            'conversation_list': conversation_list
+        }
+        return render(request, 'usermailbox/archive_list.html', context)
+
 
 class UserMailBoxDetailView(View):
     """
@@ -94,3 +107,15 @@ class CreateMessage(View):
       )
       message.save()
       return redirect('user_mailbox_message_detail', pk=pk)
+
+
+class UserMailBoxArchiveView(LoginRequiredMixin, UpdateView):
+    """
+    View to archive a referral
+    """
+    model = ConversationModel
+    template_name = 'usermailbox/user_mailbox_conversation_archive.html'
+    form_class = UserMailBoxArchiveForm
+    slug_field = 'pk'
+    slug_url_kwarg = 'pk'
+    success_url = reverse_lazy('conversation_list')

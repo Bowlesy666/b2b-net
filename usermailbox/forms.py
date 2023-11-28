@@ -39,3 +39,14 @@ class UserMailBoxMessageForm(forms.ModelForm):
         widgets = {
             'message_body': forms.Textarea(attrs={'class': 'form-control text-area-height'}),
         }
+
+
+class UserMailBoxArchiveForm(forms.ModelForm):
+    """
+    Form to confirm archive conversation
+    """
+    class Meta:
+        model = ConversationModel
+        fields = [
+            'is_archived',
+        ]

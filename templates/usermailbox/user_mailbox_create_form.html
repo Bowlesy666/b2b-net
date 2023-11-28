@@ -2,7 +2,7 @@
 <div class="container-xl px-4 mt-4">
     <div class="card-group">
         <div class="card m-2">
-            <a class="btn btn-primary" href="{% url 'conversation_create' %}">Create New</a>
+            <a class="btn btn-primary" href="{% url 'conversation_create' %}">New Chat</a>
         </div>
         <div class="card m-2">
             <a class="btn btn-outline-primary" href="{% url 'create_referrals' %}">Inbox</a>
@@ -27,7 +27,7 @@
                             {{ form.as_p }}
 
                             <div class="d-grid mt-3">
-                                <button class="btn btn-primary radius-15 m-4" type="submit">Create Mail Thread</button>
+                                <button class="btn btn-primary radius-15 m-4" type="submit">Join chat...</button>
                                 <a class="btn btn-outline-primary radius-15 m-4" href="{% url 'home' %}">Return to Home</a>
                             </div>
                         </div>
