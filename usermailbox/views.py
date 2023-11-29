@@ -84,6 +84,11 @@ class UserMailBoxDetailView(View):
         form = UserMailBoxMessageForm
         conversation = ConversationModel.objects.get(pk=pk)
         message_list = MessageModel.objects.filter(conversation__pk__contains=pk)
+        for message in message_list:
+            if message.sender_profile != self.request.user.userprofile:
+                message.is_read = True
+                message.save(update_fields=('is_read',))
+
         context = {
         'conversation': conversation,
         'form': form,

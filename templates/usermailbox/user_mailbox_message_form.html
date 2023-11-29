@@ -28,7 +28,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body chat-scroll">
+                <div class="card-body chat-scroll" id="scroll-top">
                     <section>
                         {% if message_list.all.count == 0 %}
                         <div class="row my-5">
@@ -41,13 +41,23 @@
                             {% if message.sender_profile.user == request.user %}
                             <div class="col align-self-end sent-message my-2">
                                 <p class="ml-2 mt-1 font-weight-bold">{{ message.message_body }}</p>
+                                <div class="d-flex flex-row-reverse">
+                                    {% if message.is_read %}
+                                    <small>Seen: <i class="fa-solid fa-check text-success"></i><i class="fa-solid fa-check text-success"></i></small> 
+                                    {% else %}
+                                    <small>Sent: <i class="fa-solid fa-check text-gray-400"></i><i class="fa-solid fa-check text-gray-400"></i></small>
+                                    {% endif %}
+                                </div>
                             </div>
                             <p class="d-flex flex-row-reverse mt-2 mb-0 text-gray-400"><small>Sent: {{ message.created_on }}</small></p>
                             {% else %}
                             <div class="col align-self-end received-message my-2">
                                 <p class="ml-2 mt-1 font-weight-bold">{{ message.message_body }}</p>
+                                
                             </div>
-                            <p class="d-flex flex-row-reverse mt-2 mb-0 text-gray-400"><small>Sent: {{ message.created_on }}</small></p>
+                            <p class="d-flex flex-row-reverse mt-2 mb-0 text-gray-400">
+                                <small>Sent: {{ message.created_on }}</small>
+                            </p>
                             {% endif %}
                         {% endfor %}
                     </section>
@@ -73,5 +83,9 @@
         </div>
     </div>
 </div>
+<script>
+    var objDiv = document.getElementById("scroll-top");
+    objDiv.scrollTop = objDiv.scrollHeight;
+</script>
 
 {% endblock %}
