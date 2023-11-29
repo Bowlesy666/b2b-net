@@ -2,13 +2,13 @@
 <div class="container-xl px-4 mt-4">
     <div class="card-group d-none d-md-block">
         <div class="card m-2">
-            <a class="btn btn-primary" href="{% url 'conversation_create' %}">Create New</a>
+            <a class="btn btn-primary" href="{% url 'conversation_create' %}">New Chat</a>
         </div>
         <div class="card m-2">
-            <a class="btn btn-outline-primary" href="{% url 'create_referrals' %}">Inbox</a>
+            <a class="btn btn-outline-primary" href="{% url 'conversation_list' %}">Inbox</a>
         </div>
         <div class="card m-2">
-            <a class="btn btn-outline-primary" href="{% url 'referrals_archive_list' %}">Trash</a>
+            <a class="btn btn-primary" href="{% url 'conversation_archive_list' %}">Trash</a>
         </div>
     </div>
     <div class="row">
