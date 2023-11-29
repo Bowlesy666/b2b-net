@@ -12,6 +12,7 @@ from django.views.generic.edit import UpdateView
 from .forms import UserProfileForm, UserForm
 from .models import UserProfile, Review
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user
 
 
 class UserProfileListView(generic.ListView):
@@ -79,7 +80,8 @@ class CreateUserProfileView(View):
         form = UserProfileForm(request.POST)
         if form.is_valid():
             user_profile = form.save(commit=False)
-            user_profile.user = request.user
+            user = get_user(request)
+            user_profile.user = user
             user_profile.save()
             messages.success(request, 'User profile created successfully!')
             return redirect('userprofile_detail', slug=user_profile.slug)

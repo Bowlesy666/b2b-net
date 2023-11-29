@@ -3,8 +3,9 @@ from django.db.models import Q
 
 
 
+
 def unread_messages_count(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated and hasattr(request.user, 'userprofile'):
         user_profile = request.user.userprofile
         conversations = ConversationModel.objects.filter(
             Q(sender_profile=user_profile) | Q(receiver_profile=user_profile)

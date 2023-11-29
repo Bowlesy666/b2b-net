@@ -68,6 +68,9 @@ SITE_ID = 1
 LOGIN_REDIRECT_URL = 'referrals_analysis'
 ACCOUNT_SIGNUP_REDIRECT_URL = 'create_user_profile'
 LOGOUT_REDIRECT_URL = 'account_login'
+ACCOUNT_FORMS = {
+'signup': 'userprofile.forms.CustomSignupForm',
+}
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -80,6 +83,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
+    'usermailbox.middleware.middleware.ExcludeContextProcessorMiddleware',
 ]
 
 ROOT_URLCONF = 'b2bproject.urls'
