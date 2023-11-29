@@ -91,7 +91,9 @@
             <div>
               <i class="fas fa-envelope fa-fw fa-xl"></i>
               <!-- Counter - Messages -->
-              <span class="badge badge-danger">7</span>
+              {% if total_messages_unread > 0 %}
+              <span class="badge badge-danger">{{ total_messages_unread }}</span>
+              {% endif %}
               <span>Messages</span>
             </div>
           </a>
@@ -103,7 +105,7 @@
             <div>
               <i class="fas fa-bell fa-fw fa-xl"></i>
               <!-- Counter - Notifications -->
-              <span class="badge badge-danger">3</span>
+              <span class="badge badge-danger">{{ total_messages_unread }}</span>
               <span>Notifications</span>
             </div>
           </a>
