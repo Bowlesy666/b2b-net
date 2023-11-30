@@ -23,8 +23,13 @@ URL patterns related to user profiles
 """
 from . import views
 from django.urls import path
-from userprofile.views import UserProfileListView, UserProfileDetailView, UserProfileUpdateView, UserUpdateView, CreateUserProfileView
-
+from userprofile.views import (
+    UserProfileListView,
+    UserProfileDetailView,
+    UserProfileUpdateView,
+    UserUpdateView,
+    CreateUserProfileView,
+)
 
 urlpatterns = [
     path('profile_list', views.UserProfileListView.as_view(), name='profile_list'),

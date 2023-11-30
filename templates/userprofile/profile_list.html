@@ -34,11 +34,15 @@
             <p class="mb-3">
               {{ userprofile.user.first_name }} {{ userprofile.user.last_name }}
             </p>
+            {% if userprofile == user.userprofile %}
+            <p class="btn btn-secondary radius-15">Not Available</p>
+            {% else %}
             <div class="d-grid mt-3">
               <a href="{% url 'create_direct_booking' receiver_username=userprofile.user.username %}" class="btn btn-outline-primary radius-15"
                 >Book Meeting</a
               >
             </div>
+            {% endif %}
           </div>
         </div>
       </div>
