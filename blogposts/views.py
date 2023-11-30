@@ -14,7 +14,7 @@ class PostList(generic.ListView):
     """
     model = Post
     queryset = Post.objects.filter(status=1).order_by("-created_on")
-    template_name = "blog_index.html"
+    template_name = "blog/blog_index.html"
     paginate_by = 6
 
 
@@ -33,7 +33,7 @@ class PostDetail(View):
 
         return render(
             request,
-            "post_detail.html",
+            "blog/post_detail.html",
             {
                 "post": post,
                 "comments": comments,
@@ -64,7 +64,7 @@ class PostDetail(View):
 
         return render(
             request,
-            "post_detail.html",
+            "blog/post_detail.html",
             {
                 "post": post,
                 "comments": comments,
@@ -88,7 +88,7 @@ class PostLike(View):
         else:
             post.likes.add(request.user)
 
-        return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+        return HttpResponseRedirect(reverse('blog/post_detail', args=[slug]))
 
 
 class CreatePostView(LoginRequiredMixin, CreateView):
@@ -96,7 +96,7 @@ class CreatePostView(LoginRequiredMixin, CreateView):
     View for creating a new blog post.
     """
     model = Post
-    template_name = 'create_post.html'
+    template_name = 'blog/create_post.html'
     form_class = CreatePostForm
     success_url = reverse_lazy('home')
 
@@ -117,7 +117,7 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
     View for updating an existing blog post.
     """
     model = Post
-    template_name = 'edit_post.html'
+    template_name = 'blog/edit_post.html'
     form_class = EditPostForm
     slug_field = 'slug'  # Use slug_field instead of slug
     slug_url_kwarg = 'slug'
@@ -131,7 +131,7 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
     View for deleting an existing blog post.
     """
     model = Post
-    template_name = 'delete_post.html'
+    template_name = 'blog/delete_post.html'
     success_url = reverse_lazy('home')
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
