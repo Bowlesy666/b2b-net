@@ -18,7 +18,7 @@ class CreateBookingView(CreateView):
     View for creating a new booking.
     """
     model = Booking
-    template_name = 'create_booking_form.html'
+    template_name = 'booking/create_booking_form.html'
     form_class = CreateBookingForm
 
     def get_form_kwargs(self):
@@ -40,7 +40,7 @@ class BookingListView(generic.ListView):
     View for listing user bookings
     """
     model = Booking
-    template_name = 'booking_list.html'
+    template_name = 'booking/booking_list.html'
     context_object_name = 'booking_list'
 
     def get_queryset(self):
@@ -59,7 +59,7 @@ class UpdateBookingView(LoginRequiredMixin, UpdateView):
     View for updating a 1-2-1 meeting.
     """
     model = Booking
-    template_name = 'update_booking_form.html'
+    template_name = 'booking/update_booking_form.html'
     form_class = UpdateBookingForm
     context_object_name = 'booking_detail'
     slug_field = 'slug'
@@ -77,7 +77,7 @@ class CreateDirectBookingView(CreateView):
     """
     model = Booking
     form_class = CreateDirectBookingForm
-    template_name = 'create_booking_form.html'
+    template_name = 'booking/create_booking_form.html'
     success_url = reverse_lazy('booking_list')
 
     def form_valid(self, form):
@@ -97,7 +97,7 @@ class CancelBookingView(LoginRequiredMixin, UpdateView):
     View to cancel a meeting, this will not delete
     """
     model = Booking
-    template_name = 'cancel_booking_form.html'
+    template_name = 'booking/cancel_booking_form.html'
     form_class = CancelBookingForm
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
@@ -109,7 +109,7 @@ class ConfirmBookingView(LoginRequiredMixin, UpdateView):
     View to confirm a meeting
     """
     model = Booking
-    template_name = 'confirm_booking_form.html'
+    template_name = 'booking/confirm_booking_form.html'
     form_class = ConfirmBookingForm
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
@@ -121,7 +121,7 @@ class ArchiveBookingView(LoginRequiredMixin, UpdateView):
     View to archive a meeting, this will not delete
     """
     model = Booking
-    template_name = 'archive_booking_form.html'
+    template_name = 'booking/archive_booking_form.html'
     form_class = ArchiveBookingForm
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
@@ -133,7 +133,7 @@ class ArchiveBookingListView(generic.ListView):
     View for listing archived bookings
     """
     model = Booking
-    template_name = 'booking_archive_list.html'
+    template_name = 'booking/booking_archive_list.html'
     context_object_name = 'booking_list'
 
     def get_queryset(self):
