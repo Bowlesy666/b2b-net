@@ -20,6 +20,7 @@
             <div class="row mt-2">
                 <h1 class="col-sm text-primary text-center"> My Conversations </h1>
             </div>
+
         </div>
             {% for conversation in conversation_list %}
             <div class="card mt-2">
@@ -29,12 +30,26 @@
                             <a href="{% url 'user_mailbox_message_detail' pk=conversation.pk %}">
                                 {% if user.userprofile == conversation.sender_profile  %}
                                 <div class="text-truncate">
+                                    {% for key, value in conversation_messages_unread.items %}
+                                        {% if key == conversation.pk %}
+                                            {% if value > 0 %}
+                                            <span class="badge badge-danger position-absolute">{{ value }}</span>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
                                     <img src="{% if 'placeholder' in conversation.receiver_profile.user_profile_img.url %}{% static 'img/undraw_profile.svg' %}{% else %}{{ conversation.receiver_profile.user_profile_img.url }}{% endif %}"
                                         alt="user avatar" class="img-profile rounded-circle mr-4" width="50" />
                                     <span class="mr-3 text-truncate">{{ conversation.receiver_profile.user.first_name }} {{ conversation.receiver_profile.user.last_name }} - {{ conversation.updated_on }}</span>
                                 </div>
                                 {% else %}
                                 <div class="text-truncate">
+                                    {% for key, value in conversation_messages_unread.items %}
+                                        {% if key == conversation.pk %}
+                                            {% if value > 0 %}
+                                            <span class="badge badge-danger position-absolute">{{ value }}</span>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
                                     <img src="{% if 'placeholder' in conversation.sender_profile.user_profile_img.url %}{% static 'img/undraw_profile.svg' %}{% else %}{{ conversation.sender_profile.user_profile_img.url }}{% endif %}"
                                         alt="user avatar" class="img-profile rounded-circle mr-4" width="50" />
                                     <span class="mr-3 text-truncate">{{ conversation.sender_profile.user.first_name }} {{ conversation.sender_profile.user.last_name }} - {{ conversation.updated_on }}</span>
@@ -42,7 +57,7 @@
                                 {% endif %}
                             </a>
                         </div>
-                        <div class="col col-lg-2">
+                        <div class="col col-2">
                             <a class="btn d-inline col-1" href="{% url 'conversation_archive' pk=conversation.pk %}"><h2><i class="fa-regular fa-trash-can fa-xl text-danger"></h2></i></a>
                         </div>
                     </div>
