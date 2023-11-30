@@ -1,16 +1,4 @@
-* Author */
-.author a {
-    font-family: 'Rokkitt', serif;
-    font-size: 16px;
-    color: #00C4CF;
-}
-
-.author p {
-    font-family: 'Rokkitt', serif;
-    font-size: 16px;
-    color: #8d8d8d;
-}
-
+/* styles for logo */
 #b2b-logo {
     height: 50px;
     width: 50px;

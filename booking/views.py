@@ -13,7 +13,7 @@ from .forms import (
 )
 
 
-class CreateBookingView(CreateView):
+class CreateBookingView(LoginRequiredMixin, CreateView):
     """
     View for creating a new booking.
     """
@@ -35,7 +35,7 @@ class CreateBookingView(CreateView):
         return reverse_lazy('booking_list')
 
 
-class BookingListView(generic.ListView):
+class BookingListView(LoginRequiredMixin, generic.ListView):
     """
     View for listing user bookings
     """
@@ -71,7 +71,7 @@ class UpdateBookingView(LoginRequiredMixin, UpdateView):
             slug=self.kwargs.get(self.slug_url_kwarg))
 
 
-class CreateDirectBookingView(CreateView):
+class CreateDirectBookingView(LoginRequiredMixin, CreateView):
     """
     View for creating booking directly from profile.
     """
@@ -128,7 +128,7 @@ class ArchiveBookingView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('booking_list')
 
 
-class ArchiveBookingListView(generic.ListView):
+class ArchiveBookingListView(LoginRequiredMixin, generic.ListView):
     """
     View for listing archived bookings
     """

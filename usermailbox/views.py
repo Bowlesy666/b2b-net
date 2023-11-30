@@ -13,7 +13,7 @@ from .models import ConversationModel, MessageModel
 from userprofile.views import UserProfile
 
 
-class UserMailBoxCreateMessageView(View):
+class UserMailBoxCreateMessageView(LoginRequiredMixin, View):
     """
     View for creating a new message in the user mailbox.
     """
@@ -63,7 +63,7 @@ class UserMailBoxCreateMessageView(View):
             request, 'usermailbox/user_mailbox_create_form.html', context)
 
 
-class UserMailBoxListView(generic.ListView):
+class UserMailBoxListView(LoginRequiredMixin, generic.ListView):
     """
     View for listing user messages
     """
@@ -78,7 +78,7 @@ class UserMailBoxListView(generic.ListView):
         return render(request, 'usermailbox/conversation_list.html', context)
 
 
-class UserMailBoxArchiveListView(generic.ListView):
+class UserMailBoxArchiveListView(LoginRequiredMixin, generic.ListView):
     """
     View for listing user messages
     """
@@ -92,7 +92,7 @@ class UserMailBoxArchiveListView(generic.ListView):
         return render(request, 'usermailbox/archive_list.html', context)
 
 
-class UserMailBoxDetailView(View):
+class UserMailBoxDetailView(LoginRequiredMixin, View):
     """
     View for displaying a blog post in detail and handling comments and likes.
     """
@@ -115,7 +115,7 @@ class UserMailBoxDetailView(View):
             request, 'usermailbox/user_mailbox_message_form.html', context)
 
 
-class CreateMessage(View):
+class CreateMessage(LoginRequiredMixin, View):
     """
     View for creating user messages
     """

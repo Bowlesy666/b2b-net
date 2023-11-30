@@ -8,7 +8,7 @@ from .models import Post
 from .forms import CommentForm, CreatePostForm, EditPostForm
 
 
-class PostList(generic.ListView):
+class PostList(LoginRequiredMixin, generic.ListView):
     """
     List view for displaying a paginated list of published blog posts.
     """
@@ -18,7 +18,7 @@ class PostList(generic.ListView):
     paginate_by = 6
 
 
-class PostDetail(View):
+class PostDetail(LoginRequiredMixin, View):
     """
     View for displaying a blog post in detail and handling comments and likes.
     """
@@ -75,7 +75,7 @@ class PostDetail(View):
         )
 
 
-class PostLike(View):
+class PostLike(LoginRequiredMixin, View):
     """
     View for handling post likes/unlikes
     HTTP POST request that

@@ -14,7 +14,7 @@ from .forms import (
 from .models import ReferralsModel
 
 
-class CreateReferralsView(CreateView):
+class CreateReferralsView(LoginRequiredMixin, CreateView):
     """
     View for creating referrals.
     """
@@ -44,7 +44,7 @@ class CreateReferralsView(CreateView):
         return reverse_lazy('referrals_list')
 
 
-class ReferralsListView(generic.ListView):
+class ReferralsListView(LoginRequiredMixin, generic.ListView):
     """
     View for listing user referrals
     """
@@ -98,7 +98,7 @@ class ReferralsArchiveView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('referrals_list')
 
 
-class ReferralsArchiveListView(generic.ListView):
+class ReferralsArchiveListView(LoginRequiredMixin, generic.ListView):
     """
     View for listing archived referrals
     """
@@ -156,7 +156,7 @@ class ReferralsCancelView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('referrals_list')
 
 
-class ReferralsAnalysisView(TemplateView):
+class ReferralsAnalysisView(LoginRequiredMixin, TemplateView):
     """
     View for analyzing referral statistics.
     Context Data:
