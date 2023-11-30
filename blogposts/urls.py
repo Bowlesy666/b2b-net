@@ -1,7 +1,7 @@
 """
 1.
    -`home`:
-   - URL pattern for the blog home page, displaying a list of all published posts.
+   - URL pattern for the blog, displaying a list of all published posts.
    - Maps to the `PostList` view.
 
 2. `post_like`:

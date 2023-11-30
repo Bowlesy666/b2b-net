@@ -143,4 +143,5 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
         In this case, I am using the slug field to filter the Post object.
         """
         queryset = queryset or self.get_queryset()
-        return queryset.filter(**{self.slug_field: self.kwargs[self.slug_url_kwarg]}).first()
+        return queryset.filter(
+            **{self.slug_field: self.kwargs[self.slug_url_kwarg]}).first()
