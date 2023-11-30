@@ -12,15 +12,13 @@
             src="https://bootdey.com/img/Content/avatar/avatar7.png"
             alt="user avatar placeholder"
             class="rounded-circle"
-            width="150"
-          />
+            width="150">
           {% else %}
           <img
             src="{{ userprofile_detail.user_profile_img.url }}"
             alt="user avatar"
             class="rounded-circle"
-            width="150"
-          />
+            width="150">
           {% endif %}
           <div class="mt-3">
             <h4>{{ userprofile_detail.company_name }}</h4>
@@ -75,7 +73,8 @@
           >
         </li>
         {% endif %}
-    </div><!-- Profile Personal Info Section -->
+      </ul>
+    </div> <!-- Profile Personal Info Section -->
   </div>
   <div class="col-md-8">
     <div class="card mb-3">
@@ -101,14 +100,14 @@
           </div>
           <div class="col-sm-9 text-secondary">{{ userprofile_detail.get_business_sector_display }}</div>
         </div>
-        <hr />
+        <hr>
         <div class="row">
           <div class="col-sm-3">
             <h6 class="mb-0">Website:</h6>
           </div>
           <div class="col-sm-9 text-secondary text-truncate">{{ userprofile_detail.company_website }}</div>
         </div>
-        <hr />
+        <hr>
         <div class="row">
             <div class="col-sm-3">
                 <h6 class="mb-0">Company Email:</h6>

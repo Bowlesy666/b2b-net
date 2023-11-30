@@ -1,9 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-
-
 <div class="container-xl px-4 mt-4">
     <div class="row">
 
@@ -18,7 +15,7 @@
                                 <span class="text-mute mt-4">Share a story with your network...</span>
                             </div>
                             <div class="d-grid">
-                                <button class="btn btn-primary radius-15 m-4" type="submit">Create Post</button>
+                                <div class="btn btn-primary radius-15 m-4">Create Post</div>
                             </div>
                         </div>
                     </div>
@@ -28,32 +25,31 @@
 
         <!-- Blog Entries Column -->
         <div class="col-xl-8">
-                {% for post in post_list %}
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <a href="{% url 'post_detail' post.slug %}" class="post-link text-decoration-none">
-                            {% if 'placeholder' in post.featured_image.url %}
+            {% for post in post_list %}
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <a href="{% url 'post_detail' post.slug %}" class="post-link text-decoration-none">
+                        {% if 'placeholder' in post.featured_image.url %}
+                        <div class="image-flash">
+                            <p class="author">Author: {{ post.author }}</p>
+                        </div>
+                        {% else %}
+                        <div class="image-container">
+                            <img class="card-img-top" src="{{ post.featured_image.url }}" alt="Featured image">
                             <div class="image-flash">
                                 <p class="author">Author: {{ post.author }}</p>
                             </div>
-                            {% else %}
-                            <div class="image-container">
-                                <img class="card-img-top" src="{{ post.featured_image.url }}">
-                                <div class="image-flash">
-                                    <p class="author">Author: {{ post.author }}</p>
-                                </div>
-                            </div>
-                            {% endif %}
-                                <h2 class="card-title">{{ post.title }}</h2>
-                                <p class="card-text">{{ post.excerpt }}</p>
-                            </a>
-                            <hr />
-                            <p class="card-text text-muted h6">{{ post.created_on }} <i class="far fa-heart"></i>
-                                {{ post.number_of_likes }}</p>
                         </div>
+                        {% endif %}
+                            <h2 class="card-title">{{ post.title }}</h2>
+                            <p class="card-text">{{ post.excerpt }}</p>
+                        </a>
+                        <hr>
+                        <p class="card-text text-muted h6">{{ post.created_on }} <i class="far fa-heart"></i>
+                            {{ post.number_of_likes }}</p>
                     </div>
-                {% endfor %}
-
+                </div>
+            {% endfor %}
         </div>
     </div>
     {% if is_paginated %}
@@ -64,7 +60,6 @@
             {% endif %}
             {% if page_obj.has_next %}
             <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-
             {% endif %}
         </ul>
     </nav>

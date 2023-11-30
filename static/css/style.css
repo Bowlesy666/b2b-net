@@ -40,17 +40,19 @@
 }
 
 /* Speach bubbles for direct mail app taken from Codepen.io https://codepen.io/jacurtis/pen/jKzPZe */
-section {
+.section {
     width: 95%;
 	margin: 50px auto;
     display: flex;
     flex-direction: column-reverse;
-	div {
-		max-width: 85%;
-		word-wrap: break-word;
-		margin-bottom: 12px;
-        line-height: 24px;
-	}
+	
+}
+
+.section div {
+    max-width: 85%;
+    word-wrap: break-word;
+    margin-bottom: 12px;
+    line-height: 24px;
 }
 
 .chat-bg {

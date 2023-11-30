@@ -55,8 +55,6 @@ class UpdateBookingForm(forms.ModelForm):
             'meeting_date',
             'meeting_time',
             'meeting_duration',
-            'is_accepted',
-            'is_archived',
             'additional_notes',
         ]
         widgets = {

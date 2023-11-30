@@ -15,22 +15,20 @@
               width="110"
               height="110"
               class="rounded-circle shadow"
-              alt="user avatar placeholder"
-            />
+              alt="user avatar placeholder">
             {% else %}
             <img
               src="{{ userprofile.user_profile_img.url }}"
               width="110"
               height="110"
               class="rounded-circle shadow"
-              alt="user avatar"
-            />
+              alt="user avatar">
             {% endif %}
             <h5 class="mb-0 mt-4">{{ userprofile.company_name }}</h5>
             <div class="d-grid mt-2">
               <a href="{% url 'userprofile_detail' slug=userprofile.slug  %}" class="btn btn-primary radius-15">View Profile</a>
             </div>
-            <hr />
+            <hr>
             <p class="mb-3">
               {{ userprofile.user.first_name }} {{ userprofile.user.last_name }}
             </p>
@@ -49,7 +47,7 @@
     </div>
     {% endfor %} {% else %}
     <h3>You currently have no users in your network</h3>
-    <hr />
+    <hr>
     <p>Why not invite other businesses to join?</p>
     {% endif %}
   </div>

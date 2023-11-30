@@ -19,7 +19,7 @@
         </div>
     </div>
   <h1 class="text-center">Edit 1-2-1 Meeting Request</h1>
-  <hr class="mt-0 mb-4" />
+  <hr class="mt-0 mb-4">
   <div class="row">
     <div class="col-xl-4">
       <!-- Profile picture card-->
@@ -30,7 +30,7 @@
         {% if user.userprofile.username == booking_detail.sender.username %}
         <div>
             <img src="{% if 'placeholder' in booking_detail.receiver.user_profile_img.url %}{% static 'img/undraw_profile.svg' %}{% else %}{{ booking_detail.receiver.user_profile_img.url }}{% endif %}"
-                alt="user avatar" class="img-profile rounded-circle mr-4" width="150" />
+                alt="user avatar" class="img-profile rounded-circle mr-4" width="150">
             <div class="small font-italic text-muted mt-4 mb-4">
                 Your meeting is with...
             </div>
@@ -41,7 +41,7 @@
         {% else %}
         <div>
             <img src="{% if 'placeholder' in booking.sender.user_profile_img.url %}{% static 'img/undraw_profile.svg' %}{% else %}{{ booking.sender.user_profile_img.url }}{% endif %}"
-                alt="user avatar" class="img-profile rounded-circle mr-4" width="150" />
+                alt="user avatar" class="img-profile rounded-circle mr-4" width="150">
             <div class="small font-italic text-muted mt-4 mb-4">
                 Your meeting is with...
             </div>
@@ -50,15 +50,6 @@
             <span class="float-right text-truncate mr-3">{{ booking.meeting_time }}</span>
         </div>
         {% endif %}
-          
-          <!-- Profile Account details link -->
-          <div class="d-grid mt-3">
-            <a
-              class="btn btn-primary radius-15 m-4"
-              href="{% url 'user_info_update_form' slug=user.userprofile.slug %}"
-              >will be a message button</a
-            >
-          </div>
         </div>
       </div>
     </div>

@@ -38,7 +38,7 @@
                                         {% endif %}
                                     {% endfor %}
                                     <img src="{% if 'placeholder' in conversation.receiver_profile.user_profile_img.url %}{% static 'img/undraw_profile.svg' %}{% else %}{{ conversation.receiver_profile.user_profile_img.url }}{% endif %}"
-                                        alt="user avatar" class="img-profile rounded-circle mr-4" width="50" />
+                                        alt="user avatar" class="img-profile rounded-circle mr-4" width="50">
                                     <span class="mr-3 text-truncate">{{ conversation.receiver_profile.user.first_name }} {{ conversation.receiver_profile.user.last_name }} - {{ conversation.updated_on }}</span>
                                 </div>
                                 {% else %}
@@ -51,18 +51,22 @@
                                         {% endif %}
                                     {% endfor %}
                                     <img src="{% if 'placeholder' in conversation.sender_profile.user_profile_img.url %}{% static 'img/undraw_profile.svg' %}{% else %}{{ conversation.sender_profile.user_profile_img.url }}{% endif %}"
-                                        alt="user avatar" class="img-profile rounded-circle mr-4" width="50" />
+                                        alt="user avatar" class="img-profile rounded-circle mr-4" width="50">
                                     <span class="mr-3 text-truncate">{{ conversation.sender_profile.user.first_name }} {{ conversation.sender_profile.user.last_name }} - {{ conversation.updated_on }}</span>
                                 </div>
                                 {% endif %}
                             </a>
                         </div>
                         <div class="col col-2">
-                            <a class="btn d-inline col-1" href="{% url 'conversation_archive' pk=conversation.pk %}"><h2><i class="fa-regular fa-trash-can fa-xl text-danger"></h2></i></a>
+                            <a class="btn d-inline col-1" href="{% url 'conversation_archive' pk=conversation.pk %}"><h2><i class="fa-regular fa-trash-can fa-xl text-danger"></i>.</h2></a>
                         </div>
                     </div>
                     <div class="row float-right mt-2 mr-4">
+                        {% if user.userprofile == conversation.sender_profile  %}
                         <p class="text-muted mr-4">{{ conversation.receiver_profile.user.first_name }} {{ conversation.receiver_profile.user.last_name }} last online {{ conversation.receiver_profile.user.last_login }}</p>
+                        {% else %}
+                        <p class="text-muted mr-4">{{ conversation.sender_profile.user.first_name }} {{ conversation.sender_profile.user.last_name }} last online {{ conversation.sender_profile.user.last_login }}</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>

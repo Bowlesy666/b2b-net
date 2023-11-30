@@ -40,24 +40,20 @@
                                 data-toggle="collapse" data-target="#collapse{{ referral.slug }}" aria-expanded="true"
                                 aria-controls="collapse{{ referral.slug }}">
                                 {% if user.userprofile == referral.referral_sender_id %}
-                                <div class="text-truncate">
                                     <img src="{% if 'placeholder' in referral.referral_receiver_id.user_profile_img.url %}{% static 'img/undraw_profile.svg' %}{% else %}{{ referral.referral_receiver_id.user_profile_img.url }}{% endif %}"
-                                        alt="user avatar" class="img-profile rounded-circle mr-4" width="30" />
+                                        alt="user avatar" class="img-profile rounded-circle mr-4" width="30">
                                     <span class="mr-3 text-truncate">{{ referral.referral_receiver_id.user.first_name }} {{ referral.referral_receiver_id.user.last_name }} - {{ referral.referral_subject }}</span>
-                                    <span class="float-right text-truncate">{% if referral.is_cancelled == True %}<strike>{{ referral.expected_completion_date }}</strike>{% else %}{{ referral.expected_completion_date }}{% endif %}</span>
-                                    <span class="float-right text-truncate mr-3">{% if referral.is_cancelled == True %}<strike>{{ referral.percentage }} %</strike>{% else %}{{ referral.percentage }} %{% endif %}</span>
-                                </div>
+                                    <span class="float-right text-truncate{% if referral.is_cancelled == True %} text-decoration-line-through{% endif %}">{{ referral.expected_completion_date }}</span>
+                                    <span class="float-right text-truncate mr-3{% if referral.is_cancelled == True %} text-decoration-line-through{% endif %}">{{ referral.percentage }} %</span>
                                 {% else %}
-                                <div class="text-truncate">
                                     <img src="{% if 'placeholder' in referral.referral_sender_id.user_profile_img.url %}{% static 'img/undraw_profile.svg' %}{% else %}{{ referral.referral_sender_id.user_profile_img.url }}{% endif %}"
-                                        alt="user avatar" class="img-profile rounded-circle mr-4" width="30" />
+                                        alt="user avatar" class="img-profile rounded-circle mr-4" width="30">
                                         <span class="mr-3 text-truncate">{{ referral.referral_sender_id.user.first_name }} {{ referral.referral_sender_id.user.last_name }} - {{ referral.referral_subject }}</span>
-                                        <span class="float-right text-truncate">{% if referral.is_cancelled == True %}<strike>{{ referral.expected_completion_date }}</strike>{% else %}{{ referral.expected_completion_date }}{% endif %}</span>
-                                        <span class="float-right text-truncate mr-3">{% if referral.is_cancelled == True %}<strike>{{ referral.percentage }} %</strike>{% else %}{{ referral.percentage }} %{% endif %}</span>
-                                </div>
+                                        <span class="float-right text-truncate{% if referral.is_cancelled == True %} text-decoration-line-through{% endif %}">{{ referral.expected_completion_date }}</span>
+                                        <span class="float-right text-truncate mr-3{% if referral.is_cancelled == True %} text-decoration-line-through{% endif %}">{{ referral.percentage }} %</span>
                                 {% endif %}
                             </button>
-                            <a class="btn d-inline text-info col-1" href="{% url 'referrals_archive' slug=referral.slug %}"><i class="fa-solid fa-people-arrows"><h6>Un-Archive</h6></i></a>
+                            <a class="btn d-inline text-info col-1" href="{% url 'referrals_archive' slug=referral.slug %}"><i class="fa-solid fa-people-arrows">Un-Archive</i></a>
                         </h2>
                     </div>
                     <div id="collapse{{ referral.slug }}" class="collapse{% if forloop.first %} show{% endif %}"
@@ -90,10 +86,9 @@
                                                 Contract not yet agreed
                                             {% endif %}
                                         </p>
-                                        </p>
                                     </div>
                                     <div class="row float-right">
-                                        <button class="btn btn-block btn-outline-primary radius-15 m-4 float-right">View & Edit</button>
+                                        <div class="btn btn-block btn-outline-primary radius-15 m-4 float-right">View & Edit</div>
                                     </div>
                                     {% else %}
                                     <div class="row mt-4">

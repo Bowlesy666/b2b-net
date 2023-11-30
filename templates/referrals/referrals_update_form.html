@@ -30,7 +30,7 @@
         </div>
     </div>
   <h1 class="text-center">Edit Referral Logs...</h1>
-  <hr class="mt-0 mb-4" />
+  <hr class="mt-0 mb-4">
   <div class="row">
     <div class="col-xl-4">
       <!-- Profile picture card-->
@@ -41,7 +41,7 @@
         {% if user.userprofile.username == referrals_detail.sender.username %}
         <div>
             <img src="{% if 'placeholder' in referrals_detail.referral_receiver_id.user_profile_img.url %}{% static 'img/undraw_profile.svg' %}{% else %}{{ referrals_detail.referral_receiver_id.user_profile_img.url }}{% endif %}"
-                alt="user avatar" class="img-profile rounded-circle mr-4" width="150" />
+                alt="user avatar" class="img-profile rounded-circle mr-4" width="150">
             <div class="small font-italic text-muted mt-4 mb-4">
                 Your referral agreement is with...
             </div>
@@ -52,7 +52,7 @@
         {% else %}
         <div>
             <img src="{% if 'placeholder' in referrals_detail.referral_sender_id.user_profile_img.url %}{% static 'img/undraw_profile.svg' %}{% else %}{{ referrals_detail.referral_sender_id.user_profile_img.url }}{% endif %}"
-                alt="user avatar" class="img-profile rounded-circle mr-4" width="150" />
+                alt="user avatar" class="img-profile rounded-circle mr-4" width="150">
             <div class="small font-italic text-muted mt-4 mb-4">
                 Your referral agreement is with...
             </div>

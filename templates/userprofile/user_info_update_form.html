@@ -2,7 +2,7 @@
 
 <div class="container-xl px-4 mt-4">
   <h1 class="text-center">Edit User Info</h1>
-  <hr class="mt-0 mb-4" />
+  <hr class="mt-0 mb-4">
   <div class="row">
     <div class="col-xl-4">
       <!-- Profile picture card-->
@@ -15,15 +15,13 @@
             src="https://bootdey.com/img/Content/avatar/avatar7.png"
             alt="user avatar placeholder"
             class="rounded-circle"
-            width="150"
-          />
+            width="150">
           {% else %}
           <img
             class="img-account-profile rounded-circle mb-2"
             src="{{ user.userprofile.user_profile_img.url }}"
             alt="User Avatar"
-            width="150"
-          />
+            width="150">
           {% endif %}
           <!-- Profile Account details link -->
           <div class="d-grid mt-3">
