@@ -3,6 +3,7 @@ from userprofile.models import UserProfile
 from cloudinary.models import CloudinaryField
 from django.utils.text import slugify
 from booking.models import slug_save
+from django.utils import timezone
 
 # https://stackoverflow.com/questions/43696074/django-private-messaging-conversation-view
 class ConversationModel(models.Model):
@@ -37,3 +38,9 @@ class MessageModel(models.Model):
 
     class Meta:
         ordering = ["-created_on"]
+
+    def save(self, *args, **kwargs):
+        super(MessageModel, self).save(*args, **kwargs)
+
+        self.conversation.updated_on = timezone.now()
+        self.conversation.save()
