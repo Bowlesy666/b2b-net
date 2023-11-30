@@ -3,18 +3,21 @@ from .models import ConversationModel, MessageModel
 from userprofile.models import UserProfile
 
 
-
 class UserMailBoxCreateForm(forms.ModelForm):
     """
-    Form for updating the user profile information
+    Form for joining a conversation
     """
     def __init__(self, *args, **kwargs):
+        """
+        Remove logged in user from drop down
+        """
         user = kwargs.pop('user', None)
         super(UserMailBoxCreateForm, self).__init__(*args, **kwargs)
 
         # Exclude the logged-in user from the receiver choices
         if user:
-            self.fields['receiver_profile'].queryset = UserProfile.objects.exclude(
+            self.fields[
+                'receiver_profile'].queryset = UserProfile.objects.exclude(
                 user=user)
 
     class Meta:
@@ -29,7 +32,7 @@ class UserMailBoxCreateForm(forms.ModelForm):
 
 class UserMailBoxMessageForm(forms.ModelForm):
     """
-    Form for updating the user profile information
+    Form for creating messages
     """
     class Meta:
         model = MessageModel
@@ -37,7 +40,8 @@ class UserMailBoxMessageForm(forms.ModelForm):
             'message_body',
         ]
         widgets = {
-            'message_body': forms.Textarea(attrs={'class': 'form-control text-area-height'}),
+            'message_body': forms.Textarea(
+                attrs={'class': 'form-control text-area-height'}),
         }
 
 

@@ -12,7 +12,11 @@ def unread_messages_count(request):
         total_messages_unread = 0
 
         for conversation in conversations:
-            opposite_profile = conversation.receiver_profile if conversation.sender_profile == user_profile else conversation.sender_profile
+            opposite_profile = (
+                conversation.receiver_profile
+                if conversation.sender_profile == user_profile
+                else conversation.sender_profile
+            )
 
             unread_messages_count = MessageModel.objects.filter(
                 conversation=conversation,
@@ -21,8 +25,8 @@ def unread_messages_count(request):
             ).count()
 
             total_messages_unread += unread_messages_count
-            conversation_messages_unread[conversation.pk] = unread_messages_count
-            
+            conversation_messages_unread[
+                conversation.pk] = unread_messages_count
 
     else:
         total_messages_unread = 0

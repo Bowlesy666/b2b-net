@@ -5,7 +5,7 @@ from django_summernote.admin import SummernoteModelAdmin
 @admin.register(MessageModel)
 class UserMailBoxMessageAdmin(SummernoteModelAdmin):
     """
-    Admin configuration for the coversation model.
+    Admin configuration for the message model.
     """
     list_display = (
         'conversation',

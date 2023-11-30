@@ -1,5 +1,7 @@
 <https://www.bootdey.com/snippets/view/light-contact-list> snippets
 
+<!-- # https://stackoverflow.com/questions/43696074/django-private-messaging-conversation-view -->
+
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
 Welcome,
