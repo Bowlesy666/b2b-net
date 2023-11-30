@@ -32,7 +32,10 @@ from userprofile.views import (
 )
 
 urlpatterns = [
-    path('profile_list', views.UserProfileListView.as_view(), name='profile_list'),
+    path(
+        'profile_list',
+        views.UserProfileListView.as_view(), name='profile_list'
+    ),
     path('create_user_profile/', views.CreateUserProfileView.as_view(),
          name='create_user_profile'),
     path('profile_detail/<slug:slug>/', views.UserProfileDetailView.as_view(),

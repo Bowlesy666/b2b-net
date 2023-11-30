@@ -29,15 +29,23 @@ class UserProfileForm(forms.ModelForm):
             'company_bio': forms.Textarea(attrs={'class': 'form-control'}),
             'business_sector': forms.Select(attrs={'class': 'form-control'}),
             'company_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'company_website': forms.TextInput(attrs={'class': 'form-control'}),
-            'company_contact_number': forms.TextInput(attrs={'class': 'form-control'}),
-            'alternative_company_contact_number': forms.TextInput(attrs={'class': 'form-control'}),
-            'company_contact_email': forms.TextInput(attrs={'class': 'form-control'}),
-            'company_services_post': forms.Textarea(attrs={'class': 'form-control'}),
-            'company_hero_picture': forms.FileInput(attrs={'class': 'form-control'}),
-            'user_contact_number': forms.TextInput(attrs={'class': 'form-control'}),
+            'company_website': forms.TextInput(
+                attrs={'class': 'form-control'}),
+            'company_contact_number': forms.TextInput(
+                attrs={'class': 'form-control'}),
+            'alternative_company_contact_number': forms.TextInput(
+                attrs={'class': 'form-control'}),
+            'company_contact_email': forms.TextInput(
+                attrs={'class': 'form-control'}),
+            'company_services_post': forms.Textarea(
+                attrs={'class': 'form-control'}),
+            'company_hero_picture': forms.FileInput(
+                attrs={'class': 'form-control'}),
+            'user_contact_number': forms.TextInput(
+                attrs={'class': 'form-control'}),
             'user_about': forms.Textarea(attrs={'class': 'form-control'}),
-            'user_profile_img': forms.FileInput(attrs={'class': 'form-control'}),
+            'user_profile_img': forms.FileInput(
+                attrs={'class': 'form-control'}),
         }
 
 
@@ -56,10 +64,18 @@ class UserForm(forms.ModelForm):
 
 
 class CustomSignupForm(SignupForm):
-    first_name = forms.CharField(max_length=30, label='First Name', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    last_name = forms.CharField(max_length=30, label='Last Name', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    first_name = forms.CharField(
+        max_length=30, label='First Name', widget=forms.TextInput(
+            attrs={'class': 'form-control'}))
+    last_name = forms.CharField(
+        max_length=30, label='Last Name', widget=forms.TextInput(
+            attrs={'class': 'form-control'}))
+    email = forms.EmailField(
+        widget=forms.EmailInput(
+            attrs={'class': 'form-control'}))
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'class': 'form-control'}))
 
     def signup(self, request, user):
         user.first_name = self.cleaned_data['first_name']

@@ -46,7 +46,9 @@ class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
         return self.request.user.userprofile
 
     def get_success_url(self):
-        return reverse_lazy('userprofile_detail', kwargs={'slug': self.request.user.userprofile.slug})
+        return reverse_lazy(
+            'userprofile_detail',
+            kwargs={'slug': self.request.user.userprofile.slug})
 
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
@@ -62,7 +64,9 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
         return self.request.user
 
     def get_success_url(self):
-        return reverse_lazy('userprofile_detail', kwargs={'slug': self.request.user.userprofile.slug})
+        return reverse_lazy(
+            'userprofile_detail',
+            kwargs={'slug': self.request.user.userprofile.slug})
 
 
 class CreateUserProfileView(View):
