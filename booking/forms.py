@@ -73,7 +73,7 @@ class UpdateBookingForm(forms.ModelForm):
 
 class CreateDirectBookingForm(forms.ModelForm):
     """
-    Form for 1-2-1 Booking Creation
+    Form for 1-2-1 Direct Booking Creation
     """
 
     def __init__(self, *args, **kwargs):
@@ -108,18 +108,27 @@ class CreateDirectBookingForm(forms.ModelForm):
 
 
 class CancelBookingForm(forms.ModelForm):
+    """
+    Form for 1-2-1 Booking Cancellation
+    """
     class Meta:
         model = Booking
         fields = ['is_cancelled',]
 
 
 class ConfirmBookingForm(forms.ModelForm):
+    """
+    Form for 1-2-1 Booking Confirmation
+    """
     class Meta:
         model = Booking
         fields = ['is_accepted',]
 
 
 class ArchiveBookingForm(forms.ModelForm):
+    """
+    Form for 1-2-1 Booking Archiving/Unarchiving
+    """
     class Meta:
         model = Booking
         fields = ['is_archived']

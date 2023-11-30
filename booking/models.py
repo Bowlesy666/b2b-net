@@ -17,6 +17,9 @@ MEETING_DURATION_CHOICES = (
 
 
 class Booking(models.Model):
+    """
+    Model representing a booking for a 1-2-1 meeting between users.
+    """
     sender = models.ForeignKey(
         UserProfile, on_delete=models.CASCADE, related_name='booking_sender')
     receiver = models.ForeignKey(
@@ -25,7 +28,8 @@ class Booking(models.Model):
     meeting_description = models.TextField()
     meeting_location = models.CharField(max_length=100, null=False)
     meeting_date = models.DateField(null=False, validators=[RegexValidator(
-        r'\d{4}-\d{2}-\d{2}', message='Enter a valid date format (DD-MM-YYYY)')])
+        r'\d{4}-\d{2}-\d{2}',
+        message='Enter a valid date format (DD-MM-YYYY)')])
     meeting_time = models.TimeField(null=False, validators=[RegexValidator(
         r'\d{2}:\d{2}', message='Enter a valid time format (HH:MM)')])
     meeting_duration = models.CharField(
@@ -43,14 +47,14 @@ class Booking(models.Model):
         ordering = ["-meeting_date"]
 
     def __str__(self):
-        return f'Meeting for: {self.sender.user.username} & {self.receiver.user.username} - {self.meeting_subject}'
+        return f'{self.sender.user.username} & {self.receiver.user.username}'
 
     def save(self, *args, **kwargs):
         """
         Override the save method to auto-generate the slug.
         """
         print(
-            f"Saving Booking with date: {self.meeting_date} and time: {self.meeting_time}")
+            f"date: {self.meeting_date} and time: {self.meeting_time}")
 
         if not self.slug:
             slug_save(self)  # call slug_save, listed below
