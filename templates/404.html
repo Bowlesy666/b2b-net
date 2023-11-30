@@ -1,0 +1,35 @@
+{% extends "account/account_base.html" %} {% load i18n %} 
+{% load allauth account socialaccount %} {% block content %}
+<div class="container">
+  <!-- Outer Row -->
+  <div class="row justify-content-center">
+    <div class="col-xl-10 col-lg-12 col-md-9">
+      <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-6 d-none d-lg-block"><img src="https://images.unsplash.com/photo-1650692201357-3b1b15469952?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="ooops 404" height="100%" width="100%"></div>
+            <div class="col-lg-6">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Oooopsy!</h1>
+                </div>
+                <div>
+                    <h2 class="h4 text-gray-900 mb-4">It looks like you took a wrong turn!</h2>
+                    <h3 class="h4 text-gray-900 mb-4">Dont worry, we are here to help</h3>
+                    <h4 class="h4 text-gray-900 mb-4">If the problem persists, contact your networking group manager</h4>
+                </div>
+                <hr>
+                <div class="text-center">
+                    <a class="btn btn-outline-primary" href="{% url 'login' %}">Log back in!!</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

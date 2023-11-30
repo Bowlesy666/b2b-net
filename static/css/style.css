@@ -55,7 +55,7 @@
     line-height: 24px;
 }
 
-.chat-bg {
+.chat-bg, .cover-background {
     background-image: url("https://images.unsplash.com/photo-1633354998322-415842c7ee11?q=80&w=1153&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
     background-color: #cccccc;
     height: 100%;

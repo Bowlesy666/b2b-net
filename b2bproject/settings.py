@@ -28,11 +28,9 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', False)
-if DEBUG == 'True':
-    print('Debug mode is on.')
-elif DEBUG is False:
-    print('Debug mode is off.')
+DEBUG = False
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 ALLOWED_HOSTS = ['b2bproject-321684f42c8f.herokuapp.com',
                  '8000-bowlesy666-b2b-net-f5r0gn8q8b.us2.codeanyapp.com',]
