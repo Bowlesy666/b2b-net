@@ -1,17 +1,22 @@
-from django.shortcuts import render
-from django.views import generic, View
-from django.views.generic import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from django.views import generic, View
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
+from django.http import HttpResponse
 from django.db.models import Q
 from userprofile.models import UserProfile
 from .models import Booking
-from .forms import CreateBookingForm, UpdateBookingForm, CancelBookingForm, ConfirmBookingForm, ArchiveBookingForm, CreateDirectBookingForm
-from django.http import HttpResponse
-from django.urls import reverse_lazy
+from .forms import (
+    CreateBookingForm, UpdateBookingForm,
+    CancelBookingForm, ConfirmBookingForm,
+    ArchiveBookingForm, CreateDirectBookingForm
+)
 
 
 class CreateBookingView(CreateView):
+    """
+    View for creating a new booking.
+    """
     model = Booking
     template_name = 'create_booking_form.html'
     form_class = CreateBookingForm
@@ -62,10 +67,14 @@ class UpdateBookingView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('booking_list')
 
     def get_object(self, queryset=None):
-        return self.model.objects.get(slug=self.kwargs.get(self.slug_url_kwarg))
+        return self.model.objects.get(
+            slug=self.kwargs.get(self.slug_url_kwarg))
 
 
 class CreateDirectBookingView(CreateView):
+    """
+    View for creating booking directly from profile.
+    """
     model = Booking
     form_class = CreateDirectBookingForm
     template_name = 'create_booking_form.html'
@@ -97,7 +106,7 @@ class CancelBookingView(LoginRequiredMixin, UpdateView):
 
 class ConfirmBookingView(LoginRequiredMixin, UpdateView):
     """
-    View to cancel a meeting, this will not delete
+    View to confirm a meeting
     """
     model = Booking
     template_name = 'confirm_booking_form.html'
@@ -109,7 +118,7 @@ class ConfirmBookingView(LoginRequiredMixin, UpdateView):
 
 class ArchiveBookingView(LoginRequiredMixin, UpdateView):
     """
-    View to cancel a meeting, this will not delete
+    View to archive a meeting, this will not delete
     """
     model = Booking
     template_name = 'archive_booking_form.html'
