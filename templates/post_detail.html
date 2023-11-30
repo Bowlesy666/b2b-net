@@ -9,8 +9,7 @@
             <div class="card-body">
                 <div class="d-none d-md-block col masthead-image">
                     <!-- The featured image URL goes in the src attribute -->
-                    {% if "placeholder" in post.featured_image.url %}
-                    {% else %}
+                    {% if "placeholder" not in post.featured_image.url %}
                     <img src=" {{ post.featured_image.url }}" width="100%">
                     {% endif %}
                 </div>
@@ -61,10 +60,9 @@
     <div class="row">
         <div class="col">
             {% if post.author == request.user %}
-            <div class="col mt-3">
-                <a class="btn btn-outline-danger radius-15 form-control" target="_self" href="#">Delete
-                    Your Post</a>
-            </div>
+                <div class="col mt-3">
+                    <a class="btn btn-outline-danger radius-15 form-control" target="_self" href="{% url 'delete_post' slug=post.slug %}">Delete Your Post</a>
+                </div>
             {% endif %}
             <hr>
         </div>
