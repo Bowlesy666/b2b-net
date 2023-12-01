@@ -1,37 +1,28 @@
 {% extends "base.html" %} {% block content %} {% load static %}
 <div class="container-xl px-4 mt-4">
-    <div class="card-group d-none d-md-block">
-        <div class="card m-2">
-            <a class="btn btn-primary" href="{% url 'conversation_create' %}">New Chat</a>
-        </div>
-        <div class="card m-2">
-            <a class="btn btn-outline-primary" href="{% url 'conversation_list' %}">Inbox</a>
-        </div>
-        <div class="card m-2">
-            <a class="btn btn-outline-primary" href="{% url 'conversation_archive_list' %}">Trash</a>
-        </div>
-    </div>
     <div class="row">
         <div class="col-xl ">
-            <!-- Account details card-->
             <div class="card chat-bg mb-4 negative-margin-sides">
                 <div class="card-header">
                     <div class="container">
                         <div class="row">
-                            {% if conversation.sender_profile.user == request.user %}
-                            <div class="col-3">
-                                <img src="{% if 'placeholder' in conversation.receiver_profile.user_profile_img.url %}{% static 'img/undraw_profile.svg' %}{% else %}{{ conversation.receiver_profile.user_profile_img.url }}{% endif %}"
-                                    alt="user avatar" class="img-profile rounded-circle mr-1 mt-2" width="40">
+                            <div class="col-2 mr-2">
+                                <a class="btn btn-outline-primary" href="{% url 'conversation_list' %}"><i class="fa-solid fa-caret-left fa-2xl"></i>Inbox</a>
                             </div>
-                            <div class="col-8">
+                            {% if conversation.sender_profile.user == request.user %}
+                            <div class="col-3 ml-3">
+                                <img src="{% if 'placeholder' in conversation.receiver_profile.user_profile_img.url %}{% static 'img/undraw_profile.svg' %}{% else %}{{ conversation.receiver_profile.user_profile_img.url }}{% endif %}"
+                                    alt="user avatar" class="img-profile rounded-circle mr-1 mt-2" width="50">
+                            </div>
+                            <div class="col">
                                 <h1 class="text-truncate"><small> {{ conversation.receiver_profile.user.first_name }} {{ conversation.receiver_profile.user.last_name }}</small></h1>
                             </div>
                             {% elif conversation.receiver_profile.user == request.user %}
                             <div class="col-3">
                                 <img src="{% if 'placeholder' in conversation.sender_profile.user_profile_img.url %}{% static 'img/undraw_profile.svg' %}{% else %}{{ conversation.sender_profile.user_profile_img.url }}{% endif %}"
-                                    alt="user avatar" class="img-profile rounded-circle mr-1 mt-2" width="40">
+                                    alt="user avatar" class="img-profile rounded-circle mr-1 mt-2" width="50">
                             </div>
-                            <div class="col-8">
+                            <div class="col">
                                 <h1 class="text-truncate"><small> {{ conversation.sender_profile.user.first_name }} {{ conversation.sender_profile.user.last_name }}</small></h1>
                             </div>
                             {% endif %}
