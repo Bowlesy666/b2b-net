@@ -1,43 +1,140 @@
+# B2B Net - Business Networking Platform:
+
+![B2b Net Banner](static/img/b2b-net-banner.png)
+
+B2B-Net stands at the forefront of business networking, tailored to amplify collaboration and prosperity within distinct localities. Designed as exclusive, paid groups, each with its own database and membership, B2B-Net serves as a dynamic hub for businesses to cultivate meaningful connections.
+
+Key Features:
+
+## Referral Excellence:
+
+The Referral Logging System streamlines revenue opportunities, letting businesses log and manage referrals effortlessly.
+An integrated commission system incentivizes active participation, rewarding businesses with a 5% commission on successful referrals.
+
+## Strategic Meetings:
+
+The One-to-One Meeting Booking feature fosters direct collaboration, encouraging businesses to schedule personalized meetings.
+This capability enhances relationship-building, opening pathways for shared growth opportunities within the local community.
+
+## Additional Features:
+
+### Blog Posts for Community Updates:
+
+Stay informed with group meetings, business services, and community highlights through interactive blog posts.
+
+### Direct Messaging Chat App:
+
+Enhance communication through a dedicated chat app, enabling users to connect through direct messages for seamless interaction.
+
+### Comprehensive User Profiles:
+
+Elevate networking with detailed user profiles, providing insights into businesses, services, and expertise.
+
+### Data-Driven Dashboard:
+
+A powerful dashboard analyzes referral data, offering insights into network performance, trends, and opportunities for strategic growth.
+
+## Purpose and Impact:
+
+B2B-Net goes beyond conventional networking platforms by empowering paid, exclusive groups with tailored databases. This unique approach enriches the local business ecosystem, driving economic growth through structured referrals and fostering partnerships that thrive on mutual benefit.
+
+## Your Business, Your Network, Your Success:
+
+B2B-Net is more than a platform; it's a strategic partner for businesses invested in their local community. Unlock the full potential of your network, stay informed through dynamic blog posts, engage effortlessly with the chat app, and harness the power of data through an intuitive dashboard. Elevate your business connections with B2B-Net.
+
+*** AM I Responsive ***
+
 <https://www.bootdey.com/snippets/view/light-contact-list> snippets
 
 <!-- # https://stackoverflow.com/questions/43696074/django-private-messaging-conversation-view -->
 
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+Links to Git hub repository and live site login below
 
-Welcome,
+[Git Hub Repo - B2B Net](https://github.com/Bowlesy666/b2b-net)
 
-This is the Code Institute student template for Codeanywhere. If you are using Gitpod then you need [this template](https://github.com/Code-Institute-Org/gitpod-full-template) instead.  We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+[Live deployed site - B2B login](https://b2bproject-321684f42c8f.herokuapp.com/)
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **July 26th, 2023**
+[Live deployed site - 404 page](https://b2bproject-321684f42c8f.herokuapp.com/404.html/)
 
-## Codeanywhere Reminders
+___
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere, in the terminal, type:
+## Contents
 
-`python3 -m http.server`
+* [UX](#UX)
+  * [User Stories](#User-Stories)
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+* [Design](#design)
+  * [Wireframes](#wireframes)
+  * [Colour Scheme](#colour-scheme)
+  * [Typography](#typography)
+  * [Imagery](#imagery)
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere with no-cache, you can use this alias for `python3 -m http.server`.
+* [Features](#features)
+  * [General Features](#general-features)
+  * [Future Implementations](#future-implementations)
+  * [Accessibility](#accessibility)
 
-`http_server`
+* [Technologies Used](#technologies-used)
+  * [Languages Used](#languages-used)
+  * [Frameworks, Libraries & Programs Used](#frameworks-libraries--programs-used)
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+* [Deployment & Local Development](#deployment--local-development)
+  * [Deployment](#deployment)
+  * [Local Development](#local-development)
+    * [How to Fork](#how-to-fork)
+    * [How to Clone](#how-to-clone)
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+* [Testing](#testing)
 
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+* [Credits](#credits)
+  * [Code Used](#code-used)
+  * [Content](#content)
+  * [Media](#media)
+  * [Acknowledgments](#acknowledgments)
 
-To log into the Heroku toolbelt CLI:
+___
 
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+## UX
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+### User Stories
 
----
+#### Target Audience
 
-Happy coding!
+The target audience for **B2B-Net** includes:
+
+- **Local Businesses Seeking Growth:**
+  - Aspiring to expand business connections and increase revenue through strategic collaborations.
+
+- **Community-Focused Entrepreneurs:**
+  - Individuals committed to fostering community development and supporting local businesses.
+
+- **Networking Enthusiasts:**
+  - Professionals interested in a platform that facilitates effective and meaningful networking within their locality.
+
+#### Goals
+
+The goals for **B2B-Net** are:
+
+- **Refine Business Connections:**
+  - Provide a seamless platform for businesses to log and manage referrals, enhancing revenue opportunities.
+
+- **Streamline Collaboration:**
+  - Facilitate one-to-one meetings, encouraging collaboration and shared growth opportunities among local businesses.
+
+- **Community Engagement through Blog Posts:**
+  - Keep users informed about group meetings, business services, and community updates through interactive blog posts.
+
+- **Enhanced Communication with Chat App:**
+  - Foster direct communication among users through a dedicated chat app for quick and efficient interaction.
+
+- **Insightful User Profiles:**
+  - Elevate networking experiences with detailed user profiles, offering insights into businesses, services, and expertise.
+
+- **Data-Driven Decision Making:**
+  - Empower businesses with a comprehensive dashboard analyzing referral data, providing insights for strategic growth.
+
+#### Mobile-First Approach
+
+**B2B-Net** is designed with a mobile-first approach to cater to users who are constantly on the go or work in the field
+ 
+ 
