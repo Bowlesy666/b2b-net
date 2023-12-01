@@ -9,17 +9,8 @@ class UserProfileAdmin(admin.ModelAdmin):
     """
     Admin configuration for UserProfile model.
     """
-    list_display = ('company_name', 'user_contact_number')
+    list_display = ('company_name', 'user', 'business_sector', 'user_contact_number')
     search_fields = ['company_name']
-
-
-@admin.register(Review)
-class ReviewAdmin(admin.ModelAdmin):
-    """
-    Admin configuration for Review model.
-    """
-    list_display = ('comment', 'stars')
-    search_fields = ['profile_reviewed', 'reviewed_from']
 
 
 class UserProfileInline(admin.StackedInline):
