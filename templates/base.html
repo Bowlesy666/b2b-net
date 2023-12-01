@@ -49,6 +49,7 @@
         <a
           class="sidebar-brand d-flex align-items-center justify-content-center"
           href="{% url 'referrals_analysis' %}"
+          aria-label="Go to Referrals Analysis"
         >
           <div class="sidebar-brand-icon">
             <img
@@ -65,7 +66,7 @@
 
         <!-- Nav Item - Home -->
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'home' %}">
+          <a class="nav-link" href="{% url 'home' %}" aria-label="Blog Home">
             <i class="fa-solid fa-house fa-xl"></i>
             <span>Blog Home</span>
           </a>
@@ -78,6 +79,7 @@
         <li class="nav-item">
           <a
             class="nav-link"
+            aria-label="My profile"
             href="{% url 'userprofile_detail' slug=user.userprofile.slug %}"
           >
             <i class="fa-solid fa-user fa-xl"></i>
@@ -87,7 +89,7 @@
 
         <!-- Nav Item - Messages -->
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'conversation_list' %}">
+          <a class="nav-link" href="{% url 'conversation_list' %}" aria-label="messages">
             <div>
               <i class="fas fa-envelope fa-fw fa-xl"></i>
               <!-- Counter - Messages -->
@@ -104,7 +106,7 @@
 
         <!-- Nav Item - My Network -->
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'profile_list' %}">
+          <a class="nav-link" href="{% url 'profile_list' %}" aria-label="view network">
             <div>
               <i class="fa-solid fa-circle-nodes fa-xl"></i>
               <span>View Network</span>
@@ -114,7 +116,7 @@
 
         <!-- Nav Item - 1-to-1 Meetings -->
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'booking_list' %}">
+          <a class="nav-link" href="{% url 'booking_list' %}" aria-label="1-to-1 meetings">
             <div>
               <i class="fa-solid fa-people-arrows fa-xl"></i>
               <span>1-to-1 Meetings</span>
@@ -124,7 +126,7 @@
 
         <!-- Nav Item - 1-to-1 Referrals -->
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'referrals_analysis' %}">
+          <a class="nav-link" href="{% url 'referrals_analysis' %}" aria-label="Paid Referrals">
             <div>
               <i class="fa-solid fa-arrows-down-to-people fa-xl"></i>
               <span>Paid Referrals</span>
@@ -134,7 +136,7 @@
 
         <!-- Account logout -->
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'account_logout' %}">
+          <a class="nav-link" href="{% url 'account_logout' %}" aria-label="Logout">
             <i class="fa-solid fa-right-from-bracket fa-xl"></i>
             <span>Logout</span>
           </a>
@@ -145,7 +147,7 @@
 
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
-          <button class="rounded-circle border-0" id="sidebarToggle"></button>
+          <button class="rounded-circle border-0" id="sidebarToggle" aria-label="Toggle sidebar in or out"></button>
         </div>
       </ul>
       <!-- End of Sidebar -->
@@ -155,12 +157,13 @@
         <!-- Main Content -->
         <div id="content">
           <!-- Topbar -->
-          <nav
+          <nav aria-labelledby="top nav bar"
             class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
           >
             <!-- Sidebar Toggle (Topbar) -->
             <button
               id="sidebarToggleTop"
+              aria-label="sidebarToggleTop"
               class="btn btn-link d-md-none rounded-circle mr-3"
             >
               <i class="fa fa-bars"></i>
@@ -179,8 +182,9 @@
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
+                  aria-label="userdropdown"
                 >
-                  <span class="mr-2 d-none d-lg-inline text-gray-600 small"
+                  <span class="mr-2 d-none d-lg-inline text-secondary"
                     >{{ user.first_name }} {{ user.last_name }}</span
                   >
                   {% if 'placeholder' in user.user_profile_img.url %}
@@ -206,13 +210,14 @@
                 >
                   <a
                     class="dropdown-item"
+                    aria-label="My Profile"
                     href="{% url 'userprofile_detail' slug=user.userprofile.slug %}"
                   >
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     My Profile
                   </a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="{% url 'account_logout' %}">
+                  <a class="dropdown-item" aria-label="logout" href="{% url 'account_logout' %}">
                     <i
                       class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"
                     ></i>
@@ -250,7 +255,7 @@
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
+    <a class="scroll-to-top rounded" href="#page-top" aria-label="scrolltotop">
       <i class="fas fa-angle-up"></i>
     </a>
 
