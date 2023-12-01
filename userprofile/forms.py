@@ -39,13 +39,9 @@ class UserProfileForm(forms.ModelForm):
                 attrs={'class': 'form-control'}),
             'company_services_post': forms.Textarea(
                 attrs={'class': 'form-control'}),
-            'company_hero_picture': forms.FileInput(
-                attrs={'class': 'form-control'}),
             'user_contact_number': forms.TextInput(
                 attrs={'class': 'form-control'}),
             'user_about': forms.Textarea(attrs={'class': 'form-control'}),
-            'user_profile_img': forms.FileInput(
-                attrs={'class': 'form-control'}),
         }
 
 

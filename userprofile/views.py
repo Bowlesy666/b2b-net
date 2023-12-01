@@ -81,7 +81,7 @@ class CreateUserProfileView(View):
         return render(request, self.template_name, {'form': form})
 
     def post(self, request, *args, **kwargs):
-        form = UserProfileForm(request.POST)
+        form = UserProfileForm(request.POST, request.FILES)
         if form.is_valid():
             user_profile = form.save(commit=False)
             user = get_user(request)
