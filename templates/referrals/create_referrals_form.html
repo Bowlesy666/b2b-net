@@ -2,16 +2,16 @@
 <div class="container-fluid px-4 mt-4">
     <div class="card-group">
         <div class="card m-3">
-            <a class="btn btn-outline-primary" href="{% url 'referrals_analysis' %}">Dashboard</a>
+            <a class="btn btn-outline-primary" aria-label="Dashboard" href="{% url 'referrals_analysis' %}">Dashboard</a>
         </div>
         <div class="card m-3">
-            <a class="btn btn-primary" href="{% url 'create_referrals' %}">Create Referral</a>
+            <a class="btn btn-primary" aria-label="Create Referral" href="{% url 'create_referrals' %}">Create Referral</a>
         </div>
         <div class="card m-3">
-            <a class="btn btn-outline-primary" href="{% url 'referrals_list' %}">My Referrals</a>
+            <a class="btn btn-outline-primary" aria-label="My Referrals" href="{% url 'referrals_list' %}">My Referrals</a>
         </div>
         <div class="card m-3">
-            <a class="btn btn-outline-primary" href="{% url 'referrals_archive_list' %}">Archived Referrals</a>
+            <a class="btn btn-outline-primary" aria-label="Archived Referrals" href="{% url 'referrals_archive_list' %}">Archived Referrals</a>
         </div>
     </div>
     <div class="row">
@@ -30,7 +30,7 @@
                                 {{ form.as_p }}
 
                                 <div class="d-grid mt-3">
-                                    <button class="btn btn-primary radius-15 m-4" type="submit">Submit Referral</button>
+                                    <button class="btn btn-primary radius-15 m-4" aria-label="Submit Referral" type="submit">Submit Referral</button>
                                     <a class="btn btn-outline-primary radius-15 m-4" href="{% url 'home' %}">Return to home</a>
                                 </div>
                             </div>

@@ -3,16 +3,16 @@
 <div class="container-fluid px-4 mt-4">
     <div class="card-group">
         <div class="card m-3">
-            <a class="btn btn-outline-primary" href="{% url 'referrals_analysis' %}">Dashboard</a>
+            <a class="btn btn-outline-primary" aria-label="Dashboard" href="{% url 'referrals_analysis' %}">Dashboard</a>
         </div>
         <div class="card m-3">
-            <a class="btn btn-outline-primary" href="{% url 'create_referrals' %}">Create Referral</a>
+            <a class="btn btn-outline-primary" aria-label="Create Referral" href="{% url 'create_referrals' %}">Create Referral</a>
         </div>
         <div class="card m-3">
-            <a class="btn btn-outline-primary" href="{% url 'referrals_list' %}">My Referrals</a>
+            <a class="btn btn-outline-primary" aria-label="My Referrals" href="{% url 'referrals_list' %}">My Referrals</a>
         </div>
         <div class="card m-3">
-            <a class="btn btn-primary" href="{% url 'referrals_archive_list' %}">Archived Referrals</a>
+            <a class="btn btn-primary" aria-label="Archived Referrals" href="{% url 'referrals_archive_list' %}">Archived Referrals</a>
         </div>
     </div>
   <div class="row">
@@ -21,9 +21,6 @@
       <div class="card mb-4 negative-margin-sides xl-m-8">
         <div class="card-header col">
             <div class="row mt-2">
-                <h2 class="col-sm mt-2 text-info text-center">
-                    <a href="{% url 'referrals_list' %}"> My Meetings </a>
-                </h2>
                 <h1 class="col-sm text-center text-primary"> Archived </h1>
             </div>
         </div>
@@ -53,13 +50,13 @@
                                         <span class="float-right text-truncate mr-3{% if referral.is_cancelled == True %} text-decoration-line-through{% endif %}">{{ referral.percentage }} %</span>
                                 {% endif %}
                             </button>
-                            <a class="btn d-inline text-info col-1" href="{% url 'referrals_archive' slug=referral.slug %}"><i class="fa-solid fa-people-arrows">Un-Archive</i></a>
+                            <a class="btn d-inline text-info col-1" href="{% url 'referrals_archive' slug=referral.slug %}" aria-label="Unarchive"><i class="fa-solid fa-people-arrows">Un-Archive</i></a>
                         </h2>
                     </div>
                     <div id="collapse{{ referral.slug }}" class="collapse{% if forloop.first %} show{% endif %}"
                         aria-labelledby="heading{{ referral.slug }}" data-parent="#accordion">
                         <div class="card-body">
-                            <a href="{% if referral.is_cancelled is False %}{% url 'referrals_update' slug=referral.slug %}{% endif %}" class="text-decoration-none">
+                            <a href="{% if referral.is_cancelled is False %}{% url 'referrals_update' slug=referral.slug %}{% endif %}" aria-label="View&Edit" class="text-decoration-none">
                                 <div class="col-xl">
                                     <div class="row w-100">
                                         <h5>{{ referral.referral_subject }} - {{ referral.introduced_person_name }} {{ referral.introduced_person_company }}</h5>
