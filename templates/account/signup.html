@@ -18,6 +18,7 @@
                         {% element form form=form method="post" action=action_url tags="entrance,signup" %}
                             {% slot body %}
                                 {% csrf_token %}
+                                <p>FYI: Your username is displayed to other users!</p>
                                 {% element fields form=form unlabeled=True %}
                                 {% endelement %}
                                 {% if redirect_field_value %}
