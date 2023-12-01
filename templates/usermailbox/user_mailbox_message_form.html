@@ -71,11 +71,12 @@
 
                         <!-- Using the formset -->
                         <div class="row card-body">
-                            <div class="col-9">
-                                {{ form.message_body }}
+                            <div class="col-9" aria-label="enter message text">
+                                {{ form }}
                             </div>
                             <div class="col-1 flex-column-reverse">
-                                <button class="btn btn-primary radius-15 ml-0" type="submit"><i class="fa-regular fa-paper-plane text-white"></i></button>
+                                <div class="empty">.</div>
+                                <button class="btn btn-primary radius-15 ml-0 mt-2" aria-label="send message button" type="submit"><i class="fa-regular fa-paper-plane text-white"></i></button>
                             </div>
                         </div> 
                     </div>

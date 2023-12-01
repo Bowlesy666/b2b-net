@@ -3,13 +3,13 @@
 <div class="container-fluid px-4 mt-4">
     <div class="card-group">
         <div class="card m-3">
-            <a class="btn btn-outline-primary" href="{% url 'create_booking' %}">Create a meeting</a>
+            <a class="btn btn-outline-primary" aria-label="Create a meeting" href="{% url 'create_booking' %}">Create a meeting</a>
         </div>
         <div class="card m-3">
-            <a class="btn btn-outline-primary" href="{% url 'booking_list' %}">My Meetings</a>
+            <a class="btn btn-outline-primary" aria-label="My Meetings" href="{% url 'booking_list' %}">My Meetings</a>
         </div>
         <div class="card m-3">
-            <a class="btn btn-primary" href="{% url 'archive_booking_list' %}">Archived Meetings</a>
+            <a class="btn btn-primary" aria-label="Archived meetings" href="{% url 'archive_booking_list' %}">Archived Meetings</a>
         </div>
     </div>
   <div class="row">
@@ -18,9 +18,6 @@
       <div class="card mb-4 negative-margin-sides xl-m-8">
         <div class="card-header col">
             <div class="row mt-2">
-                <h2 class="col-sm mt-2 text-info text-center">
-                    <a href="{% url 'booking_list' %}"> My Meetings </a>
-                </h2>
                 <h1 class="col-sm text-center text-primary"> Archived </h1>
             </div>
         </div>
@@ -50,13 +47,13 @@
                                     <span class="float-right text-truncate mr-3{% if booking.is_cancelled == True %} text-decoration-line-through{% endif %}">{{ booking.meeting_time }}</span>
                                 {% endif %}
                             </button>
-                            <a class="btn d-inline text-info col-1" href="{% url 'archive_booking' slug=booking.slug %}"><i class="fa-solid fa-people-arrows">Un-Archive</i></a>
+                            <a class="btn d-inline text-info col-1" href="{% url 'archive_booking' slug=booking.slug %}" aria-label="Unarchive"><i class="fa-solid fa-people-arrows">Un-Archive</i></a>
                         </h2>
                     </div>
                     <div id="collapse{{ booking.slug }}" class="collapse{% if forloop.first %} show{% endif %}"
                         aria-labelledby="heading{{ booking.slug }}" data-parent="#accordion">
                         <div class="card-body">
-                            <a href="{% if booking.is_cancelled is False %}{% url 'update_booking' slug=booking.slug %}{% endif %}" class="text-decoration-none">
+                            <a href="{% if booking.is_cancelled is False %}{% url 'update_booking' slug=booking.slug %}{% endif %}" aria-labelledby="View&Edit" class="text-decoration-none">
                                 <div class="col-xl">
                                     <div class="row w-100">
                                         <h5>{{ booking.meeting_subject }} - {{ booking.meeting_date }} {{ booking.meeting_time }}</h5>
@@ -70,7 +67,7 @@
                                 </div>
                                 {% if booking.is_cancelled is False %}
                                 <div class="row float-right">
-                                    <div class="btn btn-block btn-outline-primary radius-15 m-4 float-right">View & Edit</div>
+                                    <div class="btn btn-block btn-outline-primary radius-15 m-4 float-right" aria-label="View&Edit">View & Edit</div>
                                 </div>
                                 {% endif %}
                             </a>
