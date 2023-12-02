@@ -265,3 +265,168 @@ ___
 
 ## Page Flow
 
+### Multipage Website Design
+
+Embracing a multipage design, our website ensures a user-friendly journey through segmented content, offering distinct pages for various functionalities. This approach enhances clarity and navigational ease, allowing users to intuitively locate information without feeling overwhelmed.
+
+Each page is dedicated to specific features, fostering a focused user experience and enabling efficient communication of key concepts. Additionally, the multipage structure facilitates future scalability, providing a foundation for seamless expansion and incorporation of new features as the platform evolves.
+
+#### Referrals and 1-to-1 Meetings Flow
+
+The flows for these 2 features are the same. Create, Read, Update and 'Archive'. I chose archive for analytics purposes. Feature to be added would be to have delete option but analysis records kept.
+
+![Referrals and bookings flow](static/img/referrals-flow.png)
+
+#### User Profiles Flow
+
+Everything interconnects from the profiles, users are able to quickly search in their networks closed group and directly book 1-2-1s, make referralds as well as see all their company and personal profile. Users can also update their own profile to keep information up to date and accurate
+
+![Userprofile flow](static/img/users-flow.png)
+
+#### Chat App Flow
+
+Chat app flow is simple, inbox, trash and the chat. The feature navigation buttons at the top were reduced in favour of a familiar 'back button with a caret to return to the inbox.
+
+![Chat app flow](static/img/chat-flow.png)
+
+#### Blog Flow
+
+The User blog takes on the usual flow expected with any social networking app, users can create read update and delete posts as well as like and comment.
+
+
+### Logo and Title
+
+Logo and title is simple and informs the users of their chosen network area, in this example it will be the Preston branch. Users are immediately aware they are expected and able to grow their network and revenue generating possibilities in this area.
+
+![Preston Title with logo](static/img/preston.png)
+
+___
+
+## Features
+
+### General Features
+
+### General Features
+
+* Developed with a mobile-first approach, ensuring responsiveness on larger screens through flexbox and Bootstrap4.
+
+* Prioritizes accessibility compliance with thoughtfully chosen colors and html structure for users who use screen readers.
+
+* Showcases a distinctive logo and title to resonate with the professional yet engaging theme of B2B networking.
+
+* Thoughtfully arranges sections to strategically present information, facilitating a seamless user experience.
+
+* Guides users with the use of focus for the chat app, directing them to relevant new messages efficiently and giving the user confirndence and familiarity.
+
+* Enhances user experience with icons and a carefully crafted 404 page, maintaining the professional aesthetic of B2B-Net.
+
+* Utilizes Bootstrap4 for layout styling and incorporates media queries and CSS order property for optimal display on diverse screens.
+
+* Implements input validation through HTML and Python +Django, ensuring a smooth and error-free user interaction.
+
+* Boosts user engagement with hover effects and Font Awesome icons for a modern and polished appearance.
+
+* Utilizes Unsplash images for the visually appealing graphics, aligning with the professional tone of the platform. All pictures used are from the free to use section
+
+* Strategically placed sections guide users through each apps processes seamlessly.
+
+### Future Implementations
+
+After researching the world of closed-group business networking, the key insight revealed that the platform itself serves as a significant selling point for these groups. Modernizing and enhancing this process has shifted the primary focus of the groups towards referrals and facilitating one-to-one meetings allowing group leaders the fredom to do what they do best and network instead of data collection and analysing.
+
+I feel the design has lead to many future implimentation possibilities, potential future enhancements include:
+
+* Stars rating system for users who are the most active in the closed network. Can be lead by many factors eg user reviews, user attendance to meetings, user interaction or a mix of all 3.
+
+* Analytics to be imporved upon, many areas can eb added here.
+
+* Online video meetings for the 1-to-1 meetings.
+
+* 1-to-1 meeting calendar with double booking alerts and integration with google calendars etc.
+
+* Blog to be upgraded to infinite scroll as well as a major facelift.
+
+* Messaging system to be upgraded to a realtime chat app with the use of Django channels.
+
+* Group chat facility
+
+* Attached 'about' page for businesses looking to join the group.
+
+* Email Backend, attempted with google but was unabel to impliment at this time.
+
+### Accessibility
+
+I have been checking that the website is accessible friendly at every stage using Lighthouse. I have also been mindful that I am:
+
+* Using semantic HTML techniques.
+
+* Using descriptive alt attributes on logo and links for the site.
+
+* Providing clear direction and flow for the users with the use of bold icons and an intuative interface.
+
+* Ensuring that there is a sufficient colour contrast throughout the site.
+
+* Bold and colourful large text.
+
+* Well spaced layout design.
+
+* Adding ARIA (Accessible Rich Internet Applications) landmarks and roles to improve navigation for screen reader users.
+
+* Providing text alternatives for non-text content, such as images, to ensure a comprehensive understanding for users relying on screen readers.
+
+* Verifying that all form elements have proper labels and are associated with their corresponding inputs to facilitate a seamless experience for users with disabilities.
+
+___
+
+## Technology Used
+
+### Languages Used
+
+* HTML - page markup
+
+* CSS - page styling
+
+* Jquery - running functions for interactive components
+
+* Python - using Django and other plugins ot develop the site
+
+### Frameworks, Libraries Packages & Programs Used
+
+* Flexbox
+
+* Unsplash
+
+* Google fonts
+
+* Font Awesome
+
+* Git for version control
+
+* Github
+
+* Heroku
+
+* Elephant SQL
+
+* Codeanywhere, many major issues with code anywhere recently resulting in restarting from scratch, will migrate back to gitpod for future sprints
+
+* Favicongenerator.org
+
+* Bootstrap4
+
+* Cloudinary
+
+* Balsamiq wireframing
+
+* Google Dev Tools
+
+* Validators - validator.w3.org, jigsaw.w3.org, https://pep8ci.herokuapp.com/#
+
+* Stackoverflow / Django documentation / W3 schools / Google / Allauth docs / abstractapi.com /geeks for geeks
+
+* Startboostrap for the starter template used in base.html
+
+* Bootdey(profile feed card snippets) codepen.io(speach bubbles chat app) I ustilised snippets from
+
+* gunicorn / allauth / crispyforms / summernote / psycopg2 / django-phonnumber-field / dj-database-url
+
