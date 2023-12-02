@@ -430,3 +430,135 @@ ___
 
 * gunicorn / allauth / crispyforms / summernote / psycopg2 / django-phonnumber-field / dj-database-url
 
+___
+
+## Deployment and local development
+
+
+
+### Deployment
+
+#### Pre-Deployment Tasks
+
+* Ensure the requirements.txt file is up-to-date with correct Python module configurations.
+
+* Create a Procfile to configure Heroku deployment for the Gunicorn web app.
+
+* Update the ALLOWED_HOSTS list in settings.py with the Heroku app name and localhost.
+
+* Configure all static files and directories in settings.py.
+
+* Set up environment variables in env.py for sensitive information like SECRET_KEY, DATABASE_URL, CLOUDINARY_URL, and PORT.
+
+##### Hidden Variables
+
+* SECRET_KEY
+
+* DATABASE_URL
+
+* CLOUDINARY_URL
+
+* PORT
+
+#### Deploying on Heroku
+
+1. Create a Heroku account and select "Create a new app."
+
+2. Connect the app to GitHub for seamless deployment.
+
+3. Enable automatic deploys from the main branch.
+
+4. Configure environment variables in the settings tab.
+
+5. Select buildpacks for Node.js and Python.
+
+6. Deploy the app.
+
+### Local development
+
+#### Run Locally
+
+1. Go to the GitHub repository.
+
+2. Download and unzip the repository.
+
+3. Create an env.py file for environment variables.
+
+4. Ensure PostgreSQL is installed on your computer.
+
+5. Create a virtual environment and run necessary commands (makemigrations, migrate, runserver).
+
+#### How to clone & Fork
+
+##### Clone
+
+1. Go to the GitHub repository.
+
+2. Click on the green "Code" button.
+
+3. Copy the clone URL.
+
+4. Open Git Bash and clone the repository using git clone [URL].
+
+##### Fork
+
+1. Go to the GitHub repository.
+
+2. Click on the "Fork" button in the upper right-hand corner.
+
+3. Edit the repository name and description if desired.
+
+4. Click the green "Create Fork" button.
+
+___
+
+## Testing
+
+### Validators
+
+* HTML has been validated with [W3C HTML5 Validator](https://validator.w3.org/).
+* CSS has been validated with [W3C CSS Validator](https://jigsaw.w3.org/css-validator/)
+* Python has been validated with [Pep8](https://pep8ci.herokuapp.com/#)
+
+No errors or warnings are returned when passed through any of the validators
+
+### General Testing
+
+### General Testing
+
+* Each feature or section was tested using the validators and lighthouse at each stage for functionality and accessibility
+* The forms input is validated by html and python and will not submit without the correct data type
+* Family reviews were used for feedback
+
+
+### Mobile Testing
+
+* The site was built in mobile first style so has been tested primarily for this
+* predominantly tested on Safari as all family have iPhones
+
+
+### Desktop Testing
+
+* Site was developed on a HP laptop using chrome, also tested on microsoft Edge towards the end of the coding stages
+
+![Lighthouse - Desktop testing](static/img/b2b-net-banner.png)
+
+___
+
+### Bugs
+
+#### Fixed Bugs
+
+#### Unfixed bugs
+
+#### Goals
+
+#### Testing
+
+___
+
+## Credits
+
+___
+
+Thank you for reviewing my project
