@@ -64,37 +64,34 @@ ___
 
 ## Contents
 
-* [UX](#ux)
-  * [User Stories](#User-Stories)
-
-* [Design](#design)
-  * [Wireframes](#wireframes)
-  * [Colour Scheme](#colour-scheme)
-  * [Typography](#typography)
-  * [Imagery](#imagery)
-
-* [Features](#features)
-  * [General Features](#general-features)
-  * [Future Implementations](#future-implementations)
-  * [Accessibility](#accessibility)
-
-* [Technologies Used](#technologies-used)
-  * [Languages Used](#languages-used)
-  * [Frameworks, Libraries & Programs Used](#frameworks-libraries--programs-used)
-
-* [Deployment & Local Development](#deployment--local-development)
-  * [Deployment](#deployment)
-  * [Local Development](#local-development)
-    * [How to Fork](#how-to-fork)
-    * [How to Clone](#how-to-clone)
-
-* [Testing](#testing)
-
-* [Credits](#credits)
-  * [Code Used](#code-used)
-  * [Content](#content)
-  * [Media](#media)
-  * [Acknowledgments](#acknowledgments)
+- [B2B Net - Business Networking Platform](#b2b-net---business-networking-platform)
+  - [Referral Excellence](#referral-excellence)
+  - [Strategic Meetings](#strategic-meetings)
+  - [Additional Features](#additional-features)
+    - [Blog Posts for Community Updates](#blog-posts-for-community-updates)
+    - [Direct Messaging Chat App](#direct-messaging-chat-app)
+    - [Comprehensive User Profiles](#comprehensive-user-profiles)
+    - [Data-Driven Dashboard](#data-driven-dashboard)
+  - [Purpose and Impact](#purpose-and-impact)
+  - [Your Business, Your Network, Your Success](#your-business-your-network-your-success)
+  - [Contents](#contents)
+  - [UX](#ux)
+    - [User Stories](#user-stories)
+      - [Target Audience](#target-audience)
+      - [Goals](#goals)
+      - [Mobile-First Approach](#mobile-first-approach)
+  - [Epics \& Their User Stories](#epics--their-user-stories)
+      - [User Stories](#user-stories-1)
+  - [Design](#design)
+    - [WireFrames](#wireframes)
+      - [Login/out/404/signup](#loginout404signup)
+      - [Base Template Layout](#base-template-layout)
+      - [Referrals Dashboard](#referrals-dashboard)
+      - [Various layouts](#various-layouts)
+    - [Colour Scheme](#colour-scheme)
+    - [Imagery](#imagery)
+    - [Icons](#icons)
+  - [Page Flow](#page-flow)
 
 ___
 
@@ -236,6 +233,35 @@ The website prominently features Bootstrap's primary blue color, creating a cohe
 
 The blue background serves to establish a clean and modern design, enhancing the overall readability and user engagement. To ensure optimal viewing across various devices, the blue tone was carefully adjusted during testing phases, striking a balance between vibrancy and usability, particularly on mobile devices. Here you can see the blue working well with the chat app that continues the blue theme. Background picture courtesy of unsplash which is free to use under the unsplash free tier.
 
-![B2b net chat app with blue ccheme](static/img/chat-blue-scheme.png)
+![B2b net chat app with blue scheme](static/img/chat-blue-scheme.png)
 
 Throughout the website, essential information is presented in a clear and contrasting manner
+
+### Imagery
+
+Imagery plays a pivotal role in enhancing the visual appeal and functionality of the website.
+
+The Referral Analysis page especially leverages Bootstrap's grid layout, utilizing card elements to seamlessly present pictures and data on separate cards. This layout not only optimizes information organization but also provides a structured and user-friendly interface for analyzing referral data.
+
+![Dashboard Grid layout](static/img/dashboard-grid.png)
+
+Profiles are enriched with personalized avatars, allowing users to add a distinctive touch to their online presence. Additionally, the inclusion of hero images featuring company logos or banners provides a professional and cohesive visual identity in keeping with the business to business networking platform.
+
+![Profile Grid layout](static/img/profile-layout.png)
+
+The Chat App, designed for modern communication, embraces a well-presented image background, creating an immersive and visually pleasing environment for users engaged in direct messaging.
+
+The thoughtful integration of imagery enhances the overall user experience, embodying a familiar chat app style with a scrolling message thread, user information at the top, and a standard input/submit section conveniently fixed at the bottom of the screen. This design choice seamlessly combines functionality with an aesthetically pleasing layout.
+
+![Chat app layout on mobile](static/img/chat-mobile.png)
+
+### Icons
+
+Icons were utilised from fontawesome, the side nav bar standardises what they each represent and the features on offer with the platform
+
+![font awesome examples](static/img/font-awesome.png)
+
+___
+
+## Page Flow
+
