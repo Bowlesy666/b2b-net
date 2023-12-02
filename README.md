@@ -42,12 +42,6 @@ B2B-Net goes beyond conventional networking platforms by empowering paid, exclus
 
 B2B-Net is more than a platform; it's a strategic partner for businesses invested in their local community. Unlock the full potential of your network, stay informed through dynamic blog posts, engage effortlessly with the chat app, and harness the power of data through an intuitive dashboard. Elevate your business connections with B2B-Net.
 
-***AM I Responsive***
-
-<https://www.bootdey.com/snippets/view/light-contact-list> snippets
-
-<!-- # https://stackoverflow.com/questions/43696074/django-private-messaging-conversation-view -->
-
 Links to Git hub repository and live site login below with a test user credentials here if you dont fancy going through signup yourself(the passowrd here is generic and not one i have used previously or will in the future)
 
 Username:
@@ -547,17 +541,81 @@ ___
 
 ### Bugs
 
+Ive had quite a few! I will be investigating views as my primary target for improvements especially function based views as I would tend to lean towards class based. On a whole I enjoyed the process of fixing and breaking things, its fun and not so fun roller coastaer at the same time.
+
 #### Fixed Bugs
 
-#### Unfixed bugs
+Many of the encountered bugs stemmed from experimentation to resolve specific issues, inadvertently causing new problems in the process. Notably, I faced challenges with Codeanywhere. Although the platform underwent an update in the past two weeks, the IDE's stability remains questionable, prompting a decision to revert to Gitpod moving forward.
+
+A recurring issue with Codeanywhere involved code reverting to previous states, almost as if haunted by a ghost in the machine. While redoing the work proved educational and beneficial for my learning curve, there's a possibility that I unintentionally committed code that had been reverted. Codeanywhere responded promptly to these issues, and I anticipate their resolution in due course.
+
+small smaple of the bugs faced
+
+* Template issues, data not showing
+* Sidebar open on load of everypage, looked unproffesional especially on mobile and tablet
+* Conversations werent updated on save of messages
+
+#### Unfixed 
+
+* Currently as I type the scroll to top function does not work, initial thoughts are needing the id="top" on each page, hopefully will be implimented
 
 #### Goals
 
+| Goals | How is goal achieved? | Summary of Checks |
+| :--- | :--- | :--- |
+| Ensure seamless user registration and profile creation | Users can register with valid information, and profiles are created successfully | Registration process, profile creation, and data validation are functioning correctly |
+| Validate the functionality of the referral logging system | Businesses can log referrals, and the commission system accurately calculates earnings | Referral logging, commission calculation, and data accuracy are confirmed |
+| Verify the one-to-one meeting booking feature | Businesses can schedule one-to-one meetings, and the system accurately records and displays appointments | Meeting booking process, data storage, and scheduling functionality are tested and working |
+| Confirm the implementation of blog posts for group meetings and business services | Users can create and view blog posts, ensuring timely updates and relevant information | Blog post creation, display, and timestamp accuracy are checked |
+| Test the functionality of the chat app for direct messaging | Users can send and receive direct messages through the chat app | Message sending, receiving, and notification features are verified |
+| Ensure the accuracy of the referral analysis page | Data is displayed correctly on separate cards with Bootstrap grid layout | Referral data is accurately analyzed and displayed using Bootstrap grid and card elements |
+| Validate user profiles information with avatars and company logos | User profiles show information, personal avatars and relevant company logos or banners | Avatars, logos, and profile information are correctly displayed |
+| Confirm the proper functioning of the dashboard for referral data analysis | The dashboard accurately analyzes and presents referral data | Data analysis, visualization, and presentation are verified |
+
+
 #### Testing
+
+| Feature | Type of Test | Expected Outcome | Pass/Fail |
+| ------- | ------------ | ---------------- | --------- |
+| User Registration | Functional | Successful registration with valid information | Pass |
+| Profile Creation | Functional | Complete user profile with relevant details | Pass |
+| Profile Creation - Create | Functional | Successfully create a user profile | Pass |
+| Profile Creation - Read | Functional | View user profiles including own user details | Pass |
+| Profile Creation - Update | Functional | Modify user profile information | Pass |
+| Referral Logging System | Functional | Log referrals, calculate commission, and display accurate earnings | Pass |
+| Referral Logging System - Create | Functional | Create a referral entry | Pass |
+| Referral Logging System - Read | Functional | View referral data | Pass |
+| Referral Logging System - Update | Functional | Update referral details | Pass |
+| Referral Logging System - Agree Details | Functional | Read and agree referral details | Pass |
+| Referral Logging System - Archive | Functional | Archive referral entry | Pass |
+| One-to-One Meeting Booking - Create | Functional | Schedule a meeting | Pass |
+| One-to-One Meeting Booking - Read | Functional | View meeting details | Pass |
+| One-to-One Meeting Booking - Update | Functional | Update meeting details | Pass |
+| One-to-One Meeting Booking - Cancel | Functional | Cancel meeting | Pass |
+| One-to-One Meeting Booking - Archive | Functional | Archive meeting | Pass |
+| Blog Posts - Create | Functional | Create a blog post and comments | Pass |
+| Blog Posts - Read | Functional | View blog post content | Pass |
+| Blog Posts - Update | Functional | Update blog post | Pass |
+| Blog Posts - Delete | Functional | Delete blog post | Pass |
+| Chat App with Direct Messaging notifications | Functional | Send and receive direct messages with proper notifications | Pass |
+| Chat App - Create conversations | Functional | join a conversation | Pass |
+| Chat App - Read | Functional | View message history | Pass |
+| Chat App - Update | Functional | Update message content | Pass |
+| Chat App - Delete/Archive | Functional | Delete message | Pass |
+| Referral Analysis Page | Functional | Accurate data analysis and display on separate cards | Pass |
+| User Profiles with Avatars | Functional | Display user profiles with personal avatars and company logos | Pass |
+| User Profiles - Read | Functional | View profile details | Pass |
+| User Profiles - Update | Functional | Update profile details | Pass |
+| Link Testing - Overall Navigation | Usability | All links navigate to the correct pages within the app | Pass |
 
 ___
 
 ## Credits
+
+* Bootdey snippets
+* google!!
+* Startbootstrap
+* Stackoverflow / Django documentation / W3 schools / Google / Allauth docs / abstractapi.com /geeks for geeks / probably other forums that helped lead me to the answers needed
 
 ___
 
