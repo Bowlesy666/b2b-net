@@ -86,6 +86,42 @@ ___
     - [Imagery](#imagery)
     - [Icons](#icons)
   - [Page Flow](#page-flow)
+    - [Multipage Website Design](#multipage-website-design)
+      - [Referrals and 1-to-1 Meetings Flow](#referrals-and-1-to-1-meetings-flow)
+      - [User Profiles Flow](#user-profiles-flow)
+      - [Chat App Flow](#chat-app-flow)
+      - [Blog Flow](#blog-flow)
+    - [Logo and Title](#logo-and-title)
+  - [Features](#features)
+    - [General Features](#general-features)
+    - [General Features](#general-features-1)
+    - [Future Implementations](#future-implementations)
+    - [Accessibility](#accessibility)
+  - [Technology Used](#technology-used)
+    - [Languages Used](#languages-used)
+    - [Frameworks, Libraries Packages \& Programs Used](#frameworks-libraries-packages--programs-used)
+  - [Deployment and local development](#deployment-and-local-development)
+    - [Deployment](#deployment)
+      - [Pre-Deployment Tasks](#pre-deployment-tasks)
+        - [Hidden Variables](#hidden-variables)
+      - [Deploying on Heroku](#deploying-on-heroku)
+    - [Local development](#local-development)
+      - [Run Locally](#run-locally)
+      - [How to clone \& Fork](#how-to-clone--fork)
+        - [Clone](#clone)
+        - [Fork](#fork)
+  - [Testing](#testing)
+    - [Validators](#validators)
+    - [General Testing](#general-testing)
+    - [General Testing](#general-testing-1)
+    - [Mobile Testing](#mobile-testing)
+    - [Desktop Testing](#desktop-testing)
+    - [Bugs](#bugs)
+      - [Fixed Bugs](#fixed-bugs)
+      - [Unfixed](#unfixed)
+      - [Goals](#goals-1)
+      - [Testing](#testing-1)
+  - [Credits](#credits)
 
 ___
 
@@ -191,7 +227,7 @@ ___
 
 ### WireFrames
 
-Please see the link below for the wireframes markdown file, it shows the layout for the different screen sizes - mobile, ipad and laptop/desktop. created using Bootstrap4 elements and the base layout is taken from stratbootstraps sb-admin-2's free templates base html, link below.
+Please see the below for the wireframes, they show the layout for the different screen sizes - mobile, and laptop/desktop. created using Bootstrap4 elements and the base layout is taken from stratbootstraps sb-admin-2's free templates base html, link below.
 
 [sb-admin-2](https://startbootstrap.com/theme/sb-admin-2)
 
@@ -199,25 +235,28 @@ Please see the link below for the wireframes markdown file, it shows the layout 
 
 These are the none authenticated user pages and all follow the same design with an image displayed on medium sized screens and above, includes details with links/buttons
 
-[Click Me - I am the Wireframes Link for the unauthorised user pages](unauth-wireframes.md)
+![Unauthorised users](static/img/login-wireframe.png)
 
 #### Base Template Layout
 
 All the logged in user pages uses this base template to keep familiarity and build brand awareness, consisting of a side nav and a top bar that reduces to burger menus on smaller screeen sizes
 
-[Click Me - I am the Wireframes Link for the base layout](unauth-wireframes.md)
+![Base layout](static/img/blank-wireframe.png)
 
 #### Referrals Dashboard
 
 Deesigned as a user friendly interface to gain further insight into progress made within the networking community. This is used as the home page as a statement for why each and every user is there... to increase revenue and earn commission!
 
-[Click Me - I am the Wireframes Link for the referrals dashboard](unauth-wireframes.md)
+![referrals dashboard](static/img/referall-analysis.png)
 
 #### Various layouts
 
 Again building brand awareness and keeping in style the rest of the site utilises familiar layouts with changes to content
 
-[Click Me - I am the Wireframes Link for the referrals dashboard](unauth-wireframes.md)
+![chat wirefram](static/img/chat-wireframe.png)
+![meetings inbox wireframe](static/img/meetings-wireframe.png)
+![profile wireframe](static/img/profile-wireframe.png)
+![profile detail wireframs](static/img/profile-detail-wireframe.png)
 
 ### Colour Scheme
 
@@ -557,7 +596,7 @@ small smaple of the bugs faced
 
 #### Unfixed 
 
-* Currently as I type the scroll to top function does not work, initial thoughts are needing the id="top" on each page, hopefully will be implimented
+* Currently as I type the scroll to top function does not work, initial thoughts are needing the id="top" on each page, hopefully will be implimented... update: function removed after reading others have struggled with this in Django, will research further for future use.
 
 #### Goals
 
