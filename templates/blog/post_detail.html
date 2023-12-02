@@ -4,8 +4,10 @@
 <div class="container">
     <div class="row">
         <div class="col card mb-4  mt-3 left  top">
-            <a class="btn btn-outline-primary radius-15 m-4" href="{% url 'home' %}">Back to main thread</a>
-            
+            <a class="btn btn-primary radius-15 m-4" href="{% url 'home' %}">Back to main thread</a>
+            {% if request.user == post.author %}
+            <a class="btn btn-outline-primary radius-15 m-4" href="{% url 'update_post' slug=post.slug %}">Edit Post</a>
+            {% endif %}
             <div class="card-body">
                 <div class="d-none d-md-block col masthead-image">
                     <!-- The featured image URL goes in the src attribute -->
@@ -90,13 +92,7 @@
         <div class="col-md-4 card mb-4 mt-3 ">
             <div class="card-body">
                 <!-- For later -->
-                {% if commented %}
-                <div class="alert alert-success" role="alert">
-                    Your comment is awaiting approval
-                </div>
-                {% else %}
                 {% if user.is_authenticated %}
-
                 <h3>Leave a comment:</h3>
                 <p>Posting as: {{ user.username }}</p>
                 <form method="post" style="margin-top: 1.3em;">
@@ -104,7 +100,6 @@
                     {% csrf_token %}
                     <button type="submit" class="btn btn-signup btn-lg">Submit</button>
                 </form>
-                {% endif %}
                 {% endif %}
             </div>
         </div>

@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render
 from django.views import generic, View
 from django.views.generic import DetailView, TemplateView
@@ -35,6 +36,7 @@ class CreateReferralsView(LoginRequiredMixin, CreateView):
         Sets the sender field to the logged-in user.
         """
         form.instance.referral_sender_id = self.request.user.userprofile
+        messages.success(self.request, 'Referral successfully created.')
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -78,6 +80,10 @@ class ReferralsUpdateView(LoginRequiredMixin, UpdateView):
     slug_url_kwarg = 'slug'
     success_url = reverse_lazy('referrals_list')
 
+    def form_valid(self, form):
+        messages.success(self.request, 'Referral successfully updated.')
+        return super().form_valid(form)
+
     def get_object(self, queryset=None):
         """
         Gets the referral object to be updated.
@@ -96,6 +102,10 @@ class ReferralsArchiveView(LoginRequiredMixin, UpdateView):
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
     success_url = reverse_lazy('referrals_list')
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Referral successfully moved.')
+        return super().form_valid(form)
 
 
 class ReferralsArchiveListView(LoginRequiredMixin, generic.ListView):
@@ -131,6 +141,10 @@ class ReferralsConfirmAgreementView(LoginRequiredMixin, UpdateView):
     slug_url_kwarg = 'slug'
     success_url = reverse_lazy('referrals_list')
 
+    def form_valid(self, form):
+        messages.success(self.request, 'Referral confirmation updated.')
+        return super().form_valid(form)
+
 
 class ReferralsAgreementCompletedView(LoginRequiredMixin, UpdateView):
     """
@@ -143,6 +157,10 @@ class ReferralsAgreementCompletedView(LoginRequiredMixin, UpdateView):
     slug_url_kwarg = 'slug'
     success_url = reverse_lazy('referrals_list')
 
+    def form_valid(self, form):
+        messages.success(self.request, 'Congratulations on completing!')
+        return super().form_valid(form)
+
 
 class ReferralsCancelView(LoginRequiredMixin, UpdateView):
     """
@@ -154,6 +172,10 @@ class ReferralsCancelView(LoginRequiredMixin, UpdateView):
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
     success_url = reverse_lazy('referrals_list')
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Referral successfully cancelled.')
+        return super().form_valid(form)
 
 
 class ReferralsAnalysisView(LoginRequiredMixin, TemplateView):

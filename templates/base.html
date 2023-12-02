@@ -252,6 +252,13 @@
           <!-- Begin Page Content -->
           <div class="container-fluid">
             <!-- Page Heading -->
+            {% if messages %}
+            <ul class="messages alert alert-success" id="msg-post-success">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
             {% block content %}
             <!-- Content Goes here -->
             {% endblock content %}
@@ -284,5 +291,14 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+    <!-- message success removal -->
+    <script>
+        setTimeout(function () {
+            let success = document.getElementById("msg-post-success");
+            let alert = new bootstrap.Alert(success);
+            alert.close();
+        }, 3000);
+    </script>
+
   </body>
 </html>

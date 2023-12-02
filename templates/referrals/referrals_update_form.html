@@ -47,7 +47,7 @@
             </div>
             <span class="mr-3 text-truncate">{{ referrals_detail.referral_receiver_id.user.first_name }} {{ referrals_detail.referral_receiver_id.user.last_name }}</span>
             <span class="text-truncate">Commission generated for you:</span>
-            <span class="text-truncate mr-3">£ {{ referrals_detail.estimated_commission }}</span>
+            <span class="text-truncate mr-3">£ {{ referrals_detail.estimated_commsion }}</span>
         </div>
         {% else %}
         <div>
@@ -61,15 +61,6 @@
             <span class="text-truncate mr-3">£ {{ referrals_detail.proposed_amount }}</span>
         </div>
         {% endif %}
-          
-          <!-- Profile Account details link -->
-          <div class="d-grid mt-3">
-            <a
-              class="btn btn-primary radius-15 m-4"
-              href="{% url 'user_info_update_form' slug=user.userprofile.slug %}"
-              >will be a message button</a
-            >
-          </div>
         </div>
       </div>
     </div>
@@ -88,5 +79,12 @@
     </div>
   </div>
 </div>
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 
 {% endblock %}

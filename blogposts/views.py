@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
@@ -59,6 +60,7 @@ class PostDetail(LoginRequiredMixin, View):
             comment = comment_form.save(commit=False)
             comment.post = post
             comment.save()
+            messages.success(self.request, 'Comment has been added.')
         else:
             comment_form = CommentForm()
 
@@ -106,6 +108,7 @@ class CreatePostView(LoginRequiredMixin, CreateView):
         """
         form.instance.author = self.request.user
         content = form.cleaned_data['content']
+        messages.success(self.request, 'Post Created.')
         form.instance.excerpt = (
             content[:50] + '...') if len(content) > 50 else content
         response = super().form_valid(form)
@@ -119,8 +122,12 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     template_name = 'blog/edit_post.html'
     form_class = EditPostForm
-    slug_field = 'slug'  # Use slug_field instead of slug
+    slug_field = 'slug'
     slug_url_kwarg = 'slug'
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Post successfully updated.')
+        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse_lazy('post_detail', kwargs={'slug': self.object.slug})
@@ -145,3 +152,7 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
         queryset = queryset or self.get_queryset()
         return queryset.filter(
             **{self.slug_field: self.kwargs[self.slug_url_kwarg]}).first()
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, 'Post successfully deleted.')
+        return super().delete(request, *args, **kwargs)

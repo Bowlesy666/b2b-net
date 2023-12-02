@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -145,3 +146,7 @@ class UserMailBoxArchiveView(LoginRequiredMixin, UpdateView):
     slug_field = 'pk'
     slug_url_kwarg = 'pk'
     success_url = reverse_lazy('conversation_list')
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Conversation successfully moved.')
+        return super().form_valid(form)

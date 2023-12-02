@@ -68,8 +68,6 @@ class ReferralsUpdateForm(forms.ModelForm):
     class Meta:
         model = ReferralsModel
         fields = [
-            'is_agreed',
-            'is_cancelled',
             'referral_subject',
             'referral_description',
             'introduced_person_name',
@@ -80,8 +78,6 @@ class ReferralsUpdateForm(forms.ModelForm):
             'proposed_amount',
             'percentage',
             'expected_completion_date',
-            'is_completed',
-            'is_archived',
         ]
         widgets = {
             'referral_subject': forms.TextInput(

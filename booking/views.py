@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views import generic, View
@@ -27,7 +28,7 @@ class CreateBookingView(LoginRequiredMixin, CreateView):
         return kwargs
 
     def form_valid(self, form):
-        # Set the sender field to the logged-in user
+        messages.success(self.request, '1-2-1 Meeting successfully created.')
         form.instance.sender = self.request.user.userprofile
         return super().form_valid(form)
 
@@ -66,6 +67,10 @@ class UpdateBookingView(LoginRequiredMixin, UpdateView):
     slug_url_kwarg = 'slug'  # Specify the URL keyword argument for the slug
     success_url = reverse_lazy('booking_list')
 
+    def form_valid(self, form):
+        messages.success(self.request, '1-2-1 Meeting successfully updated.')
+        return super().form_valid(form)
+
     def get_object(self, queryset=None):
         return self.model.objects.get(
             slug=self.kwargs.get(self.slug_url_kwarg))
@@ -83,6 +88,7 @@ class CreateDirectBookingView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         # set logged in user as sender
         form.instance.sender = self.request.user.userprofile
+        messages.success(self.request, '1-2-1 Meeting successfully created.')
 
         # get receiver from the clicked profile
         receiver_username = self.kwargs.get('receiver_username')
@@ -103,6 +109,10 @@ class CancelBookingView(LoginRequiredMixin, UpdateView):
     slug_url_kwarg = 'slug'
     success_url = reverse_lazy('booking_list')
 
+    def form_valid(self, form):
+        messages.success(self.request, '1-2-1 Meeting successfully cancelled.')
+        return super().form_valid(form)
+
 
 class ConfirmBookingView(LoginRequiredMixin, UpdateView):
     """
@@ -115,6 +125,10 @@ class ConfirmBookingView(LoginRequiredMixin, UpdateView):
     slug_url_kwarg = 'slug'
     success_url = reverse_lazy('booking_list')
 
+    def form_valid(self, form):
+        messages.success(self.request, '1-2-1 Meeting successfully confirmed.')
+        return super().form_valid(form)
+
 
 class ArchiveBookingView(LoginRequiredMixin, UpdateView):
     """
@@ -126,6 +140,10 @@ class ArchiveBookingView(LoginRequiredMixin, UpdateView):
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
     success_url = reverse_lazy('booking_list')
+
+    def form_valid(self, form):
+        messages.success(self.request, '1-2-1 Meeting successfully moved.')
+        return super().form_valid(form)
 
 
 class ArchiveBookingListView(LoginRequiredMixin, generic.ListView):
