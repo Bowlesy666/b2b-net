@@ -90,7 +90,7 @@ class PostLike(LoginRequiredMixin, View):
         else:
             post.likes.add(request.user)
 
-        return HttpResponseRedirect(reverse('blog/post_detail', args=[slug]))
+        return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 
 class CreatePostView(LoginRequiredMixin, CreateView):

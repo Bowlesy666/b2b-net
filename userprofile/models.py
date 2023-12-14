@@ -48,30 +48,32 @@ class UserProfile(models.Model):
         help_text="Select the business sector for the user.", blank=False
     )
     company_name = models.CharField(
-        max_length=100, help_text="Enter your company name.", blank=False)
+        max_length=100, help_text="Enter your company name.", blank=False,
+        default='Ask me what my company name is...')
     company_website = models.URLField(
         max_length=200, null=True,
-        help_text="Enter your company website URL.", blank=False)
+        help_text="Enter your company website URL.", blank=True)
     company_contact_number = PhoneNumberField(
-        unique=False, region='GB', null=False,
-        help_text="Primary contact number for the company.", blank=False
+        unique=False, region='GB', null=True,
+        help_text="Primary contact number for the company.", blank=True
     )
     alternative_company_contact_number = PhoneNumberField(
-        unique=True, region='GB', null=True,
-        help_text="Alternative contact number for the company.", blank=False
+        unique=False, region='GB', null=True,
+        help_text="Alternative contact number for the company.", blank=True
     )
     company_contact_email = models.EmailField(
         unique=False, null=True,
-        help_text="Enter your company contact email.", blank=False)
+        help_text="Enter your company contact email.", blank=True)
     company_bio = models.TextField(
-        null=True, help_text="Provide a brief bio about your company.", blank=False)
+        null=True, help_text="Provide a brief bio about your company.",
+        blank=True)
     company_services_post = models.TextField(
-        null=True, help_text="Post about your company services.", blank=False)
+        null=True, help_text="Post about your company services.", blank=True)
     company_hero_picture = CloudinaryField(
         'image', default='placeholder',
         help_text="Upload a hero picture for your company.", blank=False)
     user_contact_number = PhoneNumberField(
-        unique=True, region='GB', null=False,
+        unique=True, region='GB', null=True,
         help_text="Your personal contact number.", blank=False
     )
     display_user_email = models.BooleanField(

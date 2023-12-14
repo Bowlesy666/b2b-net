@@ -2,6 +2,7 @@ from django import forms
 from .models import UserProfile
 from allauth.account.forms import SignupForm
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 
 
 class UserProfileForm(forms.ModelForm):
@@ -77,4 +78,8 @@ class CustomSignupForm(SignupForm):
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
         user.save()
+        create_a_profile = UserProfile.objects.create(user=user)
+        create_a_profile.slug = slugify(
+            f"{user.username}-{user.pk}")
+        create_a_profile.save()
         return user
